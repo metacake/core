@@ -13,6 +13,7 @@ Maybe the vanilla layers are just fine for you; you just want to make a game. Yo
 
 
 &#42; Please don't actually try to eat it.
+
 &#42;&#42; Really, don't eat it. Just have fun playing.
 
 Note: We are currently in the process of migrating from private repositories, however we haven't gotten around to it because of this course: http://www.ccs.neu.edu/home/matthias/6515-s13/index.html
