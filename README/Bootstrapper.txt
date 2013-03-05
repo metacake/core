@@ -1,0 +1,19 @@
+The bootstrapper is what starts the game.
+
+The first phase is to construct four user defined plugin sets:
+    Window
+    InputPlugins
+    OutputPlugins
+    InitialState
+
+The output plugins and input plugins are then bound to the window.
+
+
+The second phase is the construction of the main game System.
+    1. Construct InputSystem given InputPlugins
+    2. Construct Process System given InputSystem and InitialState
+    3. Construct Output System given ProcessSystem and OutputPlugins
+
+The third phase is launching the game
+    1. Start output thread
+    2. Enter main game loop
