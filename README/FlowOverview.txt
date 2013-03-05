@@ -1,0 +1,39 @@
+There are three layers to a running game: Input, Process, and Output. Each accepts plugins.
+
+Plugin:
+
+There are three plugin types: Input, Output, and Process.
+
+Input: a way to get events from hardware. In java terms, EventListener
+
+Output: Drawing, Sound, Etc.
+
+Process: Logic for running the game
+
+
+Input Flow:
+
+Input Plugins receive events from hardware. They then pass these events to a binding layer.
+This binding layer translates events to actions, where an action is bound to multiple events
+and is fired when one event occurs. And example Action would be "forward" and would be bound
+to "joystick up" and "w".
+These Actions are put into a pool that live on the boundry between the Input layer and the
+runner layer.
+
+Process flow:
+
+The game runner has a State. It empties the ActionPool onto the ActionsRecognizers in the state.
+These ActionRecognizers act as the polling mechanism for the process plugins. The Runner
+then calls "runTick()" on the state. Run tick does one of three things:
+
+If state is transitional State : Load new assets, reset key bindings, maybe clear action pool
+and then return a running state
+If running state: call into current process plugin and return possibly new state
+If end state: shutdown engine
+
+The return state is then given to the StateQueue, which is the boundary between the process
+and output layers. The StateQueue pools for a set of immutable data needed for a "rendering cycle"
+
+Output Flow:
+
+Read from Queue, and give data to Output modules. Queue blocks if empty.
