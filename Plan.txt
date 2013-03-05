@@ -1,0 +1,44 @@
+Phase 1 goal: Small 2D java engine + game
+
+    1. Create Layer Interfaces. Create Base Window Interface
+
+    2. For each layer, do in any order:
+
+    Input:
+      1. Develop minimal input plugin interface
+      2. build input system around that interface
+         Build system that binds events one to one with actions
+    Process:
+      1. Create State Interfaces and abstract classes
+      2. build running system
+    Output:
+      1. Create basic output inteface
+      2. build 'render' loop
+
+
+
+    3. Create Bootstrapper
+      ????
+
+    4. Build Game:
+      1. Create Keyboard plugin
+      2. Create 2D Rendering Plugin
+      3. Create small multi-state dick around simulator
+
+
+Phase 2 Goal: Add functionality
+  1. Events -> Actions
+  2. StateQueue Plugin Interface + default impl
+  3. Mouse Plugin
+  4. Add default recognizes for common things
+
+Phase 3: Basic AssetCache
+
+Future Goals:
+Engine system like in vulcan
+    Physics engine
+    AI engine
+    Scripting engine
+JOGL plugin
+Sound plugins
+Generic AssetCache
