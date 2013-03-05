@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The Basics -->
+    <groupId>com.cake</groupId>
+    <artifactId>com.cake</artifactId>
+    <version>a0.1</version>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <properties></properties>
+
+    <!-- Build Settings -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.13</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit4</artifactId>
+                        <version>2.13</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting></reporting>
+
+    <!-- More Project Information -->
+    <name>Cake Game Engine</name>
+    <description>Java Game Engine</description>
+    <url></url>
+    <inceptionYear>2011</inceptionYear>
+    <licenses>
+        <license>
+            <name>GNU Public License</name>
+            <url>http://www.gnu.org/licenses/gpl.html</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+    <organization></organization>
+    <developers></developers>
+
+    <!-- Environment Settings -->
+    <!--
+         Will do this some day
+    <issueManagement>...</issueManagement>
+    <ciManagement>...</ciManagement>
+    <mailingLists>...</mailingLists>
+    <scm>...</scm>
+    <prerequisites>...</prerequisites>
+    <repositories>...</repositories>
+    <pluginRepositories>...</pluginRepositories>
+    <distributionManagement>...</distributionManagement>
+    <profiles>...</profiles>
+  -->
+</project>
