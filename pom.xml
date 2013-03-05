@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- The Basics -->
-    <groupId>com.cake</groupId>
-    <artifactId>com.cake</artifactId>
+    <groupId>metacake</groupId>
+    <artifactId>metacake</artifactId>
     <version>a0.1</version>
     <packaging>jar</packaging>
     <dependencies>
