@@ -22,6 +22,7 @@ public class GameRunner {
     public void mainLoop(GameState state, long interval) {
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
+        // TODO: excpetion handling
         while (isRunning) {
             outputSystem.addToRenderQueue(state);
             updateTriggers(state);

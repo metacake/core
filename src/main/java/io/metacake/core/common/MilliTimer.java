@@ -49,6 +49,7 @@ public class MilliTimer {
             if (waitFor > 0)
                 Thread.sleep(waitFor);
         } catch (InterruptedException e) {
+            // FIXME: this is likey a bad way to handle this
             e.printStackTrace();
         }
     }
