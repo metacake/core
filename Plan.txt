@@ -1,6 +1,6 @@
 Phase 1 goal: Small 2D java engine + game
 
-    1. Create Layer Interfaces. Create Base Window Interface
+    1. Create Layer Interfaces. Create Base Window Interface  XX DONE
 
     2. For each layer, do in any order:
 
