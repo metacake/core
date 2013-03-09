@@ -27,5 +27,5 @@ public interface InputSystem {
      * Pass these action triggers to the event handling layer to control action creation
      * @param ts All actions triggers to be used
      */
-    public void setActionTrigges(List<ActionTrigger> ts);
+    public void setActionTriggers(List<ActionTrigger> ts);
 }

@@ -1,8 +1,9 @@
 package io.metacake.core.common.window;
 
 /**
- * Interface for things that wait for the window to close
- * @author spencerflorence
+ * Interface for Observers that wait for a CakeWindow to close.
+ * @author florence
+ * @author rpless
  */
 public interface CloseObserver {
     /**

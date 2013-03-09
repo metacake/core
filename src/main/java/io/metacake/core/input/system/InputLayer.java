@@ -36,7 +36,7 @@ public class InputLayer implements InputSystem, CakeEventHandler{
     }
 
     @Override
-    public void setActionTrigges(List<ActionTrigger> ts) {
+    public void setActionTriggers(List<ActionTrigger> ts) {
         this.currentBindingTriggers = ts;
     }
 

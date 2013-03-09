@@ -2,22 +2,25 @@ package io.metacake.core.common;
 
 /**
  * This class acts as a Microsecond timer.
- * It has to functions. The first is to record the difference between two times.
+ * <p></p>
+ * It has two functions. The first is to record the difference between two times.
  * The second is to act as a 'time mechanism', blocking a thread until a give time.
  * The accuracy of this time is approximately the accuracy of System.nanoTime()
- * on the give system
+ * on the give system.
  *
- * @author Spencer Florence
+ * @author florence
  */
 public class MilliTimer {
-    private long interval = 0;
-    private long lastActive = System.nanoTime();
-    private final long TO_MILLIS = 1000000;
+    private static final long TO_MILLIS = 1_000_000;
+
+    private long interval;
+    private long lastActive;
 
     /**
-     * Constructs a timer with a 0 interval
+     * Constructs a timer with a 0 interval.
      */
     public MilliTimer() {
+        this(0);
     }
 
     /**
@@ -27,6 +30,7 @@ public class MilliTimer {
      */
     public MilliTimer(long interval) {
         this.interval = interval;
+        this.lastActive = System.nanoTime();
     }
 
     /**
@@ -46,10 +50,11 @@ public class MilliTimer {
     public void block() {
         try {
             long waitFor = interval - this.poll();
-            if (waitFor > 0)
+            if (waitFor > 0) {
                 Thread.sleep(waitFor);
+            }
         } catch (InterruptedException e) {
-            // FIXME: this is likey a bad way to handle this
+            // FIXME: this is likely a bad way to handle this
             e.printStackTrace();
         }
     }
@@ -79,4 +84,3 @@ public class MilliTimer {
         return this.poll() > this.interval;
     }
 }
-

@@ -10,7 +10,7 @@ public interface InputDevice {
      * Give this device what handler it should report to
      * @param e the handler
      */
-    public void receiveEventHander(CakeEventHandler e);
+    public void receiveEventHandler(CakeEventHandler e);
 
     /**
      * Safely shutdown this device

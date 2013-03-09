@@ -4,7 +4,7 @@ import io.metacake.core.common.Symbol;
 
 /**
  *
- * This is the superclass for all enumeration that represent Events
+ * The superclass for all enumeration that represent Events.
  *
  * @author florence
  * @author rpless

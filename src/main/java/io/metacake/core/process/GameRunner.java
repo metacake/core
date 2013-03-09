@@ -38,7 +38,7 @@ public class GameRunner {
 
     private void updateTriggers(GameState s){
         if(s.shouldReplaceActionTriggers()) {
-            inputSystem.setActionTrigges(s.getNewActionTriggers());
+            inputSystem.setActionTriggers(s.getNewActionTriggers());
         }
     }
 
@@ -48,8 +48,8 @@ public class GameRunner {
         } else {
             // CONCERN: This might be two slow. maybe we need to redesign action->recognizer bindings.
             for (Action a : inputSystem.getAndCleanActions()) {
-                for(ActionRecognizer r : s.getRecongizers()) {
-                    r.actionOccured(a);
+                for(ActionRecognizer r : s.getRecognizers()) {
+                    r.actionOccurred(a);
                 }
             }
         }

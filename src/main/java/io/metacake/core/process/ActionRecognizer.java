@@ -3,34 +3,33 @@ package io.metacake.core.process;
 import io.metacake.core.input.Action;
 
 /**
- * This interface is for classes that recognizes certain patterns of actions
- * a recongizer is 'triggered' when it sees a sequence of action that it recognizes
+ * This interface is for classes that recognize certain patterns of actions.
+ * A recognizer is 'triggered' when it sees a sequence of action that it recognizes.
  * @author florence
  * @author rpless
  */
 public interface ActionRecognizer {
     /**
      * Tell this recognizer that an action occurred.
-     * @param a the action
+     * @param a the action tha occurred
      */
-    public void actionOccured(Action a);
+    public void actionOccurred(Action a);
 
     /**
-     * @return did this recognize a sequence of actions?
+     * @return Did this recognize a sequence of actions?
      */
     public boolean wasTriggered();
 
     /**
-     * Get an integer value assocaited with the trigger.
-     * Precondition: wasTriggered() == true <p>
+     * Precondition: wasTriggered() == true </p>
      * For example, if this recognizer recognizes movement actions,
      * and the movement action was active for 20 seconds, the weight might be 20
-     * @return
+     * @return Get an integer value that represents the weight to the trigger.
      */
     public int triggerWeight();
 
     /**
-     * forget action this has seen.
+     * Forget that this recognizer has seen any actions.
      */
     public void forgetActions();
 }

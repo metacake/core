@@ -9,42 +9,38 @@ package io.metacake.core.common.window;
  */
 public interface CakeWindow<T> {
     /**
-     * force close the window
-     * calls the observers
+     * Force close the window and calls the CloseObservers.
      */
     public abstract void close();
 
     /**
-     * Get the x coordinate of the upper left
-     * @return pixels from upper left of screen
+     * @return Get the x coordinate on the screen of the upper left corner of this window
      */
     public abstract int getX();
 
     /**
-     * Get the y coordinate of the upper left
-     * @return pixes from upper left of screen
+     * @return Get the y coordinate on the screen of the upper left corner of this window
      */
     public abstract int getY();
 
     /**
-     * get width of window
-     * @return in pixels
+     *
+     * @return Get width of this window in pixels
      */
     public abstract int getWidth();
 
     /**
-     * get height of window
-     * @return in pixels
+     * @return Get width of this window in pixels
      */
     public abstract int getHeight();
 
     /**
-     * add a close observer
+     * Add a CloseObserver/
      */
     public void addCloseObserver(CloseObserver o);
 
     /**
-     * @return The low level windowing object
+     * @return Get the Low level window object.
      */
     public abstract T getRawWindow();
 }

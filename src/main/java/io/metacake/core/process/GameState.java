@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface GameState extends Renderable{
     /**
-     * @return the recognizers the current game state needs
+     * @return The recognizers the current game state needs
      */
-    public List<ActionRecognizer> getRecongizers();
+    public List<ActionRecognizer> getRecognizers();
 
     /**
      * Perform one cycle of the game loop
@@ -22,7 +22,7 @@ public interface GameState extends Renderable{
     public GameState tick();
 
     /**
-     * @return Should the known actions be flushed
+     * @return Should the known actions be flushed?
      */
     public boolean shouldClearActions();
 
@@ -32,7 +32,7 @@ public interface GameState extends Renderable{
     public boolean shouldReplaceActionTriggers();
 
     /**
-     * Precondition: #shouldReplaceActionTriggers == true
+     * Precondition: this#shouldReplaceActionTriggers == true
      * @return all action triggers
      */
     public List<ActionTrigger> getNewActionTriggers();
