@@ -1,9 +1,6 @@
 package io.metacake.core.output.system;
 
-import io.metacake.core.output.OutputDevice;
-import io.metacake.core.output.OutputSystem;
-import io.metacake.core.output.Renderable;
-import io.metacake.core.output.RenderingInstruction;
+import io.metacake.core.output.*;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +11,11 @@ import java.util.Map;
  * @author rpless
  */
 public class OutputLayer implements OutputSystem{
-    Object deviceContainer; // User implemented object with no Interface. Only a reference is needed here
+    Map<OutputDeviceName,OutputDevice> deviceContainer;
+
+    public OutputLayer(Map<OutputDeviceName, OutputDevice> deviceContainer) {
+        this.deviceContainer = deviceContainer;
+    }
 
     @Override
     public void addToRenderQueue(Renderable r) {
@@ -22,6 +23,13 @@ public class OutputLayer implements OutputSystem{
 
         for(Map.Entry<OutputDevice,List<RenderingInstruction>> e : instructions.entrySet()) {
             e.getKey().render(e.getValue());
+        }
+    }
+
+    @Override
+    public void startOutputLoops() {
+        for(OutputDevice o : deviceContainer.values()){
+            o.startOutputLoop();
         }
     }
 }
