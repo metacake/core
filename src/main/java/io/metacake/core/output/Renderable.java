@@ -14,5 +14,5 @@ public interface Renderable {
      * @param outputDevices a container for all OutputDevices
      * @return A map of devices to their instructions
      */
-    public HashMap<OutputDevice,List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName,OutputDevice> outputDevices);
+    public Map<OutputDevice,List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName,OutputDevice> outputDevices);
 }
