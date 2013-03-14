@@ -48,6 +48,7 @@ public class InitialState implements GameState{
     }
 
     @Override
+    // Concern: List<RenderingInstruction> could be its own class
     public Map<OutputDevice, List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName, OutputDevice> outputDevices) {
         HashMap<OutputDevice,List<RenderingInstruction>> ret = new HashMap<>();
         LinkedList<RenderingInstruction> l = new LinkedList<>();

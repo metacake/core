@@ -2,20 +2,18 @@ package io.metacake;
 
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
-import io.metacake.core.output.RenderingInstruction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.List;
 
 /**
  * @author florence
  * @author rpless
  */
 public class Window implements CakeWindow<JFrame>{
-    JFrame frame = new JFrame();
-    DrawPannel draw = new DrawPannel(500,500);
+    JFrame frame = new JFrame(); // CONCERN
+    DrawPanel draw = new DrawPanel(500,500); //CONCERN
 
     public Window() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,12 +59,12 @@ public class Window implements CakeWindow<JFrame>{
     }
 }
 
-class DrawPannel extends JPanel {
+class DrawPanel extends JPanel {
     public static final int NUM_BUFFERS = 2;
     private Canvas canvas;
     BufferStrategy bufferStrategy;
 
-    DrawPannel(int w, int h) {
+    DrawPanel(int w, int h) {
         super();
         this.setSize(w,h);
         canvas = new Canvas();
