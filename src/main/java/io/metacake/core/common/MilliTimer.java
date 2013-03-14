@@ -54,8 +54,8 @@ public class MilliTimer {
                 Thread.sleep(waitFor);
             }
         } catch (InterruptedException e) {
-            // FIXME: this is likely a bad way to handle this
-            e.printStackTrace();
+            e.printStackTrace(); // TODO: convert to logger (when we have it)
+            Thread.currentThread().interrupt();
         }
     }
 

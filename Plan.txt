@@ -26,6 +26,8 @@ Phase 1 goal: Small 2D java engine + game
       3. Create small multi-state dick around simulator
 
 
+Phase 1.5 : Code Coverage, Style Check
+
 Phase 2 Goal: Add functionality
   1. Events -> Actions
   2. StateQueue Plugin Interface + default impl
