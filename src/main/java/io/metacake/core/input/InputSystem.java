@@ -16,7 +16,7 @@ public interface InputSystem {
      * Effect: Empties the pool
      * @return The current actions
      */
-    List<Action> getAndCleanActions();
+    List<Action> getAndClearActions();
 
     /**
      * Empty the current pool

@@ -24,7 +24,7 @@ public class InputLayer implements InputSystem, CakeEventHandler{
     }
 
     @Override
-    public List<Action> getAndCleanActions() {
+    public List<Action> getAndClearActions() {
         List<Action> tmp = queuedActions;
         clearActions();
         return tmp;

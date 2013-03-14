@@ -68,7 +68,7 @@ public class GameRunner {
             inputSystem.clearActions();
         } else {
             // CONCERN: This might be two slow. maybe we need to redesign action->recognizer bindings.
-            for (Action a : inputSystem.getAndCleanActions()) {
+            for (Action a : inputSystem.getAndClearActions()) {
                 for(ActionRecognizer r : s.getRecognizers()) {
                     r.actionOccurred(a);
                 }

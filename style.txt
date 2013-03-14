@@ -1,0 +1,38 @@
+Style and Semantics
+;;----------------------------------------------------------------------------------------------------------------------
+
+Table of Contents
+1. Style Guide
+    1.1 Java Coding Style
+        1.1.1 Notable Exceptions
+    1.2 Documentation
+    1.3 Tests
+2. Glossary of Project Terms
+
+1 Style Guide
+;;----------------------------------------------------------------------------------------------------------------------
+The Style Guide outlines the general practices that should be followed when coding for the project. This section
+includes best practices for idioms, style, documentation, and tests that appear in this project.
+
+1.1 Java Coding Style
+    All Java code should follow the conventions set forth in the Code Conventions for the Java Programming Language
+(Revised April 20, 1999). Any exceptions to these conventions will be listed below.
+
+1.1.1 Notable Exceptions
+In addition, tab characters are never to appear as whitespace in code (or any other files for that matter).
+Lines of code must be wrapped at 120 characters. Code documentation (JavaDocs) should still wrap at 80 characters.
+
+1.2 Documentation
+All Types, methods, and constants should be documented. Documented means that there is at least a statement of purpose
+for the piece of code. Methods should also include descriptions of any the parameters and the return value.
+Documentation should be clear and succinct. For some code, it may be of benefit to include examples in the
+documentation.
+
+1.3 Tests
+Generally speaking complete code coverage is ideal. Realistically, achieving full coverage may not be practical or
+possible. Certain pieces of code are not always practical to test. As such the following code types of code do not
+necessarily require unit tests, but should have specifications for quality assurance test that can run on it.
+
+2 Glossary of Project Terms
+;;----------------------------------------------------------------------------------------------------------------------
+The Glossary of Project Terms outlines the denotations of the specific terms in the context of the project.
