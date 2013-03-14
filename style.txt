@@ -20,7 +20,8 @@ includes best practices for idioms, style, documentation, and tests that appear 
 
 1.1.1 Notable Exceptions
 In addition, tab characters are never to appear as whitespace in code (or any other files for that matter).
-Lines of code must be wrapped at 120 characters. Code documentation (JavaDocs) should still wrap at 80 characters.
+Lines of code must be wrapped at 120 characters. Code documentation (JavaDocs) should still wrap at 80 characters, with
+paragraph tag at that point.
 
 1.2 Documentation
 All Types, methods, and constants should be documented. Documented means that there is at least a statement of purpose
@@ -36,3 +37,9 @@ necessarily require unit tests, but should have specifications for quality assur
 2 Glossary of Project Terms
 ;;----------------------------------------------------------------------------------------------------------------------
 The Glossary of Project Terms outlines the denotations of the specific terms in the context of the project.
+
+To Define:
+
+Layer
+Module
+Plugin
