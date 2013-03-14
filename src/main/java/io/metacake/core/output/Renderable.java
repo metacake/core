@@ -1,6 +1,7 @@
 package io.metacake.core.output;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author florence
@@ -12,5 +13,5 @@ public interface Renderable {
      * @param outputDevices a user defined container for all OutputDevices, built by the bootstrapper
      * @return A map of devices to their instructions
      */
-    public HashMap<OutputDevice,RenderingInstruction> renderingInstructions(Object outputDevices);
+    public HashMap<OutputDevice,List<RenderingInstruction>> renderingInstructions(Object outputDevices);
 }
