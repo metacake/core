@@ -1,7 +1,6 @@
 package io.metacake.engine;
 
 import io.metacake.core.output.RenderingInstruction;
-import io.metacake.core.process.GameState;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,11 +10,11 @@ import java.util.List;
  * @author rpless
  */
 public class SyncState {
-    private List<RenderingInstruction> s = Collections.emptyList();
-    public synchronized void setState(List<RenderingInstruction> s) {
+    private volatile List<RenderingInstruction> s = Collections.emptyList();
+    public void setState(List<RenderingInstruction> s) {
         this.s = s;
     }
-    public synchronized List<RenderingInstruction> getState(){
+    public List<RenderingInstruction> getState(){
         return s;
     }
 }
