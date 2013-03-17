@@ -20,7 +20,7 @@ import java.util.Map;
  * @author rpless
  */
 public class Bootstrapper {
-    public static final long DEFAULT_LOOP_MILLIS = 5;
+    public static final long DEFAULT_LOOP_MILLIS = 50;
     CakeWindow window;
     List<InputDevice> inputs;
     Map<OutputDeviceName,OutputDevice> outputs;

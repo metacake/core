@@ -37,6 +37,7 @@ public class GameRunner {
             outputSystem.addToRenderQueue(state);
             updateTriggers(state);
             updateRecognizers(state);
+            timer.update();
             state = state.tick();
             timer.block();
         }

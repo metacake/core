@@ -19,11 +19,11 @@ public class DrawingDevice implements OutputDevice {
     public static final OutputDeviceName NAME = new OutputDeviceName();
     Window window;
     DrawPanel draw;
-    LinkedBlockingDeque<List<RenderingInstruction>> queue = new LinkedBlockingDeque<>();
+    SyncState sync = new SyncState();
 
     @Override
     public void render(List<RenderingInstruction> r) {
-        queue.offer(r);
+        sync.setState(r);
     }
 
     @Override
@@ -43,24 +43,19 @@ public class DrawingDevice implements OutputDevice {
     private MilliTimer t = new MilliTimer();
 
     void draw(List<RenderingInstruction> r) {
-        System.out.print("starting draw: " + t.update() + "\t");
         Graphics g = draw.bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, draw.getWidth(), draw.getHeight());
-        System.out.print(t.update() + "\t");
         for (RenderingInstruction d : r) {
             ((DrawInstruction) d).draw(g);
         }
-        System.out.print(t.update() + "\t");
         g.dispose();
-        System.out.print(t.update() + "\t");
         draw.bufferStrategy.show();
-        System.out.println(t.update());
     }
 }
 
 // TODO: generic no shitty thread. FUCK YOU ORACLE
 class DrawingThread extends Thread {
-    volatile DrawingDevice d;
+    DrawingDevice d;
     volatile boolean running = true;
 
     DrawingThread(DrawingDevice d) {
@@ -70,13 +65,8 @@ class DrawingThread extends Thread {
     @Override
     public void run() {
         MilliTimer t = new MilliTimer();
-        for (;running; ) {
-            try {
-                d.draw(d.queue.take());
-            } catch (InterruptedException e) {
-                this.running = false;
-                e.printStackTrace();
-            }
+        while (running) {
+            d.draw(d.sync.getState());
         }
     }
 
