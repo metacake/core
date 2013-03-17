@@ -1,4 +1,4 @@
-package io.metacake;
+package io.metacake.engine;
 
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
@@ -6,7 +6,6 @@ import io.metacake.core.output.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -51,7 +50,7 @@ public class DrawingDevice implements OutputDevice {
     }
 }
 
-// TODO: generic no shitty thread. FUCK YOU SUN
+// TODO: generic no shitty thread. FUCK YOU ORACLE
 class DrawingThread extends Thread {
     DrawingDevice d;
     volatile boolean running = false;
@@ -91,14 +90,3 @@ class DrawingCloseObserver implements CloseObserver {
     }
 }
 
-class DrawInstruction implements RenderingInstruction {
-    int pos;
-
-    DrawInstruction(int pos) {
-        this.pos = pos;
-    }
-
-    void draw(Graphics g) {
-        g.fillOval(200, pos, 10, 10);
-    }
-}

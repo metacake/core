@@ -1,4 +1,4 @@
-package io.metacake;
+package io.metacake.game;
 
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.OutputDevice;
@@ -6,6 +6,8 @@ import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.GameState;
+import io.metacake.engine.DrawInstruction;
+import io.metacake.engine.DrawingDevice;
 
 import java.util.*;
 

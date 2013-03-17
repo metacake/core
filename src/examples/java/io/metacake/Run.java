@@ -4,6 +4,9 @@ import io.metacake.core.Bootstrapper;
 import io.metacake.core.input.system.InputDevice;
 import io.metacake.core.output.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
+import io.metacake.engine.DrawingDevice;
+import io.metacake.engine.Window;
+import io.metacake.game.InitialState;
 
 import java.util.*;
 

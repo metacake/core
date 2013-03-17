@@ -1,4 +1,4 @@
-package io.metacake;
+package io.metacake.engine;
 
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
