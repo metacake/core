@@ -25,12 +25,18 @@ public class Bootstrapper {
     List<InputDevice> inputs;
     Map<OutputDeviceName,OutputDevice> outputs;
     GameState initialState;
+    private long loopTime;
 
     public Bootstrapper(CakeWindow window, List<InputDevice> inputs, Map<OutputDeviceName,OutputDevice> outputs, GameState g) {
+        this(window, inputs, outputs, g,DEFAULT_LOOP_MILLIS);
+    }
+
+    public Bootstrapper(CakeWindow window, List<InputDevice> inputs, Map<OutputDeviceName,OutputDevice> outputs, GameState g, long loopTime) {
         this.window = window;
         this.inputs = inputs;
         this.outputs = outputs;
         this.initialState = g;
+        this.loopTime = loopTime;
     }
 
     /**
@@ -42,7 +48,7 @@ public class Bootstrapper {
         OutputSystem o = this.bootstrapOutputSystem();
         GameRunner r = this.bootstrapProcessLayer(i,o);
         o.startOutputLoops();
-        r.mainLoop(initialState,DEFAULT_LOOP_MILLIS);
+        r.mainLoop(initialState,loopTime);
     }
 
     /**

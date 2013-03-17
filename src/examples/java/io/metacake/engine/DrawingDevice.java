@@ -1,6 +1,7 @@
 package io.metacake.engine;
 
 import io.metacake.core.common.MilliTimer;
+import io.metacake.core.common.TimedObserverThread;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
 import io.metacake.core.output.OutputDevice;
@@ -28,10 +29,15 @@ public class DrawingDevice implements OutputDevice {
 
     @Override
     public void startOutputLoop() {
-        DrawingThread drawingThread = new DrawingThread(this);
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                draw(sync.getState());
+            }
+        };
+        TimedObserverThread drawingThread = new TimedObserverThread(run,window);
 
         drawingThread.start();
-        window.addCloseObserver(new DrawingCloseObserver(drawingThread));
     }
 
     @Override
@@ -39,8 +45,6 @@ public class DrawingDevice implements OutputDevice {
         window = (Window) w;
         draw = window.draw;
     }
-
-    private MilliTimer t = new MilliTimer();
 
     void draw(List<RenderingInstruction> r) {
         Graphics g = draw.bufferStrategy.getDrawGraphics();
@@ -50,43 +54,6 @@ public class DrawingDevice implements OutputDevice {
         }
         g.dispose();
         draw.bufferStrategy.show();
-    }
-}
-
-// TODO: generic no shitty thread. FUCK YOU ORACLE
-class DrawingThread extends Thread {
-    DrawingDevice d;
-    volatile boolean running = true;
-
-    DrawingThread(DrawingDevice d) {
-        this.d = d;
-    }
-
-    @Override
-    public void run() {
-        MilliTimer t = new MilliTimer();
-        while (running) {
-            d.draw(d.sync.getState());
-        }
-    }
-
-    public void stopO() {
-        running = false;
-        this.interrupt();
-    }
-}
-
-// TODO: generic observer for threads
-class DrawingCloseObserver implements CloseObserver {
-    DrawingThread t;
-
-    DrawingCloseObserver(DrawingThread t) {
-        this.t = t;
-    }
-
-    @Override
-    public void onClose() {
-        t.stopO();
     }
 }
 
