@@ -36,6 +36,7 @@ public class Keyboard implements InputDevice, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        // TODO: switch == bad. We did this programmatically before. Lacking API
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP : handler.handle(CakeKeyEvent.upPressed);
                 break;
@@ -63,6 +64,7 @@ public class Keyboard implements InputDevice, KeyListener {
     }
 
     public static class CakeKeyEvent extends CakeEvent {
+        // TODO: This pressed/released stuff is bad. Need to think more. API issue?
         public static CakeKeyEvent upPressed = new CakeKeyEvent();
         public static CakeKeyEvent downPressed = new CakeKeyEvent();
         public static CakeKeyEvent leftPressed = new CakeKeyEvent();

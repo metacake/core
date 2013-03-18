@@ -138,6 +138,7 @@ class MovementStartTrigger implements ActionTrigger {
 class MovementEndTrigger implements ActionTrigger {
     @Override
     public boolean shouldTriggerAction(CakeEvent event) {
+        // TODO: This is bad. ew ew ew. API issue most likely.
         return event == Keyboard.CakeKeyEvent.downReleased ||
                 event == Keyboard.CakeKeyEvent.upReleased ||
                 event == Keyboard.CakeKeyEvent.rightReleased ||
