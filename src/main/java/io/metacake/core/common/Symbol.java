@@ -1,25 +1,6 @@
 package io.metacake.core.common;
 
-/**
- * This class is meant to be used as extensible enumerations.
- * <p></p>
- * All symbols are 'unique', in that they can only be compared through
- * referential equality.
- * For example :
- * public class MovementAction extends Symbol {
- *   public static final GO_UP = new MovementAction();
- *   public static final GO_DOWN = new MovementAction();
- *   public static final GO_LEFT = new MovementAction();
- *   public static final GO_RIGHT = new MovementAction();
- * }
- *
- * In this example, none of these fields can ever be equal to any other field.
- * In addition, the example type that extends Symbol could later be extended to add other
- * types to the enumeration.
- *
- * @author florence
- * @author rpless
- */
+
 public class Symbol {
     @Override
     public final boolean equals(Object that) {
