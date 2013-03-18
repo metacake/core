@@ -21,6 +21,9 @@ public class InputLayer implements InputSystem, CakeEventHandler{
 
     public InputLayer(List<InputDevice> devices) {
         this.devices = devices;
+        for(InputDevice i : devices) {
+            i.receiveEventHandler(this);
+        }
     }
 
     @Override

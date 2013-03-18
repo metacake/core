@@ -6,6 +6,8 @@ import io.metacake.core.common.window.CloseObserver;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author florence
@@ -14,6 +16,7 @@ import java.awt.image.BufferStrategy;
 public class Window implements CakeWindow<JFrame>{
     JFrame frame = new JFrame(); // CONCERN
     DrawPanel draw = new DrawPanel(500,500); //CONCERN
+    List<CloseObserver> observers = new LinkedList<>();
 
     public Window() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +28,9 @@ public class Window implements CakeWindow<JFrame>{
 
     @Override
     public void close() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        for(CloseObserver c : observers) {
+            c.onClose();
+        }
     }
 
     @Override
@@ -50,7 +55,7 @@ public class Window implements CakeWindow<JFrame>{
 
     @Override
     public void addCloseObserver(CloseObserver o) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        observers.add(o);
     }
 
     @Override
