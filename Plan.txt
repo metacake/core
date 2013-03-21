@@ -1,8 +1,8 @@
 Phase 1 goal: Small 2D java engine + game
 
-    1. Create Layer Interfaces. Create Base Window Interface  XX DONE
+    1. Create Layer Interfaces. Create Base Window Interface  [Done]
 
-    2. For each layer, do in any order:
+    2. For each layer, do in any order: [Done]
 
     Input:
       1. Develop minimal input plugin interface
@@ -15,32 +15,66 @@ Phase 1 goal: Small 2D java engine + game
       1. Create basic output inteface
       2. build 'render' loop
 
-
-
-    3. Create Bootstrapper
-      ????
+    3. Create Bootstrapper [Done]
 
     4. Build Game:
-      1. Create Keyboard plugin
-      2. Create 2D Rendering Plugin
-      3. Create small multi-state dick around simulator
+      1. Create Keyboard plugin [Done]
+      2. Create 2D Rendering Plugin [Done]
+      3. See Examples Plan below.
 
 
-Phase 1.5 : Code Coverage, Style Check
+Phase 1.5 : Cleanup 
+  * Add the Emma Code Coverage plugin
+    - This will give us a better idea of were we have benn neglecting our tests.
+  * potentially add some minimal Style Check plugin
+  * Examine interfaces for derpiness and try to fix it.
 
 Phase 2 Goal: Add functionality
-  1. Events -> Actions
-  2. StateQueue Plugin Interface + default impl
-  3. Mouse Plugin
-  4. Add default recognizes for common things
+  * Events -> Actions
+  * StateQueue Plugin Interface + default impl
+  * Mouse Plugin
+  * Add default recognizes for common things
 
 Phase 3: Basic AssetCache
 
+Examples Plan: Zombies
+Zombies is a top down game in which a player must run away from zombies.
+As we go with this project we should be writing a Tutorial or something to explain how it all works.
+Effectively, we will end with two tutorials: an engine tutorial and a game tutorial.
+
+Iterations:
+-----------------Phase 1---------------------------------------
+- Build Core engine
+  * This step will be minimal. Must of it will be salvage from the current example.
+  * The only addition will be sound.
+- Simple Zombies Game
+  * Entities: Player, Zombies
+  * Interaction: Keyboard
+  * Output: Displayed on screen, noise when player dies.
+  
+-----------------Phase 2--------------------------------------------
+- Zombies with Obstacles and a Larger world
+  * Make the world bigger than what the player sees. The player can still move around it.
+  * There are blocks laying around the world that the player and zombies cannot traverse.
+  * Only zombies within the player's viewbox will chase the player.
+  * New Entities: Blocks
+  * New Processing Unit: Collsion
+  * New Output feature: viewbox
+- Zombies with Guns
+  * Add guns the zombie game. The player can pick up a gun a kill zombies with it.
+  * Because there were previously a finitie number of zombies, make new ones spawn in random places, when enough have died.
+  * Firing a gun attracts zombies
+  * New Interaction: Mouse movement for aiming 
+  * New Processing Unit: bullets
+  * New Output: the gun produces a sound
+  
+------------------Phase 3-------------------------------------------
+- Zombie AI
+  * Make the Zombies smarter. They should now be able to avoid obstacles.
+  * Potentially, make some have different attributes (i.e. some are smarter or faster).
+  * Give zombies actual line of sight.
+  * New Processing Unit: AI
+
 Future Goals:
-Engine system like in vulcan
-    Physics engine
-    AI engine
-    Scripting engine
-JOGL plugin
-Sound plugins
 Generic AssetCache
+Rebuild Vulcan in CAKE
