@@ -1,7 +1,7 @@
 package io.metacake.core.process;
 
 import io.metacake.core.common.MilliTimer;
-import io.metacake.core.input.Action;
+import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
 
@@ -36,7 +36,6 @@ public class GameRunner {
         while (isRunning) {
             outputSystem.addToRenderQueue(state);
             updateTriggers(state);
-            updateRecognizers(state);
             timer.update();
             state = state.tick();
             timer.block();
@@ -56,23 +55,8 @@ public class GameRunner {
      */
     private void updateTriggers(GameState s){
         if(s.shouldReplaceActionTriggers()) {
-            inputSystem.setActionTriggers(s.getNewActionTriggers());
-        }
-    }
-
-    /**
-     * handle the clearing actions and passing those actions to the state recognizers.
-     * @param s the current state
-     */
-    private void updateRecognizers(GameState s){
-        if(s.shouldClearActions()){
-            inputSystem.clearActions();
-        } else {
-            // CONCERN: This might be two slow. maybe we need to redesign action->recognizer bindings.
-            for (Action a : inputSystem.getAndClearActions()) {
-                for(ActionRecognizer r : s.getRecognizers()) {
-                    r.actionOccurred(a);
-                }
+            for(ActionTrigger a : s.getNewActionTriggers()){
+                inputSystem.bindActionTrigger(a.bindingDevice(),a);
             }
         }
     }

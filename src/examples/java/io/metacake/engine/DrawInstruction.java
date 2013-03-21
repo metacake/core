@@ -9,13 +9,14 @@ import java.awt.*;
  * @author rpless
  */
 public class DrawInstruction implements RenderingInstruction {
-    int pos;
+    int x,y;
 
-    public DrawInstruction(int pos) {
-        this.pos = pos;
+    public DrawInstruction(int x,int y) {
+        this.x = x;
+        this.y = y;
     }
 
     void draw(Graphics g) {
-        g.fillOval(200, pos, 10, 10);
+        g.fillOval(x, y, 10, 10);
     }
 }

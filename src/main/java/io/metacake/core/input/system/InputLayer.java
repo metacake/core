@@ -1,12 +1,12 @@
 package io.metacake.core.input.system;
 
-import io.metacake.core.input.Action;
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.input.CakeEvent;
 import io.metacake.core.input.InputSystem;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class is the core implementation of the input system. It handles taking events from devices
@@ -14,49 +14,26 @@ import java.util.List;
  * @author florence
  * @author rpless
  */
-public class InputLayer implements InputSystem, CakeEventHandler{
-    List<Action> queuedActions = new LinkedList<>();
-    List<ActionTrigger> currentBindingTriggers = new LinkedList<>();
-    List<InputDevice> devices;
+public class InputLayer implements InputSystem{
+    Map<InputDeviceName,InputDevice> devices = new HashMap<>();
 
     public InputLayer(List<InputDevice> devices) {
-        this.devices = devices;
-        for(InputDevice i : devices) {
-            i.receiveEventHandler(this);
-        }
+       for(InputDevice d : devices) {
+           this.devices.put(d.getName(),d);
+       }
     }
 
-    @Override
-    public List<Action> getAndClearActions() {
-        List<Action> tmp = queuedActions;
-        clearActions();
-        return tmp;
-    }
 
     @Override
-    public void clearActions() {
-        this.queuedActions = new LinkedList<>();
-    }
-
-    @Override
-    public void setActionTriggers(List<ActionTrigger> ts) {
-        this.currentBindingTriggers = ts;
-    }
-
-    @Override
-    public void handle(CakeEvent e) {
-        for(ActionTrigger t : currentBindingTriggers){
-            if(t.shouldTriggerAction(e)) {
-                queuedActions.add(t.triggerAction(e));
-            }
-        }
+    public void bindActionTrigger(InputDeviceName name, ActionTrigger t) {
+        devices.get(name).addTrigger(t);
     }
 
     /**
      * Safely shutdown the whole input system
      */
     public void shutdown() {
-        for(InputDevice i : devices) {
+        for(InputDevice i : devices.values()) {
             i.shutdown();
         }
     }

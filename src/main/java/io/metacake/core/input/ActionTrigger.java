@@ -1,20 +1,17 @@
 package io.metacake.core.input;
 
+import io.metacake.core.input.system.InputDeviceName;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * An ActionTrigger encapsulates the creation of Actions from events.
+ *
  * @author florence
  * @author rpless
  */
-public interface ActionTrigger {
-
-    /**
-     * @return Should the given CakeEvent trigger an Action from this?
-     */
-    public boolean shouldTriggerAction(CakeEvent event);
-
-    /**
-     * Precondition: a call to shouldTriggerAction on the given CakeEvent return true.
-     * @return Return an Action created by this trigger.
-     */
-    public Action triggerAction(CakeEvent event);
+public interface ActionTrigger<K> {
+    public List<K> getCodes();
+    public InputDeviceName bindingDevice();
 }

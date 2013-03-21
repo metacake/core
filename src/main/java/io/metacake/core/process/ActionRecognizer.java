@@ -1,7 +1,5 @@
 package io.metacake.core.process;
 
-import io.metacake.core.input.Action;
-
 /**
  * This interface is for classes that recognize certain patterns of actions.
  * A recognizer is 'triggered' when it sees a sequence of action that it recognizes.
@@ -9,11 +7,6 @@ import io.metacake.core.input.Action;
  * @author rpless
  */
 public interface ActionRecognizer {
-    /**
-     * Tell this recognizer that an action occurred.
-     * @param a the action tha occurred
-     */
-    public void actionOccurred(Action a);
 
     /**
      * @return Did this recognize a sequence of actions?
