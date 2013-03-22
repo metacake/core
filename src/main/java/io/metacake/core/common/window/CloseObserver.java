@@ -7,7 +7,7 @@ package io.metacake.core.common.window;
  */
 public interface CloseObserver {
     /**
-     * Notify the observer the window has closed
+     * Notify the observer that the window has closed
      */
     public void onClose();
 }

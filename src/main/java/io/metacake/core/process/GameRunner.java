@@ -22,10 +22,11 @@ public class GameRunner {
     }
 
     /**
-     * Execute the main game loop in the current thread. This method returns after #stop has been called.
-     * <p>The game loop will attempt to put {@code interval} milliseconds between the start of each game loop.
-     * This WILL fail if the GameState#tick takes more than {@code interval} milliseconds to run</p>
-     * <p>When #stop is called the function will terminate after the current state finishes its tick cycle</p>
+     * Execute the main game loop in the current thread. This method returns after #stop() has been called.
+     * <p>
+     * The game loop will attempt to put {@code interval} milliseconds between the start of each game loop.
+     * This will fail if the GameState#tick takes more than {@code interval} milliseconds to run
+     * When #stop is called the function will terminate after the current state finishes its tick cycle
      * @param state the initial state of the game
      * @param interval the number of milliseconds requested to be between the start of each loop.
      */
@@ -50,12 +51,15 @@ public class GameRunner {
     }
 
     /**
-     * If the state requests the the input system gets new action triggers, give them.
+     * Update any ActionTriggers that need to be updated.
+     * <p>
+     * The GameState will request that the GameRunner replace its ActionTriggers by returning true for
+     * shouldReplaceActionTriggers().
      * @param s The current state
      */
     private void updateTriggers(GameState s){
         if(s.shouldReplaceActionTriggers()) {
-            for(ActionTrigger a : s.getNewActionTriggers()){
+            for(ActionTrigger a : s.replaceActionTriggers()){
                 inputSystem.bindActionTrigger(a.bindingDevice(),a);
             }
         }

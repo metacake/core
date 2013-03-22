@@ -14,9 +14,10 @@ public interface ActionRecognizer {
     public boolean wasTriggered();
 
     /**
-     * Precondition: wasTriggered() == true </p>
-     * For example, if this recognizer recognizes movement actions,
-     * and the movement action was active for 20 seconds, the weight might be 20
+     * Precondition: wasTriggered() == true
+     * <p>
+     * For example, if this recognizer recognizes movement actions, and the movement action was active for 20
+     * seconds, the weight might be 20
      * @return Get an integer value that represents the weight to the trigger.
      */
     public int triggerWeight();

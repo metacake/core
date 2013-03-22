@@ -1,15 +1,16 @@
 package io.metacake.core.common.window;
 
 /**
- * a window as far as Cake is concerned
- * when a window is closed via user action it should inform all observers
+ * A CakeWindow is an adapter for user or library defined windows that need to be used by Cake.
+ *
+ * @param <T> The raw window type that is being wrapped over.
  *
  * @author florence
  * @author rpless
  */
 public interface CakeWindow<T> {
     /**
-     * Force close the window and calls the CloseObservers.
+     * Force close the window and notify all CloseObservers of all closures.
      */
     public abstract void close();
 
@@ -35,7 +36,7 @@ public interface CakeWindow<T> {
     public abstract int getHeight();
 
     /**
-     * Add a CloseObserver/
+     * Add a CloseObserver.
      */
     public void addCloseObserver(CloseObserver o);
 

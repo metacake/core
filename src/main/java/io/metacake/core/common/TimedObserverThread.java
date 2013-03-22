@@ -4,17 +4,18 @@ import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
 
 /**
- * This class is a thread meant to run update loops for things like drawing.
- * The thread is attached to a window, and will shutdown with that window
+ * The TimedObserverThread is a thread meant to execute Runnable code as long as the given CakeWindow has not shutdown.
+ * <p>
+ * The thread is attached to a window, and will shutdown with that window.
  *
  * @author florence
  * @author rpless
  */
 public class TimedObserverThread extends Thread {
     public static final long DEFAULT_THREAD_TIMER_TIME = 20;
-    volatile boolean running = true;
-    Runnable r;
-    long milliTimerTime;
+    private volatile boolean running = true;
+    private Runnable r;
+    private long milliTimerTime;
 
     /**
      * @param target The runnable to run each loop
@@ -46,17 +47,17 @@ public class TimedObserverThread extends Thread {
     }
 
     /**
-     *  Stops thread. <p>Stupid name cause Thread#stop is final -.-</p>
+     *  Stops the thread.
      */
-    private void stopReal() {
+    private void requestStop() {
         running = false;
         this.interrupt();
     }
 
     /**
-     * And observer the window to shutdown threads on close
+     * Shuts down the given ThreadObserverThread when the #onClose method is called.
      */
-    class ThreadObserver implements CloseObserver {
+    private static class ThreadObserver implements CloseObserver {
         TimedObserverThread t;
 
         ThreadObserver(TimedObserverThread t) {
@@ -65,7 +66,7 @@ public class TimedObserverThread extends Thread {
 
         @Override
         public void onClose() {
-            t.stopReal();
+            t.requestStop();
         }
     }
 }

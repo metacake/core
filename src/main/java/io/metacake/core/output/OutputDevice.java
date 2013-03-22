@@ -5,15 +5,15 @@ import io.metacake.core.common.window.CakeWindow;
 import java.util.List;
 
 /**
- * Interface into any object that will output the state
+ * An OutputDevice is an interface into any kind of device that produces output. These devices receive renderables and
+ * render these as output.
  * @author florence
  * @author rpless
  */
 public interface OutputDevice {
     /**
-     * run all instructions
+     * Render all of the given RenderingInstructions.
      * @param r the list of instructions to render.
-     *          <p>These will be the instructions returned by Renderable#renderingInstructions</p>
      */
     public void render(List<RenderingInstruction> r);
 

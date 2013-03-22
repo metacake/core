@@ -1,9 +1,8 @@
 package io.metacake.core.output;
 
 /**
- * Represents an action to be run by some OutputDevice
+ * Represents an action to be rendered by some OutputDevice
  * @author florence
  * @author rpless
  */
-public interface RenderingInstruction {
-}
+public interface RenderingInstruction {}

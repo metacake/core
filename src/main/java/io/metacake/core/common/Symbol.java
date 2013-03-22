@@ -2,7 +2,7 @@ package io.metacake.core.common;
 
 /**
  * This class is meant to be used as extensible enumerations.
- * <p></p>
+ * <p>
  * All symbols are 'unique', in that they can only be compared through
  * referential equality.
  * For example :

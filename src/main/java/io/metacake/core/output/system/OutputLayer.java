@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Implementation of the entire Output layer
+ * The OutputLayer is the core implementation of the input system. It takes Renderables from the Process Layer and
+ * translates them into so kind of output for the user.
  * @author florence
  * @author rpless
  */

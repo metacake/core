@@ -1,8 +1,8 @@
 package io.metacake.core.common;
 
 /**
- * This class acts as a Microsecond timer.
- * <p></p>
+ * This class acts as a Millisecond timer.
+ * <p>
  * It has two functions. The first is to record the difference between two times.
  * The second is to act as a 'time mechanism', blocking a thread until a give time.
  * The accuracy of this time is approximately the accuracy of System.nanoTime()
@@ -25,7 +25,6 @@ public class MilliTimer {
 
     /**
      * Constructs a timer with the given interval
-     *
      * @param interval The interval for this timer
      */
     public MilliTimer(long interval) {
@@ -35,7 +34,6 @@ public class MilliTimer {
 
     /**
      * Set the timing interval in milliseconds
-     *
      * @param interval the new interval
      */
     public void setInterval(long interval) {
@@ -60,16 +58,8 @@ public class MilliTimer {
     }
 
     /**
-     * Gets the number of milliseconds since the last call to update
-     *
-     * @return the number of milliseconds
-     */
-    public long poll() {
-        return (System.nanoTime() - lastActive) / TO_MILLIS;
-    }
-
-    /**
-     * polls the timer then updates the internal time
+     * Calling update polls the timer and updates the time that it was last active to be now.
+     * @return polls the timer then updates the internal time
      */
     public long update() {
         long ret = this.poll();
@@ -78,7 +68,16 @@ public class MilliTimer {
     }
 
     /**
-     * {@code poll()}s the timer, and returns true if {@code interval} milliseconds has passed since the last poll
+     * This method only polls and does not mutate.
+     * @return Gets the number of milliseconds since the last call to update
+     */
+    public long poll() {
+        return (System.nanoTime() - lastActive) / TO_MILLIS;
+    }
+
+    /**
+     * This method only polls and does not mutate.
+     * @return returns true if {@code interval} milliseconds has passed since the last poll
      */
     public boolean intervalPassed() {
         return this.poll() > this.interval;

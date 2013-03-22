@@ -12,7 +12,7 @@ Phase 1 goal: Small 2D java engine + game
       1. Create State Interfaces and abstract classes
       2. build running system
     Output:
-      1. Create basic output inteface
+      1. Create basic output interface
       2. build 'render' loop
 
     3. Create Bootstrapper [Done]
@@ -27,6 +27,7 @@ Phase 1.5 : Cleanup
   * Add the Emma Code Coverage plugin
     - This will give us a better idea of were we have benn neglecting our tests.
   * potentially add some minimal Style Check plugin
+  * a jar creation process to the pom.
   * Examine interfaces for derpiness and try to fix it.
 
 Phase 2 Goal: Add functionality
@@ -58,11 +59,11 @@ Iterations:
   * There are blocks laying around the world that the player and zombies cannot traverse.
   * Only zombies within the player's viewbox will chase the player.
   * New Entities: Blocks
-  * New Processing Unit: Collsion
+  * New Processing Unit: Collision
   * New Output feature: viewbox
 - Zombies with Guns
   * Add guns the zombie game. The player can pick up a gun a kill zombies with it.
-  * Because there were previously a finitie number of zombies, make new ones spawn in random places, when enough have died.
+  * Because there were previously a finite number of zombies, make new ones spawn in random places, when enough have died.
   * Firing a gun attracts zombies
   * New Interaction: Mouse movement for aiming 
   * New Processing Unit: bullets

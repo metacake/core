@@ -1,6 +1,5 @@
 package io.metacake.core.output;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,9 +9,8 @@ import java.util.Map;
  */
 public interface Renderable {
     /**
-     * Returns all instructions to render this renderable
      * @param outputDevices a container for all OutputDevices
-     * @return A map of devices to their instructions
+     * @return Returns a map of OutDevices mapped to the instructions they must render.
      */
     public Map<OutputDevice,List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName,OutputDevice> outputDevices);
 }
