@@ -25,9 +25,10 @@ Phase 1 goal: Small 2D java engine + game
 
 Phase 1.5 : Cleanup 
   * Add the Emma Code Coverage plugin
-    - This will give us a better idea of were we have benn neglecting our tests.
+    - This will give us a better idea of where we have benn neglecting our tests.
   * potentially add some minimal Style Check plugin
   * a jar creation process to the pom.
+  * Fill in the glossary.
   * Examine interfaces for derpiness and try to fix it.
 
 Phase 2 Goal: Add functionality
@@ -47,20 +48,18 @@ Iterations:
 -----------------Phase 1---------------------------------------
 - Build Core engine
   * This step will be minimal. Must of it will be salvage from the current example.
-  * The only addition will be sound.
 - Simple Zombies Game
   * Entities: Player, Zombies
   * Interaction: Keyboard
   * Output: Displayed on screen, noise when player dies.
+
+Rationale and Deliverable
+ The idea behind this phase is to produce a small example game that can be turned into a tutorial for creating both
+ engines and games. This engine will simply show the use of a single input and output plugin.
   
 -----------------Phase 2--------------------------------------------
-- Zombies with Obstacles and a Larger world
-  * Make the world bigger than what the player sees. The player can still move around it.
-  * There are blocks laying around the world that the player and zombies cannot traverse.
-  * Only zombies within the player's viewbox will chase the player.
-  * New Entities: Blocks
-  * New Processing Unit: Collision
-  * New Output feature: viewbox
+- Zombies with sound
+  - Potentially add background music and a death noise for the player.
 - Zombies with Guns
   * Add guns the zombie game. The player can pick up a gun a kill zombies with it.
   * Because there were previously a finite number of zombies, make new ones spawn in random places, when enough have died.
@@ -68,13 +67,30 @@ Iterations:
   * New Interaction: Mouse movement for aiming 
   * New Processing Unit: bullets
   * New Output: the gun produces a sound
+
+Rationale and Deliverable
+ The idea behind this phase is to produce a game that not only adds slightly more complex game logic, but also makes use
+ of multiple input and output plugins.
+
   
 ------------------Phase 3-------------------------------------------
+- Zombies with Obstacles and a Larger world
+  * Make the world bigger than what the player sees. The player can still move around it.
+  * There are blocks laying around the world that the player and zombies cannot traverse.
+  * Only zombies within the player's viewbox will chase the player.
+  * New Entities: Blocks
+  * New Processing Unit: Collision
+  * New Output feature: viewbox
 - Zombie AI
   * Make the Zombies smarter. They should now be able to avoid obstacles.
   * Potentially, make some have different attributes (i.e. some are smarter or faster).
   * Give zombies actual line of sight.
   * New Processing Unit: AI
+  
+Rationale and Deliverable
+ The idea behind this phase is to experiment with adding a lot of logic to the processing unit. 
+
+
 
 Future Goals:
 Generic AssetCache
