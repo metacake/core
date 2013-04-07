@@ -60,7 +60,7 @@ class RunningState implements GameState {
     }
 
     @Override
-    public List<ActionTrigger> getNewActionTriggers() {
+    public List<ActionTrigger> replaceActionTriggers() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

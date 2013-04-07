@@ -51,7 +51,7 @@ public class InitialState implements GameState {
     }
 
     @Override
-    public List<ActionTrigger> getNewActionTriggers() {
+    public List<ActionTrigger> replaceActionTriggers() {
         List<ActionTrigger> r = new LinkedList<>();
         KeyboardTrigger t = new KeyboardTrigger(KeyEvent.VK_DOWN,KeyEvent.VK_UP);
         t.bindRecognizer(vert);

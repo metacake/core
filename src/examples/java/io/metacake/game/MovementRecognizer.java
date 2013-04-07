@@ -32,7 +32,6 @@ class MovementRecognizer implements KeyboardRecognizer {
      */
     public int triggerWeight() {
         int res = pos.triggerWeight() - neg.triggerWeight();
-        System.out.println(res);
         return res;
     }
 
