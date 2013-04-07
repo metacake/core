@@ -22,20 +22,31 @@ Phase 1 goal: Small 2D java engine + game
       2. Create 2D Rendering Plugin [Done]
       3. See Examples Plan below.
 
+    Rationale
+     Create a basic usable engine creation framework.
+
 
 Phase 1.5 : Cleanup 
   * Add the Emma Code Coverage plugin
     - This will give us a better idea of where we have benn neglecting our tests.
   * potentially add some minimal Style Check plugin
-  * a jar creation process to the pom.
+  * a jar creation process to the pom and create a maven repository on metacake.io
+  * separate the tutorial (i.e. examples) into its own project in the organization.
   * Fill in the glossary.
   * Examine interfaces for derpiness and try to fix it.
 
+  Rationale
+   Flesh out our infrastructure and documentation.
+
 Phase 2 Goal: Add functionality
+  * make any fixes that the first iteration of the zombies game has exposed as problems
   * Events -> Actions
   * StateQueue Plugin Interface + default impl
   * Mouse Plugin
-  * Add default recognizes for common things
+  * Add default recognizers for common things
+
+  Rationale
+    Make needed fixes and provide more functionality for engine and user libraries.
 
 Phase 3: Basic AssetCache
 
@@ -43,6 +54,8 @@ Examples Plan: Zombies
 Zombies is a top down game in which a player must run away from zombies.
 As we go with this project we should be writing a Tutorial or something to explain how it all works.
 Effectively, we will end with two tutorials: an engine tutorial and a game tutorial.
+Each Phase will have two of its own chapters.
+This will also provide us with a better understanding of the weak points in the various interfaces.
 
 Iterations:
 -----------------Phase 1---------------------------------------
@@ -71,7 +84,6 @@ Rationale and Deliverable
 Rationale and Deliverable
  The idea behind this phase is to produce a game that not only adds slightly more complex game logic, but also makes use
  of multiple input and output plugins.
-
   
 ------------------Phase 3-------------------------------------------
 - Zombies with Obstacles and a Larger world
@@ -88,10 +100,9 @@ Rationale and Deliverable
   * New Processing Unit: AI
   
 Rationale and Deliverable
- The idea behind this phase is to experiment with adding a lot of logic to the processing unit. 
-
+ The idea behind this phase is to experiment with adding a lot of logic to the processing unit.
 
 
 Future Goals:
 Generic AssetCache
-Rebuild Vulcan in CAKE
+Rebuild Vulcan using the CAKE Engine Framework
