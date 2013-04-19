@@ -11,6 +11,7 @@ import io.metacake.core.output.OutputSystem;
  * @author florence
  * @author rpless
  */
+//TODO : This should have its own interface and be passed into the Bootstrapper
 public class GameRunner {
     InputSystem inputSystem;
     OutputSystem outputSystem;
