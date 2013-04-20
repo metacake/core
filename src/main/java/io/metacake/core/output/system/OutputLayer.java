@@ -12,7 +12,7 @@ import java.util.Map;
  * @author rpless
  */
 public class OutputLayer implements OutputSystem{
-    Map<OutputDeviceName,OutputDevice> deviceContainer;
+    private Map<OutputDeviceName,OutputDevice> deviceContainer;
 
     public OutputLayer(Map<OutputDeviceName, OutputDevice> deviceContainer) {
         this.deviceContainer = deviceContainer;

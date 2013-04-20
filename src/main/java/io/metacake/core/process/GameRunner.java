@@ -13,8 +13,8 @@ import io.metacake.core.output.OutputSystem;
  */
 //TODO : This should have its own interface and be passed into the Bootstrapper
 public class GameRunner {
-    InputSystem inputSystem;
-    OutputSystem outputSystem;
+    private InputSystem inputSystem;
+    private OutputSystem outputSystem;
     private boolean isRunning = false;
 
     public GameRunner(InputSystem inputSystem, OutputSystem outputSystem) {
