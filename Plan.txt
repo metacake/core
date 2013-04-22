@@ -63,8 +63,8 @@ Iterations:
   * This step will be minimal. Must of it will be salvage from the current example.
 - Simple Zombies Game
   * Entities: Player, Zombies
-  * Interaction: Keyboard
-  * Output: Displayed on screen, noise when player dies.
+  * Input: Keyboard
+  * Output: Displayed on screen
 
 Rationale and Deliverable
  The idea behind this phase is to produce a small example game that can be turned into a tutorial for creating both

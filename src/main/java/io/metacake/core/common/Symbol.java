@@ -21,6 +21,7 @@ package io.metacake.core.common;
  * @author rpless
  */
 public class Symbol {
+
     @Override
     public final boolean equals(Object that) {
         return this == that;
