@@ -27,7 +27,7 @@ Phase 1 goal: Small 2D java engine + game
 
 
 Phase 1.5 : Cleanup 
-  * Add the Emma Code Coverage plugin
+  * Add the Emma Code Coverage plugin [Done]
     - This will give us a better idea of where we have benn neglecting our tests.
   * potentially add some minimal Style Check plugin
   * a jar creation process to the pom and create a maven repository on metacake.io
