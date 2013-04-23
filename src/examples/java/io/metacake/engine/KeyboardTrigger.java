@@ -1,7 +1,7 @@
 package io.metacake.engine;
 
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.input.system.InputDeviceName;
+import io.metacake.core.input.InputDeviceName;
 
 import java.awt.event.KeyEvent;
 import java.util.Arrays;

@@ -1,7 +1,5 @@
 package io.metacake.core.input;
 
-import io.metacake.core.input.system.InputDeviceName;
-
 import java.util.List;
 
 /**

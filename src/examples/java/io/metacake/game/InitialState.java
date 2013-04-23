@@ -1,14 +1,11 @@
 package io.metacake.game;
 
-import io.metacake.core.common.MilliTimer;
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.output.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.GameState;
 import io.metacake.engine.*;
-import sun.security.krb5.internal.crypto.KeyUsage;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
@@ -64,8 +61,8 @@ public class InitialState implements GameState {
 
     @Override
     // Concern: List<RenderingInstruction> could be its own class
-    public Map<OutputDevice, List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName, OutputDevice> outputDevices) {
-        return Collections.emptyMap();
+    public Map<OutputDeviceName, List<RenderingInstruction>> renderingInstructions() {
+        return Collections.EMPTY_MAP;
     }
 }
 

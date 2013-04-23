@@ -3,15 +3,15 @@ package io.metacake.core;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.input.system.InputDevice;
+import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.system.InputLayer;
-import io.metacake.core.output.OutputDevice;
+import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.output.system.OutputLayer;
 import io.metacake.core.process.GameRunner;
 import io.metacake.core.process.GameState;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,18 +24,18 @@ import java.util.Map;
  */
 public class Bootstrapper {
     public static final long DEFAULT_LOOP_MILLIS = 50;
-    CakeWindow window;
-    List<InputDevice> inputs;
-    Map<OutputDeviceName, OutputDevice> outputs;
-    GameState initialState;
+    private CakeWindow window;
+    private Map<InputDeviceName,InputDevice> inputs;
+    private Map<OutputDeviceName, OutputDevice> outputs;
+    private GameState initialState;
     private long loopTime;
 
-    public Bootstrapper(CakeWindow window, List<InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
+    public Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
                         GameState g) {
         this(window, inputs, outputs, g, DEFAULT_LOOP_MILLIS);
     }
 
-    public Bootstrapper(CakeWindow window, List<InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
+    public Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
                         GameState g, long loopTime) {
         this.window = window;
         this.inputs = inputs;
@@ -52,6 +52,7 @@ public class Bootstrapper {
         InputSystem i = this.bootstrapInputSystem();
         OutputSystem o = this.bootstrapOutputSystem();
         GameRunner r = this.bootstrapProcessLayer(i, o);
+        i.startInputLoops();
         o.startOutputLoops();
         r.mainLoop(initialState, loopTime);
     }
@@ -60,7 +61,7 @@ public class Bootstrapper {
      * Invokes binding operations for all InputDevices and InputDevices
      */
     private void bootstrapUserObjects() {
-        for (InputDevice i : inputs) {
+        for (InputDevice i : inputs.values()) {
             i.bind(window);
         }
         for (OutputDevice o : outputs.values()) {

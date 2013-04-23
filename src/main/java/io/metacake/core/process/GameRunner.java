@@ -55,10 +55,12 @@ public class GameRunner {
      * <p>
      * The GameState will request that the GameRunner replace its ActionTriggers by returning true for
      * shouldReplaceActionTriggers().
+     * </p>
      * @param s The current state
      */
     private void updateTriggers(GameState s){
         if(s.shouldReplaceActionTriggers()) {
+            inputSystem.releaseActionTriggers();
             for(ActionTrigger a : s.replaceActionTriggers()){
                 inputSystem.bindActionTrigger(a.bindingDevice(),a);
             }

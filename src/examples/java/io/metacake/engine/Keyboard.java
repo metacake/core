@@ -3,7 +3,7 @@ package io.metacake.engine;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.system.InputDevice;
-import io.metacake.core.input.system.InputDeviceName;
+import io.metacake.core.input.InputDeviceName;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -35,9 +35,12 @@ public class Keyboard implements InputDevice, KeyListener {
     }
 
     @Override
-    public InputDeviceName getName() {
-        return NAME;
+    public void releaseTriggers() {
+        triggers = new LinkedList<>();
     }
+
+    @Override
+    public void startInputLoop() {}
 
     @Override
     public void keyTyped(KeyEvent e) {

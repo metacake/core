@@ -14,7 +14,7 @@ public interface OutputSystem {
     public void addToRenderQueue(Renderable r);
 
     /**
-     * Have all output devices start any needed rendering Loops.
+     * By the time this method return all output devices must have started their main threads.
      */
     public void startOutputLoops();
 }

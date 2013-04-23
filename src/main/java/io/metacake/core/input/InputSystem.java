@@ -1,7 +1,5 @@
 package io.metacake.core.input;
 
-import io.metacake.core.input.system.InputDeviceName;
-
 /**
  * The Interface that the Process Layer uses to acquire input.
  * <p>
@@ -18,4 +16,14 @@ public interface InputSystem {
      * @param t The ActionTrigger to be bound.
      */
     public void bindActionTrigger(InputDeviceName name, ActionTrigger t);
+
+    /**
+     * Throw away all the current triggers
+     */
+    public void releaseActionTriggers();
+
+    /**
+     * By the time this method return all input devices must have started their main threads.
+     */
+    public void startInputLoops();
 }

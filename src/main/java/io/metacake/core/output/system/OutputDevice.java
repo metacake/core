@@ -1,6 +1,7 @@
-package io.metacake.core.output;
+package io.metacake.core.output.system;
 
 import io.metacake.core.common.window.CakeWindow;
+import io.metacake.core.output.RenderingInstruction;
 
 import java.util.List;
 
@@ -13,12 +14,15 @@ import java.util.List;
 public interface OutputDevice {
     /**
      * Render all of the given RenderingInstructions.
+     * <p>
+     * If there is a separate rending thread, pass the instructions along to it here.
+     * </p>
      * @param r the list of instructions to render.
      */
     public void render(List<RenderingInstruction> r);
 
     /**
-     * Start any loops needed for this device to run. This method should launch its own threads.
+     * when this method returns any loops needed for this device to run should be launched.
      */
     public void startOutputLoop();
 

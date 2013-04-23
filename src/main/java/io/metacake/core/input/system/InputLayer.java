@@ -1,10 +1,9 @@
 package io.metacake.core.input.system;
 
 import io.metacake.core.input.ActionTrigger;
+import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.InputSystem;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,20 +13,32 @@ import java.util.Map;
  * @author rpless
  */
 public class InputLayer implements InputSystem{
-    private Map<InputDeviceName,InputDevice> devices = new HashMap<>();
+    private Map<InputDeviceName,InputDevice> devices;
 
     /**
      * Create the InputLayer with the given list of InputDevices.
      */
-    public InputLayer(List<InputDevice> devices) {
-       for(InputDevice d : devices) {
-           this.devices.put(d.getName(),d);
-       }
+    public InputLayer(Map<InputDeviceName,InputDevice> devices) {
+       this.devices = devices;
     }
 
     @Override
     public void bindActionTrigger(InputDeviceName name, ActionTrigger t) {
         devices.get(name).addTrigger(t);
+    }
+
+    @Override
+    public void releaseActionTriggers() {
+        for(InputDevice d : devices.values()) {
+            d.releaseTriggers();
+        }
+    }
+
+    @Override
+    public void startInputLoops() {
+        for(InputDevice i : devices.values()) {
+            i.startInputLoop();
+        }
     }
 
     /**

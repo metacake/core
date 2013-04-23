@@ -2,7 +2,8 @@ package io.metacake;
 
 import io.metacake.core.Bootstrapper;
 import io.metacake.core.input.system.InputDevice;
-import io.metacake.core.output.OutputDevice;
+import io.metacake.core.input.InputDeviceName;
+import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.engine.DrawingDevice;
 import io.metacake.engine.Keyboard;
@@ -17,11 +18,11 @@ import java.util.*;
  */
 public class Run {
     public static void main(String... args){
-        Map<OutputDeviceName,OutputDevice> os = new HashMap<>();
-        os.put(DrawingDevice.NAME, new DrawingDevice());
-        List<InputDevice> inputs = new LinkedList<>();
-        inputs.add(new Keyboard());
-        Bootstrapper b = new Bootstrapper(new Window(), inputs, os, new InitialState(0,400));
+        Map<OutputDeviceName,OutputDevice> outputs = new HashMap<>();
+        outputs.put(DrawingDevice.NAME, new DrawingDevice());
+        Map<InputDeviceName,InputDevice> inputs = new HashMap<>();
+        inputs.put(Keyboard.NAME, new Keyboard());
+        Bootstrapper b = new Bootstrapper(new Window(), inputs, outputs, new InitialState(0,400));
         b.setupAndLaunchGame();
     }
 }

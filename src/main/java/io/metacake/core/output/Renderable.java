@@ -9,8 +9,7 @@ import java.util.Map;
  */
 public interface Renderable {
     /**
-     * @param outputDevices a container for all OutputDevices
      * @return Returns a map of OutDevices mapped to the instructions they must render.
      */
-    public Map<OutputDevice,List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName,OutputDevice> outputDevices);
+    public Map<OutputDeviceName,List<RenderingInstruction>> renderingInstructions();
 }

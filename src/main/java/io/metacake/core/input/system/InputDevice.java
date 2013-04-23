@@ -32,7 +32,12 @@ public interface InputDevice {
     public void addTrigger(ActionTrigger trigger);
 
     /**
-     * @return Returns the name of this InputDevice.
+     * Forget all known triggers
      */
-    public InputDeviceName getName();
+    public void releaseTriggers();
+
+    /**
+     * when this method returns any loops needed for this device to run should be launched.
+     */
+    public void startInputLoop();
 }

@@ -1,4 +1,4 @@
-package io.metacake.core.input.system;
+package io.metacake.core.input;
 
 import io.metacake.core.common.Symbol;
 

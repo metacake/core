@@ -1,7 +1,6 @@
 package io.metacake.game;
 
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.output.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 import io.metacake.core.process.ActionRecognizer;
@@ -9,10 +8,7 @@ import io.metacake.core.process.GameState;
 import io.metacake.engine.DrawInstruction;
 import io.metacake.engine.DrawingDevice;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author florence
@@ -51,25 +47,25 @@ class RunningState implements GameState {
 
     @Override
     public boolean shouldClearActions() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override
     public boolean shouldReplaceActionTriggers() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override
     public List<ActionTrigger> replaceActionTriggers() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Collections.EMPTY_LIST;
     }
 
     @Override
-    public Map<OutputDevice, List<RenderingInstruction>> renderingInstructions(Map<OutputDeviceName, OutputDevice> outputDevices) {
-        HashMap<OutputDevice, List<RenderingInstruction>> ret = new HashMap<>();
+    public Map<OutputDeviceName, List<RenderingInstruction>> renderingInstructions() {
+        HashMap<OutputDeviceName, List<RenderingInstruction>> ret = new HashMap<>();
         LinkedList<RenderingInstruction> l = new LinkedList<>();
         l.add(new DrawInstruction(x,y));
-        ret.put(outputDevices.get(DrawingDevice.NAME), l);
+        ret.put(DrawingDevice.NAME, l);
         return ret;
     }
 }

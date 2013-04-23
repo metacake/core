@@ -1,16 +1,13 @@
 package io.metacake.engine;
 
-import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.TimedObserverThread;
 import io.metacake.core.common.window.CakeWindow;
-import io.metacake.core.common.window.CloseObserver;
-import io.metacake.core.output.OutputDevice;
+import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 
 import java.awt.*;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * @author florence
