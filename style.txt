@@ -38,8 +38,6 @@ necessarily require unit tests, but should have specifications for quality assur
 ;;----------------------------------------------------------------------------------------------------------------------
 The Glossary of Project Terms outlines the denotations of the specific terms in the context of the project.
 
-To Define:
-
-Layer
-Module
-Plugin
+Layer : One of "Input" "Processing" or "Output". Each layer is one step in processing events.
+Plugin: Use code that is added to fulfill some api, like a Keyboard or an AI processing plugin
+Device: A plugin that deals with interfacing with hardware (like listening to a keyboard or rending a texture)
