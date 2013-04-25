@@ -1,7 +1,8 @@
-package io.metacake.core.process;
+package io.metacake.core.process.state;
 
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.Renderable;
+import io.metacake.core.process.ActionRecognizer;
 
 import java.util.List;
 
@@ -11,10 +12,6 @@ import java.util.List;
  * @author rpless
  */
 public interface GameState extends Renderable{
-    /**
-     * @return The recognizers the current game state has bound
-     */
-    public List<ActionRecognizer> getRecognizers();
 
     /**
      * Perform one cycle of the game loop
@@ -22,10 +19,7 @@ public interface GameState extends Renderable{
      */
     public GameState tick();
 
-    /**
-     * @return Should the known actions be flushed?
-     */
-    public boolean shouldClearActions();
+    // TODO: mechanism for adding and removing individual triggers (do we want bundles?)
 
     /**
      * @return Does this state want all action triggers to be replaced for the next cycle?

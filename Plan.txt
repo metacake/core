@@ -30,8 +30,9 @@ Phase 1.5 : Cleanup
   * Add the Emma Code Coverage plugin [Done]
     - This will give us a better idea of where we have benn neglecting our tests.
   * potentially add some minimal Style Check plugin [delayed]
-  * a jar creation process to the pom and create a maven repository on metacake.io [delayed]
-  * separate the tutorial (i.e. examples) into its own project in the organization. [delayed]
+  * a jar creation process to the pom and create a maven repository on metacake.io [Done]
+   [This still needs automatic deployment]
+  * separate the tutorial (i.e. examples) into its own project in the organization. [Done]
   * Fill in the glossary. [Done]
   * Examine interfaces for derpiness and try to fix it. [Done]
 

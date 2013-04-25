@@ -10,7 +10,7 @@ import io.metacake.core.output.OutputSystem;
 import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.output.system.OutputLayer;
 import io.metacake.core.process.GameRunner;
-import io.metacake.core.process.GameState;
+import io.metacake.core.process.state.GameState;
 
 import java.util.Map;
 

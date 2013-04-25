@@ -4,6 +4,7 @@ import io.metacake.core.common.MilliTimer;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
+import io.metacake.core.process.state.GameState;
 
 /**
  * This class run is the main execution loop of the game
