@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * This class is a state that is intended to be extended by users.
  * @author florence
  * @author rpless
  */

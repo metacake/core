@@ -70,8 +70,13 @@ public class GameRunner {
         }
     }
 
+    /**
+     * Render the last state and end the game
+     * @param state the last state
+     */
     private void end(GameState state){
         outputSystem.addToRenderQueue(state);
+        //TODO: yeah, no, dont call System.exit. is hack.
         System.exit(0);
     }
 

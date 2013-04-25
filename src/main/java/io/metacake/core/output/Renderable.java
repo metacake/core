@@ -1,7 +1,6 @@
 package io.metacake.core.output;
 
-import java.util.List;
-import java.util.Map;
+import io.metacake.core.output.RenderingInstructionBundle;
 
 /**
  * @author florence
@@ -11,5 +10,5 @@ public interface Renderable {
     /**
      * @return Returns a map of OutDevices mapped to the instructions they must render.
      */
-    public Map<OutputDeviceName,List<RenderingInstruction>> renderingInstructions();
+    public RenderingInstructionBundle renderingInstructions();
 }
