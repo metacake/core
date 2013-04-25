@@ -36,13 +36,14 @@ public class GameRunner {
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
         // TODO: exception handling
-        while (isRunning) {
+        while (isRunning && !state.isGameOver()) {
             outputSystem.addToRenderQueue(state);
             updateTriggers(state);
             timer.update();
             state = state.tick();
             timer.block();
         }
+        end(state);
     }
 
     /**
@@ -68,4 +69,10 @@ public class GameRunner {
             }
         }
     }
+
+    private void end(GameState state){
+        outputSystem.addToRenderQueue(state);
+        System.exit(0);
+    }
+
 }

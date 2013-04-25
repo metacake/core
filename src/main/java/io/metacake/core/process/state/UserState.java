@@ -20,4 +20,9 @@ public abstract class UserState implements GameState{
     public final List<ActionTrigger> replaceActionTriggers() {
         return Collections.emptyList();
     }
+
+    @Override
+    public final boolean isGameOver(){
+        return false;
+    }
 }

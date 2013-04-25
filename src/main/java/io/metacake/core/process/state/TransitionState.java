@@ -49,4 +49,9 @@ public class TransitionState implements GameState{
     public Map<OutputDeviceName, List<RenderingInstruction>> renderingInstructions() {
         return Collections.emptyMap();
     }
+
+    @Override
+    public final boolean isGameOver(){
+        return false;
+    }
 }

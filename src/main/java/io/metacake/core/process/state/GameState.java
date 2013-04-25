@@ -31,4 +31,9 @@ public interface GameState extends Renderable{
      * @return Returns the ActionTriggers that will replace the old ones.
      */
     public List<ActionTrigger> replaceActionTriggers();
+
+    /**
+     * @return true if the game is over
+     */
+    public boolean isGameOver();
 }
