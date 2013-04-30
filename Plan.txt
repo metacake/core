@@ -72,8 +72,6 @@ Rationale and Deliverable
  engines and games. This engine will simply show the use of a single input and output plugin.
   
 -----------------Phase 2--------------------------------------------
-- Zombies with sound
-  - Potentially add background music and a death noise for the player.
 - Zombies with Guns
   * Add guns the zombie game. The player can pick up a gun a kill zombies with it.
   * Because there were previously a finite number of zombies, make new ones spawn in random places, when enough have died.
@@ -87,6 +85,8 @@ Rationale and Deliverable
  of multiple input and output plugins.
   
 ------------------Phase 3-------------------------------------------
+- Zombies with sound
+  - Potentially add background music and a death noise for the player.
 - Zombies with Obstacles and a Larger world
   * Make the world bigger than what the player sees. The player can still move around it.
   * There are blocks laying around the world that the player and zombies cannot traverse.
@@ -94,6 +94,8 @@ Rationale and Deliverable
   * New Entities: Blocks
   * New Processing Unit: Collision
   * New Output feature: viewbox
+
+------------------Phase FUTURE-------------------------------------------
 - Zombie AI
   * Make the Zombies smarter. They should now be able to avoid obstacles.
   * Potentially, make some have different attributes (i.e. some are smarter or faster).

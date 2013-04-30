@@ -1,5 +1,6 @@
 package io.metacake.core.input.system;
 
+import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.InputSystem;
@@ -19,7 +20,7 @@ public class InputLayer implements InputSystem{
      * Create the InputLayer with the given list of InputDevices.
      */
     public InputLayer(Map<InputDeviceName,InputDevice> devices) {
-       this.devices = devices;
+       this.devices = new CustomizableMap<>(devices);
     }
 
     @Override
