@@ -21,6 +21,16 @@ package io.metacake.core.common;
  * @author rpless
  */
 public class Symbol {
+    static final String PREFIX = "Symbol:";
+    private String name;
+
+    public Symbol(){
+        this("");
+    }
+
+    public Symbol(String name) {
+        this.name = name;
+    }
 
     @Override
     public final boolean equals(Object that) {
@@ -29,5 +39,14 @@ public class Symbol {
     @Override
     public final int hashCode(){
         return super.hashCode();
+    }
+
+    @Override
+    public final String toString(){
+        if(name.isEmpty()) {
+            return super.toString();
+        } else {
+            return PREFIX + name;
+        }
     }
 }

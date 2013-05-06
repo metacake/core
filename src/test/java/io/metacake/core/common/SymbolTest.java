@@ -23,4 +23,21 @@ public class SymbolTest {
         assertNotSame(sym1, sym2);
         assertFalse(sym1.equals(sym2));
     }
+
+    @Test
+    public void toStringTests(){
+        this.toStringWithNoNameIsDefault();
+        this.toStringWithNameUsesName();
+    }
+
+
+    private void toStringWithNoNameIsDefault(){
+        Symbol s = new Symbol();
+        // reverse implementation of the default to string
+        assertEquals(s.toString(),s.getClass().getName()+"@"+Integer.toHexString(s.hashCode()));
+    }
+
+    private void toStringWithNameUsesName(){
+        assertEquals(Symbol.PREFIX+"name",new Symbol("name").toString());
+    }
 }

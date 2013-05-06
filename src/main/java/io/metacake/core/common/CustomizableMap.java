@@ -39,12 +39,7 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
      * Like the other get, but uses the default callback
      */
     public V get(Object key) {
-        try {
-            return this.get(key,onMissing);
-        } catch (Exception e) {
-            // fuck you java and your changing signatures
-            throw new RuntimeException(e);
-        }
+       return this.get(key,onMissing);
     }
 
     /**
@@ -54,12 +49,17 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
      * @return the value, or the result of {@code missing.call()}
      * @throws Exception If the runnable throws and exception
      */
-    public V get(Object key, Callable<V> missing) throws Exception {
+    public V get(Object key, Callable<V> missing) {
         V res = theMap.get(key);
         if(res != null) {
             return res;
         } else {
-            return missing.call();
+            try {
+                return missing.call();
+            } catch (Exception e) {
+                // Wrap in runtime exception so that the original get method's signature is not violated
+                throw new RuntimeException(e);
+            }
         }
     }
 
