@@ -14,7 +14,7 @@ import java.util.Map;
  * @author rpless
  */
 public class InputLayer implements InputSystem{
-    private Map<InputDeviceName,InputDevice> devices;
+    private CustomizableMap<InputDeviceName,InputDevice> devices;
 
     /**
      * Create the InputLayer with the given list of InputDevices.

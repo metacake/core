@@ -7,4 +7,10 @@ import io.metacake.core.common.Symbol;
  * @author florence
  * @author rpless
  */
-public class InputDeviceName extends Symbol {}
+public class InputDeviceName extends Symbol {
+    public InputDeviceName() { }
+
+    public InputDeviceName(String name) {
+        super(name);
+    }
+}
