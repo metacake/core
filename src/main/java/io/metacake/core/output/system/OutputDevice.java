@@ -27,6 +27,12 @@ public interface OutputDevice {
     public void startOutputLoop();
 
     /**
+     * Shutdown all loops and free resources. This should leave the device in a state such that
+     * it can be restarted
+     */
+    public void shutdown();
+
+    /**
      * Bind this device to the given window.
      * @param w The window for the game
      */

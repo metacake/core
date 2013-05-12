@@ -1,5 +1,6 @@
 package io.metacake.core.process;
 
+import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.process.state.GameState;
@@ -9,6 +10,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
  * @author florence
@@ -26,12 +29,12 @@ public class GameRunnerTest {
         is = mock(InputSystem.class);
         os = mock(OutputSystem.class);
 
-        system = new GameRunner(is,os);
+        system = new GameRunner(is,os,mock(CakeWindow.class));
     }
 
     @Test
     public void stopActuallyStops() throws Exception{
-    /*    final int loopTime = 5;
+        final int loopTime = 5;
         Thread t = new Thread(){
             @Override
             public void run(){
@@ -42,12 +45,10 @@ public class GameRunnerTest {
         t.start();
 
         Thread.sleep(5);
-        //FACK, this calls system.exit()
         system.stop();
+        t.join(5);
 
-        Thread.sleep(5);
-
-        assertFalse(t.isAlive());
-        */
+        verify(is,times(1)).shutdown();
+        verify(os,times(1)).shutdown();
     }
 }

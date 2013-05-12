@@ -17,4 +17,9 @@ public interface OutputSystem {
      * By the time this method return all output devices must have started their main threads.
      */
     public void startOutputLoops();
+
+    /**
+     * Shutdown the system and all devices
+     */
+    public void shutdown();
 }

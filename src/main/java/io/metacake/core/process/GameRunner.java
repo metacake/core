@@ -1,9 +1,13 @@
 package io.metacake.core.process;
 
 import io.metacake.core.common.MilliTimer;
+import io.metacake.core.common.window.CakeWindow;
+import io.metacake.core.common.window.CloseObserver;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
+import io.metacake.core.input.system.InputDevice;
 import io.metacake.core.output.OutputSystem;
+import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 
 /**
@@ -18,9 +22,15 @@ public class GameRunner {
     private OutputSystem outputSystem;
     private boolean isRunning = false;
 
-    public GameRunner(InputSystem inputSystem, OutputSystem outputSystem) {
+    public GameRunner(InputSystem inputSystem, OutputSystem outputSystem, CakeWindow window) {
         this.inputSystem = inputSystem;
         this.outputSystem = outputSystem;
+        window.addCloseObserver(new CloseObserver() {
+            @Override
+            public void onClose() {
+                stop();
+            }
+        });
     }
 
     /**
@@ -76,8 +86,11 @@ public class GameRunner {
      */
     private void end(GameState state){
         outputSystem.addToRenderQueue(state);
-        //TODO: yeah, no, dont call System.exit. is hack.
-        System.exit(0);
+        outputSystem.shutdown();
+        inputSystem.shutdown();
+        if(state instanceof EndState && ((EndState)state).shouldCloseWindow()){
+            //TODO: magic
+        }
     }
 
 }

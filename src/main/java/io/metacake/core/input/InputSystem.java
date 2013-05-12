@@ -26,4 +26,9 @@ public interface InputSystem {
      * By the time this method return all input devices must have started their main threads.
      */
     public void startInputLoops();
+
+    /**
+     * shutdown the system and all devices
+     */
+    public void shutdown();
 }

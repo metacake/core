@@ -15,7 +15,8 @@ import io.metacake.core.input.ActionTrigger;
 public interface InputDevice {
 
     /**
-     * Safely shutdown this device down.
+     * Shutdown all loops and free resources. This should leave the device in a state such that
+     * it can be restarted
      */
     public void shutdown();
 

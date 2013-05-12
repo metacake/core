@@ -53,6 +53,7 @@ public class Bootstrapper {
         OutputSystem o = this.bootstrapOutputSystem();
         GameRunner r = this.bootstrapProcessLayer(i, o);
         o.startOutputLoops();
+        i.startInputLoops();
         r.mainLoop(initialState, loopTime);
     }
 
@@ -88,6 +89,6 @@ public class Bootstrapper {
      * @return a GameRunner that has been bound to the Input and Output Systems and is ready to be launched
      */
     private GameRunner bootstrapProcessLayer(InputSystem i, OutputSystem o) {
-        return new GameRunner(i, o);
+        return new GameRunner(i, o, window);
     }
 }

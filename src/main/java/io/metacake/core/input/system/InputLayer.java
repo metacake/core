@@ -42,9 +42,7 @@ public class InputLayer implements InputSystem{
         }
     }
 
-    /**
-     * Safely shutdown the whole input system
-     */
+    @Override
     public void shutdown() {
         for(InputDevice i : devices.values()) {
             i.shutdown();

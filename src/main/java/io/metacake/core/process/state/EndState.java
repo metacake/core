@@ -16,18 +16,38 @@ import java.util.Map;
  */
 public final class EndState implements GameState {
     private GameState with;
-
+    private boolean closeWindow;
     /**
-     * End the game, using the given state to render
+     * End the game, using the given state to render. Do not close the window.
      * @param s the state to render
      * @return the end state
      */
     public static GameState endWith(GameState s){
-        return new EndState(s);
+        return new EndState(s,false);
     }
 
-    private EndState(GameState with) {
+    /**
+     * End the game, using the given state to render. Close the window as well.
+     * @param s the state to render
+     * @return the end state
+     */
+    public static GameState closeWith(GameState s){
+        return new EndState(s,true);
+    }
+
+
+
+    private EndState(GameState with, boolean closeWindow) {
         this.with = with;
+        this.closeWindow = closeWindow;
+    }
+
+    /**
+     * Internal method. Do not use.
+     * @return Should the window close?
+     */
+    public final boolean shouldCloseWindow(){
+        return this.closeWindow;
     }
 
     @Override

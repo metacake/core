@@ -34,4 +34,11 @@ public class OutputLayer implements OutputSystem{
             o.startOutputLoop();
         }
     }
+
+    @Override
+    public void shutdown(){
+        for(OutputDevice o : deviceContainer.values()){
+            o.shutdown();
+        }
+    }
 }
