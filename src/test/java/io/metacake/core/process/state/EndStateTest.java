@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
  * @author florence
  * @author rpless
  */
-public class EndStateTests {
+public class EndStateTest {
     @Test
     public void endWithDoesNotCloseWindow(){
         EndState e = (EndState)EndState.endWith(mock(GameState.class));

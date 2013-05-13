@@ -48,19 +48,28 @@ public class Bootstrapper {
      * Invokes the the binding phases of a game creation and then launches the game.
      */
     public void setupAndLaunchGame() {
+        GameRunner r = this.bootstrapSystem();
+        r.mainLoop(initialState, loopTime);
+    }
+
+    /**
+     * Create a GameRunner that is ready to go
+     * @return The game runner
+     */
+    GameRunner bootstrapSystem(){
         this.bootstrapUserObjects();
         InputSystem i = this.bootstrapInputSystem();
         OutputSystem o = this.bootstrapOutputSystem();
         GameRunner r = this.bootstrapProcessLayer(i, o);
         o.startOutputLoops();
         i.startInputLoops();
-        r.mainLoop(initialState, loopTime);
+        return r;
     }
 
     /**
      * Invokes binding operations for all InputDevices and InputDevices
      */
-    private void bootstrapUserObjects() {
+    void bootstrapUserObjects() {
         for (InputDevice i : inputs.values()) {
             i.bind(window);
         }
@@ -72,14 +81,14 @@ public class Bootstrapper {
     /**
      * @return Returns an InputSystem that has been set up and bound.
      */
-    private InputSystem bootstrapInputSystem() {
+    InputSystem bootstrapInputSystem() {
         return new InputLayer(inputs);
     }
 
     /**
      * @return Returns an OutputSystem that has been set up and bound.
      */
-    private OutputSystem bootstrapOutputSystem() {
+    OutputSystem bootstrapOutputSystem() {
         return new OutputLayer(outputs);
     }
 
@@ -88,7 +97,7 @@ public class Bootstrapper {
      * @param o the OutputSystem for the game
      * @return a GameRunner that has been bound to the Input and Output Systems and is ready to be launched
      */
-    private GameRunner bootstrapProcessLayer(InputSystem i, OutputSystem o) {
+     GameRunner bootstrapProcessLayer(InputSystem i, OutputSystem o) {
         return new GameRunner(i, o, window);
     }
 }
