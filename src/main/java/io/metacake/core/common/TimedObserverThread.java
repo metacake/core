@@ -49,7 +49,7 @@ public class TimedObserverThread extends Thread {
     /**
      *  Stops the thread.
      */
-    private void requestStop() {
+    public void requestStop() {
         running = false;
         this.interrupt();
     }
