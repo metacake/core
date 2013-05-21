@@ -154,7 +154,7 @@ public class BootstrapperTest {
             }
         };
 
-        GameState g = new UserState() {
+        final GameState g = new UserState() {
             @Override
             public GameState tick() {
                 return this;
@@ -176,7 +176,7 @@ public class BootstrapperTest {
         Thread t = new Thread(){
             @Override
             public void run(){
-                runner.mainLoop(state,5);
+                runner.mainLoop(g,5);
             }
         };
         t.start();
