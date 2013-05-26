@@ -60,6 +60,7 @@ public class GameRunner {
 
     /**
      * Tell the main game loop to stop. If the main game loop is not running, this has no effect.
+     * The main event loop will try to close the window if this method is called.
      */
     public void stop(){
         isRunning = false;
@@ -90,8 +91,9 @@ public class GameRunner {
         outputSystem.addToRenderQueue(state);
         outputSystem.shutdown();
         inputSystem.shutdown();
-        if(state instanceof EndState && ((EndState)state).shouldCloseWindow()){
-            window.close();
+        if((state instanceof EndState && ((EndState)state).shouldCloseWindow())
+                || !isRunning){
+            window.dispose();
         }
     }
 

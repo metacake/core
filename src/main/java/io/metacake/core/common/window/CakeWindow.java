@@ -8,11 +8,7 @@ package io.metacake.core.common.window;
  * @author florence
  * @author rpless
  */
-public interface CakeWindow<T> {
-    /**
-     * Force close the window and notify all CloseObservers of all closures.
-     */
-    public abstract void close();
+public abstract class CakeWindow<T> {
 
     /**
      * @return Get the x coordinate on the screen of the upper left corner of this window
@@ -35,10 +31,28 @@ public interface CakeWindow<T> {
      */
     public abstract int getHeight();
 
+    CloseObserver closer;
     /**
      * Add a CloseObserver.
+     * <p>This is an internal method, and should not be called</p>
      */
-    public void addCloseObserver(CloseObserver o);
+    public final void addCloseObserver(CloseObserver o){
+        closer = o;
+    }
+
+    /**
+     * Call this to begin shutting down the engine
+     */
+    public final void close(){
+        if(closer!=null){
+            closer.onClose();
+        }
+    }
+
+    /**
+     * Dispose of this window and all its components
+     */
+    public abstract void dispose();
 
     /**
      * @return Get the Low level window object.
