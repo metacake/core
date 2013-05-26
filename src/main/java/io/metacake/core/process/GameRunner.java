@@ -90,7 +90,8 @@ public class GameRunner {
         outputSystem.addToRenderQueue(state);
         outputSystem.shutdown();
         inputSystem.shutdown();
-        if(state instanceof EndState && ((EndState)state).shouldCloseWindow()){
+        if((state instanceof EndState && ((EndState)state).shouldCloseWindow()) ||
+                !isRunning){
             window.close();
         }
     }
