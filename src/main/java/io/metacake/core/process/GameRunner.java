@@ -93,7 +93,7 @@ public class GameRunner {
         inputSystem.shutdown();
         if((state instanceof EndState && ((EndState)state).shouldCloseWindow()) ||
                 !isRunning){
-            window.close();
+            window.dispose();
         }
     }
 
