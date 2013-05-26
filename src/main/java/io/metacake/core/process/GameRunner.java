@@ -59,11 +59,18 @@ public class GameRunner {
     }
 
     /**
-     * Tell the main game loop to stop. If the main game loop is not running, this has no effect.
+     * Tell the main game loop to stop.
      * The main event loop will try to close the window if this method is called.
+     *
+     * If the main game loop is not running, this will shut down the window.
      */
     public void stop(){
-        isRunning = false;
+        if(isRunning){
+            isRunning = false;
+        } else {
+            //FIXME: Mashing the close button may cause a crash
+            window.dispose();
+        }
     }
 
     /**
