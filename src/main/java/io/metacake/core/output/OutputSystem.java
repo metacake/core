@@ -19,7 +19,7 @@ public interface OutputSystem {
     public void startOutputLoops();
 
     /**
-     * Shutdown the system and all devices
+     * Shutdown the system and all devices. This should block until device is completely shut down.
      */
     public void shutdown();
 }

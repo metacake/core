@@ -1,15 +1,12 @@
 package io.metacake.core.common;
 
-import io.metacake.core.common.window.CakeWindow;
-import io.metacake.core.common.window.CloseObserver;
-
 /**
- * The TimedObserverThread is a thread meant to execute Runnable code on a set time step.
+ * The TimedLoopThread is a thread meant to execute Runnable code on a set time step.
  *
  * @author florence
  * @author rpless
  */
-public class TimedObserverThread extends Thread {
+public class TimedLoopThread extends Thread {
     public static final long DEFAULT_THREAD_TIMER_TIME = 20;
     private volatile boolean running = true;
     private Runnable runnable;
@@ -18,7 +15,7 @@ public class TimedObserverThread extends Thread {
     /**
      * @param target The runnable to run each loop
      */
-    public TimedObserverThread(Runnable target) {
+    public TimedLoopThread(Runnable target) {
         this(target, DEFAULT_THREAD_TIMER_TIME);
     }
 
@@ -26,7 +23,7 @@ public class TimedObserverThread extends Thread {
      * @param target The runnable to run each loop
      * @param milliTimerTime The milli seconds between each loop. <p>see MilliTimer for detail</p>
      */
-    public TimedObserverThread(Runnable target, long milliTimerTime) {
+    public TimedLoopThread(Runnable target, long milliTimerTime) {
         this.runnable = target;
         this.milliTimerTime = milliTimerTime;
     }
@@ -42,10 +39,16 @@ public class TimedObserverThread extends Thread {
     }
 
     /**
-     *  Stops the thread.
+     *  Stops the thread. Blocks until the thread stops.
+     *  DO NOT CALL THIS METHOD FROM WITHIN THE THREAD.
      */
     public void requestStop() {
         running = false;
         this.interrupt();
+        try {
+            this.join();
+        } catch (InterruptedException e) {
+            // TODO: can this even happen?
+        }
     }
 }
