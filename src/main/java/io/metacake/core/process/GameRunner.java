@@ -60,6 +60,7 @@ public class GameRunner {
 
     /**
      * Tell the main game loop to stop. If the main game loop is not running, this has no effect.
+     * The main event loop will try to close the window if this method is called.
      */
     public void stop(){
         isRunning = false;

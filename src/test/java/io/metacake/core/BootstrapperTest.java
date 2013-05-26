@@ -93,7 +93,7 @@ public class BootstrapperTest {
         CakeWindow<Object> window = new CakeWindow(){
             Object test = new Object();
             @Override
-            public void close() {
+            public void dispose() {
                 test = null;
             }
 
@@ -116,9 +116,6 @@ public class BootstrapperTest {
             public int getHeight() {
                 return 0;  //To change body of implemented methods use File | Settings | File Templates.
             }
-
-            @Override
-            public void addCloseObserver(CloseObserver o) { }
 
             @Override
             public Object getRawWindow() {
