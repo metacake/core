@@ -52,7 +52,7 @@ public class MilliTimer {
                 Thread.sleep(waitFor);
             }
         } catch (InterruptedException e) {
-            e.printStackTrace(); // TODO: convert to logger (when we have it)
+            //e.printStackTrace(); // TODO: convert to logger (when we have it)
             Thread.currentThread().interrupt();
         }
     }

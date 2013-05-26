@@ -21,10 +21,12 @@ public class GameRunner {
     private InputSystem inputSystem;
     private OutputSystem outputSystem;
     private boolean isRunning = false;
+    private CakeWindow window;
 
     public GameRunner(InputSystem inputSystem, OutputSystem outputSystem, CakeWindow window) {
         this.inputSystem = inputSystem;
         this.outputSystem = outputSystem;
+        this.window = window;
         window.addCloseObserver(new CloseObserver() {
             @Override
             public void onClose() {
@@ -89,7 +91,7 @@ public class GameRunner {
         outputSystem.shutdown();
         inputSystem.shutdown();
         if(state instanceof EndState && ((EndState)state).shouldCloseWindow()){
-            //TODO: magic
+            window.close();
         }
     }
 

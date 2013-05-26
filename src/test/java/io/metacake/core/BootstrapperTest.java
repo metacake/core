@@ -1,9 +1,8 @@
 package io.metacake.core;
 
-import io.metacake.core.common.TimedObserverThread;
+import io.metacake.core.common.TimedLoopThread;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
-import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.input.system.InputDevice;
@@ -13,19 +12,21 @@ import io.metacake.core.output.RenderingInstruction;
 import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.process.GameRunner;
+import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import io.metacake.core.process.state.UserState;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -84,7 +85,7 @@ public class BootstrapperTest {
      * would be disposed of before the graphics system finished shutting down.
      */
     public void testShutdownOccursSequentiallyAndSyncronouslyManyTimes() throws InterruptedException {
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 50; i++){
             testShutdownOccursSequentiallyAndSyncronously();
         }
     }
@@ -125,19 +126,31 @@ public class BootstrapperTest {
             }
         };
 
+        final AtomicBoolean testFailed = new AtomicBoolean(false);
+
         InputDevice inputDevice = mock(InputDevice.class);
         OutputDevice outputDevice = new OutputDevice() {
             CakeWindow<Object> w;
-            TimedObserverThread t;
+            TimedLoopThread t;
             @Override
             public void render(List<RenderingInstruction> r) { }
 
             @Override
             public void startOutputLoop() {
-                t = new TimedObserverThread(new Runnable() {
+                t = new TimedLoopThread(new Runnable() {
                     @Override
                     public void run() {
-                        w.getRawWindow().toString();
+                        try {
+                                try {
+                                    Thread.sleep(10);
+                                } catch (InterruptedException e) {}
+                                for(int i = 0; i < 100000;i += 1){
+                                    w.getRawWindow().toString();
+                                }
+                        } catch (Exception e) {
+                            System.out.printf("errored") ;
+                            testFailed.set(true);
+                        }
                     }
                 });
                 t.start();
@@ -155,9 +168,15 @@ public class BootstrapperTest {
         };
 
         final GameState g = new UserState() {
+            int i = 0;
             @Override
             public GameState tick() {
-                return this;
+                i += 1;
+                if (i > 500){
+                    return EndState.closeWith(this);
+                } else {
+                    return this;
+                }
             }
 
             @Override
@@ -173,17 +192,11 @@ public class BootstrapperTest {
         Bootstrapper b = new Bootstrapper(window,inputDevices,outputDevices,state);
         final GameRunner runner = b.bootstrapSystem();
 
-        Thread t = new Thread(){
-            @Override
-            public void run(){
-                runner.mainLoop(g,5);
-            }
-        };
-        t.start();
-        Thread.sleep(1000);
-        runner.stop();
-        t.join();
+        runner.mainLoop(g,1);
+
+        Thread.sleep(5);
 
         assertNull(window.getRawWindow());
+        assertFalse("Exception thrown from within render thread", testFailed.get());
     }
 }

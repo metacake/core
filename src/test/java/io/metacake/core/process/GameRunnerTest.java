@@ -3,7 +3,9 @@ package io.metacake.core.process;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
+import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.state.GameState;
+import io.metacake.core.process.state.UserState;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +27,17 @@ public class GameRunnerTest {
 
     @Before
     public void setup(){
-        s = mock(GameState.class);
+        s = new UserState() {
+            @Override
+            public GameState tick() {
+                return this;
+            }
+
+            @Override
+            public RenderingInstructionBundle renderingInstructions() {
+                return new RenderingInstructionBundle();
+            }
+        };
         is = mock(InputSystem.class);
         os = mock(OutputSystem.class);
 
