@@ -2,6 +2,7 @@ package io.metacake.core.input.system;
 
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.ActionTrigger;
+import io.metacake.core.input.InputDeviceName;
 
 /**
  * The InputDevice acts as the Interface into any input device.
@@ -13,6 +14,11 @@ import io.metacake.core.input.ActionTrigger;
  * @author rpless
  */
 public interface InputDevice {
+
+    /**
+     * @return The unique name of this device.
+     */
+    public InputDeviceName name();
 
     /**
      * Shutdown all loops and free resources. This should leave the device in a state such that

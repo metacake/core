@@ -1,6 +1,7 @@
 package io.metacake.core.output.system;
 
 import io.metacake.core.common.window.CakeWindow;
+import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 
 import java.util.List;
@@ -12,6 +13,12 @@ import java.util.List;
  * @author rpless
  */
 public interface OutputDevice {
+
+    /**
+     * @return The unique name of this device.
+     */
+    public OutputDeviceName name();
+
     /**
      * Render all of the given RenderingInstructions.
      * <p>

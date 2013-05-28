@@ -132,6 +132,8 @@ public class BootstrapperTest {
             @Override
             public void render(List<RenderingInstruction> r) { }
 
+            public OutputDeviceName name() { return null; }
+
             @Override
             public void startOutputLoop() {
                 t = new TimedLoopThread(new Runnable() {
