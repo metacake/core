@@ -1,5 +1,6 @@
-package io.metacake.core.common;
+package io.metacake.core;
 
+import io.metacake.core.BootstrapBuilder;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.process.state.GameState;
 import org.junit.Test;

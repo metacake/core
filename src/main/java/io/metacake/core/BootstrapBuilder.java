@@ -1,6 +1,5 @@
-package io.metacake.core.common;
+package io.metacake.core;
 
-import io.metacake.core.Bootstrapper;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.system.InputDevice;
@@ -44,10 +43,22 @@ public class BootstrapBuilder {
      * devices, initial <link>GameState</link>, and loop time,
      */
     public Bootstrapper createBootstrap() {
-        if (window == null || initialState == null) {
+        validateCreateBootstrapInputs();
+        return new Bootstrapper(window, inputDevices, outputDevices, initialState, loopTime);
+    }
+
+    /**
+     * Validates the input contract for the createBootstrap method.
+     */
+    private void validateCreateBootstrapInputs() {
+        // TODO: Better error reporting.
+        if (window == null || initialState == null || outputDevices.isEmpty()) {
             throw new RuntimeException("Not enough resources to create the BootStrapper.");
         }
-        return new Bootstrapper(window, inputDevices, outputDevices, initialState, loopTime);
+    }
+
+    public void createAndLaunch() {
+        createBootstrap().setupAndLaunchGame();
     }
 
     /**

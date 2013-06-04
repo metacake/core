@@ -30,12 +30,12 @@ public class Bootstrapper {
     private GameState initialState;
     private long loopTime;
 
-    public Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
+    Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
                         GameState g) {
         this(window, inputs, outputs, g, DEFAULT_LOOP_MILLIS);
     }
 
-    public Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
+    Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
                         GameState g, long loopTime) {
         this.window = window;
         this.inputs = inputs;
