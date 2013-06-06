@@ -85,7 +85,7 @@ public class BootstrapperTest {
      * would be disposed of before the graphics system finished shutting down.
      */
     public void testShutdownOccursSequentiallyAndSyncronouslyManyTimes() throws InterruptedException {
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 10; i++){
             testShutdownOccursSequentiallyAndSyncronously();
         }
     }
