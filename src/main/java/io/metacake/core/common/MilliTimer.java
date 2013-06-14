@@ -1,5 +1,9 @@
 package io.metacake.core.common;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This class acts as a Millisecond timer.
  * <p>
@@ -12,6 +16,7 @@ package io.metacake.core.common;
  */
 public class MilliTimer {
     private static final long TO_MILLIS = 1_000_000;
+    private static final Logger logger = LoggerFactory.getLogger(MilliTimer.class);
 
     private long interval;
     private long lastActive;
@@ -52,7 +57,7 @@ public class MilliTimer {
                 Thread.sleep(waitFor);
             }
         } catch (InterruptedException e) {
-            // e.printStackTrace(); // TODO: convert to logger (when we have it)
+            logger.info("Timer block interrupted",e);
             Thread.currentThread().interrupt();
         }
     }

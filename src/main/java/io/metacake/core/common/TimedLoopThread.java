@@ -1,5 +1,8 @@
 package io.metacake.core.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The TimedLoopThread is a thread meant to execute Runnable code on a set time step.
  *
@@ -8,6 +11,7 @@ package io.metacake.core.common;
  */
 public class TimedLoopThread extends Thread {
     public static final long DEFAULT_THREAD_TIMER_TIME = 20;
+    private static Logger logger = LoggerFactory.getLogger(TimedLoopThread.class);
     private volatile boolean running = true;
     private Runnable runnable;
     private long milliTimerTime;
@@ -48,7 +52,7 @@ public class TimedLoopThread extends Thread {
         try {
             this.join();
         } catch (InterruptedException e) {
-            // TODO: can this even happen?
+            logger.debug("How the hell did this get interrupted?",e);
         }
     }
 }

@@ -38,7 +38,6 @@ public class BootstrapBuilder {
      * <p>
      *     If the caller has not provided this builder with a <link>CakeWindow</link> and an initial <link>GameState</link>,
      *     then a <link>RuntimeException</link> will be raised.
-     * // Concern: Should we use a checked exception here instead?
      * @return Creates a <link>Bootstrapper</link> that will use the given <link>CakeWindow</link>,
      * devices, initial <link>GameState</link>, and loop time,
      */

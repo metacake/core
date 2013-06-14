@@ -9,6 +9,8 @@ import io.metacake.core.input.system.InputDevice;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class run is the main execution loop of the game
@@ -16,8 +18,9 @@ import io.metacake.core.process.state.GameState;
  * @author florence
  * @author rpless
  */
-//TODO : This should have its own interface and be passed into the Bootstrapper
 public class GameRunner {
+    private static Logger logger = LoggerFactory.getLogger(GameRunner.class);
+
     private InputSystem inputSystem;
     private OutputSystem outputSystem;
     private boolean isRunning = false;
@@ -69,6 +72,7 @@ public class GameRunner {
             isRunning = false;
         } else {
             //FIXME: Mashing the close button may cause a crash
+            logger.info("Disposing of window because loop had already stopped");
             window.dispose();
         }
     }
@@ -95,6 +99,7 @@ public class GameRunner {
      * @param state the last state
      */
     private void end(GameState state){
+        logger.info("beginning system shutdown");
         outputSystem.addToRenderQueue(state);
         outputSystem.shutdown();
         inputSystem.shutdown();
