@@ -11,6 +11,8 @@ import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.output.system.OutputLayer;
 import io.metacake.core.process.GameRunner;
 import io.metacake.core.process.state.GameState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -24,6 +26,7 @@ import java.util.Map;
  */
 public class Bootstrapper {
     public static final long DEFAULT_LOOP_MILLIS = 50;
+    private static final Logger logger = LoggerFactory.getLogger(Bootstrapper.class);
     private CakeWindow window;
     private Map<InputDeviceName,InputDevice> inputs;
     private Map<OutputDeviceName, OutputDevice> outputs;
@@ -61,6 +64,7 @@ public class Bootstrapper {
         InputSystem i = this.bootstrapInputSystem();
         OutputSystem o = this.bootstrapOutputSystem();
         GameRunner r = this.bootstrapProcessLayer(i, o);
+        logger.info("starting i/o loops");
         o.startOutputLoops();
         i.startInputLoops();
         return r;
@@ -70,6 +74,7 @@ public class Bootstrapper {
      * Invokes binding operations for all InputDevices and InputDevices
      */
     void bootstrapUserObjects() {
+        logger.info("Bootstrapping user objects");
         for (InputDevice i : inputs.values()) {
             i.bind(window);
         }
@@ -82,6 +87,7 @@ public class Bootstrapper {
      * @return Returns an InputSystem that has been set up and bound.
      */
     InputSystem bootstrapInputSystem() {
+        logger.info("Bootstrapping input system from user objects");
         return new InputLayer(inputs);
     }
 
@@ -89,6 +95,7 @@ public class Bootstrapper {
      * @return Returns an OutputSystem that has been set up and bound.
      */
     OutputSystem bootstrapOutputSystem() {
+        logger.info("Bootstrapping output system from user objects");
         return new OutputLayer(outputs);
     }
 
@@ -98,6 +105,7 @@ public class Bootstrapper {
      * @return a GameRunner that has been bound to the Input and Output Systems and is ready to be launched
      */
      GameRunner bootstrapProcessLayer(InputSystem i, OutputSystem o) {
+        logger.info("bootstrapping process layer from i/o system");
         return new GameRunner(i, o, window);
     }
 }

@@ -48,6 +48,7 @@ public class GameRunner {
      * @param interval the number of milliseconds requested to be between the start of each loop.
      */
     public void mainLoop(GameState state, long interval) {
+        logger.info("starting main loop");
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
         // TODO: exception handling
