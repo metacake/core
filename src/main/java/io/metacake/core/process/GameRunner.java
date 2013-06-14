@@ -51,15 +51,17 @@ public class GameRunner {
         logger.info("starting main loop");
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
-        // TODO: exception handling
-        while (isRunning && !state.isGameOver()) {
-            outputSystem.addToRenderQueue(state);
-            updateTriggers(state);
-            timer.update();
-            state = state.tick();
-            timer.block();
+        try {
+            while (isRunning && !state.isGameOver()) {
+                outputSystem.addToRenderQueue(state);
+                updateTriggers(state);
+                timer.update();
+                state = state.tick();
+                timer.block();
+            }
+        } finally {
+            end(state);
         }
-        end(state);
     }
 
     /**
