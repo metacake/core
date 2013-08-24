@@ -59,6 +59,8 @@ public class GameRunner {
                 state = state.tick();
                 timer.block();
             }
+        } catch (Exception e) {
+            logger.error("Error in main loop",e);
         } finally {
             end(state);
         }
