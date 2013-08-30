@@ -2,7 +2,6 @@ package io.metacake.core;
 
 import io.metacake.core.common.TimedLoopThread;
 import io.metacake.core.common.window.CakeWindow;
-import io.metacake.core.common.window.CloseObserver;
 import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.input.system.InputDevice;
@@ -26,7 +25,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 

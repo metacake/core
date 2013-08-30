@@ -1,7 +1,10 @@
 package io.metacake.core.output.system;
 
 import io.metacake.core.common.CustomizableMap;
-import io.metacake.core.output.*;
+import io.metacake.core.output.OutputDeviceName;
+import io.metacake.core.output.OutputSystem;
+import io.metacake.core.output.Renderable;
+import io.metacake.core.output.RenderingInstruction;
 
 import java.util.List;
 import java.util.Map;

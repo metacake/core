@@ -63,7 +63,7 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
         }
     }
 
-    // delagated methods
+    // delegated methods
 
     @Override
     public int hashCode() {

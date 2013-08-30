@@ -1,7 +1,5 @@
 package io.metacake.core.output;
 
-import io.metacake.core.output.RenderingInstructionBundle;
-
 /**
  * @author florence
  * @author rpless

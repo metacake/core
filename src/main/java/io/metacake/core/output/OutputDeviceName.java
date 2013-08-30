@@ -8,8 +8,7 @@ import io.metacake.core.common.Symbol;
  * @author rpless
  */
 public class OutputDeviceName extends Symbol {
-    public OutputDeviceName() {
-    }
+    public OutputDeviceName() {}
 
     public OutputDeviceName(String name) {
         super(name);

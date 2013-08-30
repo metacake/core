@@ -1,13 +1,10 @@
 package io.metacake.core.process.state;
 
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.output.OutputDeviceName;
-import io.metacake.core.output.RenderingInstruction;
 import io.metacake.core.output.RenderingInstructionBundle;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This state will end the game
@@ -34,8 +31,6 @@ public final class EndState implements GameState {
     public static GameState closeWith(GameState s){
         return new EndState(s,true);
     }
-
-
 
     private EndState(GameState with, boolean closeWindow) {
         this.with = with;

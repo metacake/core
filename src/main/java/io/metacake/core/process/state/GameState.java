@@ -2,7 +2,6 @@ package io.metacake.core.process.state;
 
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.Renderable;
-import io.metacake.core.process.ActionRecognizer;
 
 import java.util.List;
 

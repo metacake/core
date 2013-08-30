@@ -6,7 +6,6 @@ import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
-import io.metacake.core.input.system.InputDevice;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
@@ -63,7 +62,7 @@ public class GameRunner {
                 timer.block();
             }
         } catch (Exception e) {
-            logger.error("Error in main loop",e);
+            logger.error("Error in main loop, terminating execution",e);
         } finally {
             end(state);
         }
@@ -75,7 +74,7 @@ public class GameRunner {
      *
      * If the main game loop is not running, this will shut down the window.
      */
-    public void stop(){
+    public void stop() {
         synchronized (this) {
             if(isRunning) {
                 isRunning = false;
@@ -98,7 +97,7 @@ public class GameRunner {
     private void updateTriggers(GameState s){
         if(s.shouldReplaceActionTriggers()) {
             inputSystem.releaseActionTriggers();
-            for(ActionTrigger a : s.replaceActionTriggers()){
+            for(ActionTrigger a : s.replaceActionTriggers()) {
                 inputSystem.bindActionTrigger(a.bindingDevice(),a);
             }
         }
@@ -112,7 +111,7 @@ public class GameRunner {
         logger.info("beginning system shutdown");
         safelyDispose(outputSystem);
         safelyDispose(inputSystem);
-        if(shouldCloseWindow(state)){
+        if(shouldCloseWindow(state)) {
             safelyDispose(window);
             isWindowDisposed = true;
         }
@@ -133,8 +132,7 @@ public class GameRunner {
      * @param state the last state
      * @return if the window should be closed
      */
-    private boolean shouldCloseWindow(GameState state)
-    {
+    private boolean shouldCloseWindow(GameState state) {
         return !isRunning
                 || (state instanceof EndState && ((EndState) state).shouldCloseWindow());
     }

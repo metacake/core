@@ -38,14 +38,6 @@ public class MilliTimer {
     }
 
     /**
-     * Set the timing interval in milliseconds
-     * @param interval the new interval
-     */
-    public void setInterval(long interval) {
-        this.interval = interval;
-    }
-
-    /**
      * Block the current thread in such a way that {@code interval} milliseconds has occurred
      * since the last call to update. If greater than {@code interval}
      * milliseconds have passed, calling this has no effect.
