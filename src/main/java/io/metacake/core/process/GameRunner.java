@@ -25,6 +25,8 @@ public class GameRunner {
     private InputSystem inputSystem;
     private OutputSystem outputSystem;
     private boolean isRunning = false;
+    private boolean isStopped = false;
+    private boolean isWindowDisposed = false;
     private CakeWindow window;
 
     public GameRunner(InputSystem inputSystem, OutputSystem outputSystem, CakeWindow window) {
@@ -74,12 +76,14 @@ public class GameRunner {
      * If the main game loop is not running, this will shut down the window.
      */
     public void stop(){
-        if(isRunning){
-            isRunning = false;
-        } else {
-            //FIXME: Mashing the close button may cause a crash
-            logger.info("Disposing of window because loop had already stopped");
-            window.dispose();
+        synchronized (this) {
+            if(isRunning) {
+                isRunning = false;
+            } else if (isStopped && !isWindowDisposed) {
+                logger.info("Disposing of window because loop had already stopped");
+                window.dispose();
+                isWindowDisposed = true;
+            }
         }
     }
 
@@ -110,7 +114,9 @@ public class GameRunner {
         safelyDispose(inputSystem);
         if(shouldCloseWindow(state)){
             safelyDispose(window);
+            isWindowDisposed = true;
         }
+        isStopped = true;
         logger.info("shutdown complete");
     }
 
