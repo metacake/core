@@ -43,7 +43,7 @@ public class InputLayer implements InputSystem{
     }
 
     @Override
-    public void shutdown() {
+    public void dispose() {
         for(InputDevice i : devices.values()) {
             i.shutdown();
         }

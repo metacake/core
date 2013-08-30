@@ -36,7 +36,7 @@ public class OutputLayer implements OutputSystem{
     }
 
     @Override
-    public void shutdown(){
+    public void dispose(){
         for(OutputDevice o : deviceContainer.values()){
             o.shutdown();
         }

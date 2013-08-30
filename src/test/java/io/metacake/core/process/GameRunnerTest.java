@@ -60,7 +60,7 @@ public class GameRunnerTest {
         system.stop();
         t.join(5);
 
-        verify(is,times(1)).shutdown();
-        verify(os,times(1)).shutdown();
+        verify(is,times(1)).dispose();
+        verify(os,times(1)).dispose();
     }
 }
