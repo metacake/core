@@ -1,5 +1,7 @@
 package io.metacake.core.input;
 
+import io.metacake.core.common.Disposable;
+
 /**
  * The Interface that the Process Layer uses to acquire input.
  * <p>
@@ -8,7 +10,7 @@ package io.metacake.core.input;
  * @author florence
  * @author rpless
  */
-public interface InputSystem {
+public interface InputSystem extends Disposable {
 
     /**
      * Bind an ActionTrigger to a Device in the InputSystem with the given name.
@@ -26,9 +28,4 @@ public interface InputSystem {
      * By the time this method return all input devices must have started their main threads.
      */
     public void startInputLoops();
-
-    /**
-     * shutdown the system and all devices
-     */
-    public void shutdown();
 }

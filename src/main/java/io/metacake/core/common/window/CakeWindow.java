@@ -1,5 +1,7 @@
 package io.metacake.core.common.window;
 
+import io.metacake.core.common.Disposable;
+
 /**
  * A CakeWindow is an adapter for user or library defined windows that need to be used by Cake.
  *
@@ -8,7 +10,7 @@ package io.metacake.core.common.window;
  * @author florence
  * @author rpless
  */
-public abstract class CakeWindow<T> {
+public abstract class CakeWindow<T> implements Disposable {
 
     /**
      * @return Get the x coordinate on the screen of the upper left corner of this window
@@ -48,11 +50,6 @@ public abstract class CakeWindow<T> {
             closer.onClose();
         }
     }
-
-    /**
-     * Dispose of this window and all its components
-     */
-    public abstract void dispose();
 
     /**
      * @return Get the Low level window object.

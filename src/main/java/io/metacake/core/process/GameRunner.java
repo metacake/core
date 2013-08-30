@@ -1,5 +1,6 @@
 package io.metacake.core.process;
 
+import io.metacake.core.common.Disposable;
 import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.common.window.CloseObserver;
@@ -105,13 +106,31 @@ public class GameRunner {
      */
     private void end(GameState state){
         logger.info("beginning system shutdown");
-        outputSystem.addToRenderQueue(state);
-        outputSystem.shutdown();
-        inputSystem.shutdown();
-        if((state instanceof EndState && ((EndState)state).shouldCloseWindow()) ||
-                !isRunning){
-            window.dispose();
+        safelyDispose(outputSystem);
+        safelyDispose(inputSystem);
+        if(shouldCloseWindow(state)){
+            safelyDispose(window);
         }
+        logger.info("shutdown complete");
+    }
+
+    private void safelyDispose(Disposable d) {
+        try {
+            d.dispose();
+        } catch (Exception e) {
+            logger.error("error in disposing " + d.getClass().getSimpleName(), e);
+        }
+    }
+
+    /**
+     * Should the window be closed on shutdown?
+     * @param state the last state
+     * @return if the window should be closed
+     */
+    private boolean shouldCloseWindow(GameState state)
+    {
+        return !isRunning
+                || (state instanceof EndState && ((EndState) state).shouldCloseWindow());
     }
 
 }
