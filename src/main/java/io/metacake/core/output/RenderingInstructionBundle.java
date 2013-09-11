@@ -43,10 +43,30 @@ public class RenderingInstructionBundle {
      * @return {@code this}
      */
     public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction inst) {
+        ensureMappingExists(name);
+        instructions.get(name).add(inst);
+        return this;
+    }
+
+    /**
+     * EFFECT: Add all of the {@code insts} to the bundle and bind them to the Device Name.
+     * @param name Name of the output device
+     * @param insts The instructions to bind.
+     * @return {@code this}
+     */
+    public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction...insts) {
+        ensureMappingExists(name);
+        instructions.get(name).addAll(Arrays.asList(insts));
+        return this;
+    }
+
+    /**
+     * EFFECT: ensure that there is a mapping between the given device name and at least an empty LinkedList.
+     * @param name The {@code OutputDeviceName} to check
+     */
+    private void ensureMappingExists(OutputDeviceName name) {
         if (!instructions.containsKey(name)) {
             instructions.put(name, new LinkedList<RenderingInstruction>());
         }
-        instructions.get(name).add(inst);
-        return this;
     }
 }

@@ -10,17 +10,36 @@ import static org.junit.Assert.assertTrue;
  * @author rpless
  */
 public class RenderingInstructionBundleTest {
+
+    private final OutputDeviceName testOutputDeviceName = new OutputDeviceName("test");
+    private final RenderingInstruction one = new RenderingInstruction() {};
+    private final RenderingInstruction two = new RenderingInstruction() {};
+    private final RenderingInstruction three = new RenderingInstruction() {};
+
     @Test
-    public void canAddAndRemove(){
+    public void bundleStartsEmpty() {
         RenderingInstructionBundle bundle = new RenderingInstructionBundle();
-
         assertTrue(bundle.getInstructions().isEmpty());
+    }
 
-        OutputDeviceName o = new OutputDeviceName("test");
-        RenderingInstruction r = new RenderingInstruction() {};
+    @Test
+    public void canAddAndRemove() {
+        RenderingInstructionBundle bundle = new RenderingInstructionBundle();
+        bundle.add(testOutputDeviceName, one);
 
-        RenderingInstructionBundle next = bundle.add(o,r);
+        assertEquals(1, bundle.getInstructions().size());
+        assertEquals(1, bundle.getInstructions().get(testOutputDeviceName).size());
+        assertEquals(one, bundle.getInstructions().get(testOutputDeviceName).get(0));
+    }
 
-        assertEquals(r,bundle.getInstructions().get(o).get(0));
+    @Test
+    public void canAddMultipleInstructions() {
+        RenderingInstructionBundle bundle = new RenderingInstructionBundle();
+        bundle.add(testOutputDeviceName, one, two, three);
+        assertEquals(1, bundle.getInstructions().size());
+        assertEquals(3, bundle.getInstructions().get(testOutputDeviceName).size());
+        assertEquals(one, bundle.getInstructions().get(testOutputDeviceName).get(0));
+        assertEquals(two, bundle.getInstructions().get(testOutputDeviceName).get(1));
+        assertEquals(three, bundle.getInstructions().get(testOutputDeviceName).get(2));
     }
 }
