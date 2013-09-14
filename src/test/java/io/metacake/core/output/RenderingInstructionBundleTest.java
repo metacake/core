@@ -12,9 +12,15 @@ import static org.junit.Assert.assertTrue;
 public class RenderingInstructionBundleTest {
 
     private final OutputDeviceName testOutputDeviceName = new OutputDeviceName("test");
-    private final RenderingInstruction one = new RenderingInstruction() {};
-    private final RenderingInstruction two = new RenderingInstruction() {};
-    private final RenderingInstruction three = new RenderingInstruction() {};
+    private final RenderingInstruction one = new RenderingInstruction() {
+        public void render(Object context) {}
+    };
+    private final RenderingInstruction two = new RenderingInstruction() {
+        public void render(Object context) {}
+    };
+    private final RenderingInstruction three = new RenderingInstruction() {
+        public void render(Object context) {}
+    };
 
     @Test
     public void bundleStartsEmpty() {
