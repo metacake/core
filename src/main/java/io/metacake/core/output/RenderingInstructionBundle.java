@@ -12,7 +12,7 @@ public class RenderingInstructionBundle {
     private Map<OutputDeviceName, List<RenderingInstruction>> instructions = new HashMap<>();
 
     /**
-     * And immutable empty bundle
+     * And immutable empty bundle. It cannot be added to.
      */
     public static final RenderingInstructionBundle EMPTY_BUNDLE = new RenderingInstructionBundle(
             Collections.unmodifiableMap(new HashMap<OutputDeviceName, List<RenderingInstruction>>()));
@@ -27,8 +27,8 @@ public class RenderingInstructionBundle {
     }
 
     /**
-     * This is an internal method. Only call when implementing an OutputSystem. Its signature
-     * is subject to change.
+     * This is an internal method. Only call when implementing an OutputSystem.
+     * Its signature is subject to change.
      * @return the instructions this bundle has collected
      */
     public Map<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
