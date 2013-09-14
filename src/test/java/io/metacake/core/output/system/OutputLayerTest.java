@@ -47,8 +47,8 @@ public class OutputLayerTest {
     @Test
     public void addToRenderQueuePassesProperValues(){
         RenderingInstructionBundle bundle = new RenderingInstructionBundle();
-        bundle.add(n1,new RenderingInstruction() { });
-        bundle.add(n1,new RenderingInstruction() { });
+        bundle.add(n1, mock(RenderingInstruction.class));
+        bundle.add(n1, mock(RenderingInstruction.class));
 
         Renderable r = mock(Renderable.class);
 

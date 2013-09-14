@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author florence
@@ -12,15 +13,9 @@ import static org.junit.Assert.assertTrue;
 public class RenderingInstructionBundleTest {
 
     private final OutputDeviceName testOutputDeviceName = new OutputDeviceName("test");
-    private final RenderingInstruction one = new RenderingInstruction() {
-        public void render(Object context) {}
-    };
-    private final RenderingInstruction two = new RenderingInstruction() {
-        public void render(Object context) {}
-    };
-    private final RenderingInstruction three = new RenderingInstruction() {
-        public void render(Object context) {}
-    };
+    private final RenderingInstruction one = mock(RenderingInstruction.class);
+    private final RenderingInstruction two = mock(RenderingInstruction.class);
+    private final RenderingInstruction three = mock(RenderingInstruction.class);
 
     @Test
     public void bundleStartsEmpty() {
