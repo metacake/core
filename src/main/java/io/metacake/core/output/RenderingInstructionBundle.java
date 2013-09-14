@@ -9,7 +9,7 @@ import java.util.*;
  * @author rpless
  */
 public class RenderingInstructionBundle {
-    private Map<OutputDeviceName, List<RenderingInstruction>> instructions = new HashMap<>();
+    protected Map<OutputDeviceName, List<RenderingInstruction>> instructions = new HashMap<>();
 
     /**
      * And immutable empty bundle. It cannot be added to.

@@ -24,6 +24,7 @@ public class SpiedRenderingBundle extends RenderingInstructionBundle {
     }
 
     private List<SpyInstruction> spies = new ArrayList<>();
+    private boolean inUse = false;
 
     @Override
     public Map<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
@@ -33,6 +34,7 @@ public class SpiedRenderingBundle extends RenderingInstructionBundle {
             spies.add(spy);
             instructions.add(spy);
         }
+        inUse = true;
         return instMap;
     }
 
@@ -40,6 +42,7 @@ public class SpiedRenderingBundle extends RenderingInstructionBundle {
      *  Reset this bundle
      */
     public void reset() {
+        inUse = false;
         spies.clear();
     }
 
@@ -47,7 +50,7 @@ public class SpiedRenderingBundle extends RenderingInstructionBundle {
      * @return Have all of the RenderingInstructions in this bundle been rendered.
      */
     public boolean isDone() {
-        boolean isDone = true;
+        boolean isDone = inUse || instructions.isEmpty();
         for (SpyInstruction spy : spies) {
             isDone = isDone && spy.isDone;
         }
