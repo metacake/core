@@ -1,6 +1,8 @@
 # Cake, the Meta game engine #
 "You can have your Cake and eat it too."
 
+**This project currently uses java 8 Build b106**
+
 ## Mission Statement ##
 The goal of Cake is to provide a pluggable cross platform framework for creating games and game engines.
 

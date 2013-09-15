@@ -78,7 +78,7 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
      */
     private void ensureMappingExists(OutputDeviceName name) {
         if (!instructions.containsKey(name)) {
-            instructions.put(name, new LinkedList<RenderingInstruction>());
+            instructions.put(name, new LinkedList<>());
         }
     }
 

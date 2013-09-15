@@ -134,20 +134,18 @@ public class BootstrapperTest {
 
             @Override
             public void startOutputLoop() {
-                t = new TimedLoopThread(new Runnable() {
-                    @Override
-                    public void run() {
+                t = new TimedLoopThread(() -> {
+                    try {
                         try {
-                                try {
-                                    Thread.sleep(10);
-                                } catch (InterruptedException e) {}
-                                for(int i = 0; i < 100000;i += 1){
-                                    w.getRawWindow().toString();
-                                }
-                        } catch (Exception e) {
-                            System.out.printf("errored") ;
-                            testFailed.set(true);
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {}
+
+                        for(int i = 0; i < 100000;i += 1){
+                            w.getRawWindow().toString();
                         }
+                    } catch (Exception e) {
+                        System.out.printf("errored") ;
+                        testFailed.set(true);
                     }
                 });
                 t.start();

@@ -23,12 +23,8 @@ public class CustomMapTest {
 
     @Test
     public void testGivingOptionalDefaultReturnReturns(){
-        Callable<String> res = new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return "irrelevant";
-            }
-        };
+        Callable<String> res = () -> "irrelevant";
+
         assertEquals(map.get(0,res), "irrelevant");
 
         map.setOnMissing(res);

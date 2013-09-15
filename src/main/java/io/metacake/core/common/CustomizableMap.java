@@ -12,13 +12,7 @@ import java.util.concurrent.Callable;
  */
 public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> {
     private Map<K,V> theMap;
-    private Callable<V> onMissing =
-            new Callable<V>() {
-                @Override
-                public V call() throws Exception {
-                    throw new NoSuchElementException();
-                }
-            };
+    private Callable<V> onMissing = () -> { throw new NoSuchElementException(); };
 
     public CustomizableMap(Map<K, V> theMap) {
         this.theMap = theMap;
