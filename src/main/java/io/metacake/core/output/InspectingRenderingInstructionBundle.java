@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A SpiedRenderingBundle inserts instructions into the instruction set
+ * A InspectingRenderingInstructionBundle inserts instructions into the instruction set
  * in order to determine when all instructions have been rendered.
  *
  * @author rpless
  */
-public class SpiedRenderingBundle extends RenderingInstructionBundle {
+public class InspectingRenderingInstructionBundle extends RenderingInstructionBundle {
 
     /**
      *  An instruction that keeps track of when it is rendered.
      */
-    private class SpyInstruction implements RenderingInstruction {
+    private class InspectableInstruction implements RenderingInstruction {
         private boolean isDone = false;
         @Override
         public void render(Object context) {
@@ -23,14 +23,14 @@ public class SpiedRenderingBundle extends RenderingInstructionBundle {
         }
     }
 
-    private List<SpyInstruction> spies = new ArrayList<>();
+    private List<InspectableInstruction> spies = new ArrayList<>();
     private boolean inUse = false;
 
     @Override
     public Map<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
         Map<OutputDeviceName, List<RenderingInstruction>> instMap = super.getInstructions();
         for (List<RenderingInstruction> instructions : instMap.values()) {
-            SpyInstruction spy = new SpyInstruction();
+            InspectableInstruction spy = new InspectableInstruction();
             spies.add(spy);
             instructions.add(spy);
         }
@@ -51,7 +51,7 @@ public class SpiedRenderingBundle extends RenderingInstructionBundle {
      */
     public boolean isDone() {
         boolean isDone = inUse || instructions.isEmpty();
-        for (SpyInstruction spy : spies) {
+        for (InspectableInstruction spy : spies) {
             isDone = isDone && spy.isDone;
         }
         return isDone;
