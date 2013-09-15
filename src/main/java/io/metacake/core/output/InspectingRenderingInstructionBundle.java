@@ -1,7 +1,5 @@
 package io.metacake.core.output;
 
-import sun.plugin.dom.exception.InvalidStateException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +64,7 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
      */
     private void validateInUse() {
         if(inUse) {
-            throw new InvalidStateException("Bundle already in use, cannot rerender");
+            throw new IllegalStateException("Bundle already in use, cannot rerender");
         }
     }
 }
