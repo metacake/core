@@ -4,6 +4,7 @@ import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.output.RenderingInstructionBundle;
+import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import io.metacake.core.process.state.UserState;
 import org.junit.Before;
@@ -21,6 +22,7 @@ public class GameRunnerTest {
     GameState s;
     InputSystem is;
     OutputSystem os;
+    CakeWindow w;
     GameRunner system;
 
     @Before
@@ -33,13 +35,13 @@ public class GameRunnerTest {
 
             @Override
             public RenderingInstructionBundle renderingInstructions() {
-                return new RenderingInstructionBundle();
+                return RenderingInstructionBundle.EMPTY_BUNDLE;
             }
         };
         is = mock(InputSystem.class);
         os = mock(OutputSystem.class);
-
-        system = new GameRunner(is,os,mock(CakeWindow.class));
+        w = mock(CakeWindow.class);
+        system = new GameRunner(is,os,w);
     }
 
     @Test
@@ -56,9 +58,46 @@ public class GameRunnerTest {
 
         Thread.sleep(5);
         system.stop();
-        t.join(5);
+        t.join();
 
         verify(is,times(1)).dispose();
         verify(os,times(1)).dispose();
+    }
+
+    @Test
+    public void stopsOnEndState() throws Exception
+    {
+        final int loopTime = 5;//miliseconds
+        final GameState state = new UserState() {
+            int count = 0;
+            @Override
+            public GameState tick() {
+                count += 1;
+                if(count > 1000) {
+                    return EndState.closeWith(this);
+                } else {
+                    return this;
+                }
+            }
+
+            @Override
+            public RenderingInstructionBundle renderingInstructions() {
+                return RenderingInstructionBundle.EMPTY_BUNDLE;
+            }
+        };
+
+        Thread t = new Thread(){
+            @Override
+            public void run() {
+                system.mainLoop(state,loopTime);
+            }
+        };
+
+        t.run();
+        t.join();
+
+        verify(is,times(1)).dispose();
+        verify(os,times(1)).dispose();
+        verify(w,times(1)).dispose();
     }
 }

@@ -1,13 +1,9 @@
 package io.metacake.core.output;
 
-import io.metacake.core.common.window.CakeWindow;
-import io.metacake.core.output.system.OutputDevice;
-import io.metacake.core.output.system.OutputLayer;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -122,6 +122,7 @@ public class GameRunner {
     private void safelyDispose(Disposable d) {
         try {
             d.dispose();
+            logger.debug("disposing of: " + d);
         } catch (Exception e) {
             logger.error("error in disposing " + d.getClass().getSimpleName(), e);
         }
