@@ -1,5 +1,7 @@
 package io.metacake.core.output;
 
+import sun.plugin.dom.exception.InvalidStateException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,7 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
 
     @Override
     public Map<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
+        validateInUse();
         Map<OutputDeviceName, List<RenderingInstruction>> instMap = super.getInstructions();
         for (List<RenderingInstruction> instructions : instMap.values()) {
             InspectableInstruction spy = new InspectableInstruction();
@@ -50,10 +53,20 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
      * @return Have all of the RenderingInstructions in this bundle been rendered.
      */
     public boolean isDone() {
-        boolean isDone = inUse || instructions.isEmpty();
         for (InspectableInstruction spy : spies) {
-            isDone = isDone && spy.isDone;
+            if(!spy.isDone) {
+                return false;
+            }
         }
-        return isDone;
+        return inUse;
+    }
+
+    /**
+     * Throw an error if this bundle is already in use
+     */
+    private void validateInUse() {
+        if(inUse) {
+            throw new InvalidStateException("Bundle already in use, cannot rerender");
+        }
     }
 }
