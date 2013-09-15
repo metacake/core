@@ -1,5 +1,7 @@
 package io.metacake.core.output;
 
+import io.metacake.core.common.CustomizableMap;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +29,9 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
     private boolean inUse = false;
 
     @Override
-    public Map<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
+    public CustomizableMap<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
         validateInUse();
-        Map<OutputDeviceName, List<RenderingInstruction>> instMap = super.getInstructions();
+        CustomizableMap<OutputDeviceName, List<RenderingInstruction>> instMap = super.getInstructions();
         for (List<RenderingInstruction> instructions : instMap.values()) {
             InspectableInstruction spy = new InspectableInstruction();
             spies.add(spy);

@@ -1,15 +1,20 @@
 package io.metacake.core.output;
 
+import io.metacake.core.common.CustomizableMap;
+
 import java.util.*;
 
 /**
  * This class bundles RenderingInstructions with their devices.
  *
+ * Is iterable over the map of instructions.
+ *
  * @author florence
  * @author rpless
  */
-public class RenderingInstructionBundle {
-    protected Map<OutputDeviceName, List<RenderingInstruction>> instructions = new HashMap<>();
+public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDeviceName,List<RenderingInstruction>>> {
+    protected CustomizableMap<OutputDeviceName, List<RenderingInstruction>> instructions = new CustomizableMap<>(
+            new HashMap<OutputDeviceName, List<RenderingInstruction>>());
 
     /**
      * And immutable empty bundle. It cannot be added to.
@@ -23,6 +28,13 @@ public class RenderingInstructionBundle {
     public RenderingInstructionBundle() {}
 
     private RenderingInstructionBundle(Map<OutputDeviceName, List<RenderingInstruction>> m) {
+        instructions = new CustomizableMap<>(m);
+    }
+
+    /**
+     * Create an empty bundle
+     */
+    private RenderingInstructionBundle(CustomizableMap<OutputDeviceName,List<RenderingInstruction>> m) {
         instructions = m;
     }
 
@@ -31,7 +43,7 @@ public class RenderingInstructionBundle {
      * Its signature is subject to change.
      * @return the instructions this bundle has collected
      */
-    public Map<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
+    public CustomizableMap<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
         return instructions;
     }
 
@@ -68,5 +80,10 @@ public class RenderingInstructionBundle {
         if (!instructions.containsKey(name)) {
             instructions.put(name, new LinkedList<RenderingInstruction>());
         }
+    }
+
+    @Override
+    public Iterator<Map.Entry<OutputDeviceName, List<RenderingInstruction>>> iterator() {
+        return this.getInstructions().iterator();
     }
 }

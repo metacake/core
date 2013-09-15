@@ -24,9 +24,7 @@ public class OutputLayer implements OutputSystem{
 
     @Override
     public void addToRenderQueue(Renderable r) {
-        Map<OutputDeviceName,List<RenderingInstruction>> instructions = r.renderingInstructions().getInstructions();
-
-        for(Map.Entry<OutputDeviceName,List<RenderingInstruction>> e : instructions.entrySet()) {
+        for(Map.Entry<OutputDeviceName,List<RenderingInstruction>> e : r.renderingInstructions()) {
             deviceContainer.get(e.getKey()).render(e.getValue());
         }
     }

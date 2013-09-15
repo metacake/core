@@ -68,7 +68,7 @@ public class InspectingRenderingBundleTest {
     }
 
     private void runInstructionsOnNull(RenderingInstructionBundle bundle) {
-        for(Map.Entry<OutputDeviceName,List<RenderingInstruction>> e : bundle.getInstructions().entrySet()) {
+        for(Map.Entry<OutputDeviceName,List<RenderingInstruction>> e : bundle) {
             for(RenderingInstruction r : e.getValue()) {
                 r.render(null);
             }
