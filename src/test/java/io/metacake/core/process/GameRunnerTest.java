@@ -65,8 +65,29 @@ public class GameRunnerTest {
     }
 
     @Test
-    public void stopsOnEndState() throws Exception
+    public void closesOnEndState() throws Exception
     {
+        runGameWithEndState(EndState.closeWith(s));
+
+        verify(is,times(1)).dispose();
+        verify(os,times(1)).dispose();
+        verify(w,times(1)).dispose();
+    }
+
+    @Test
+    public void testClosingWindowOnEndState() throws Exception {
+        runGameWithEndState(EndState.endWith(s));
+
+        verify(is,times(1)).dispose();
+        verify(os,times(1)).dispose();
+        verify(w,times(0)).dispose();
+
+        system.stop();
+
+        verify(w,times(1)).dispose();
+    }
+
+    private void runGameWithEndState(final GameState end) throws Exception {
         final int loopTime = 5;//miliseconds
         final GameState state = new UserState() {
             int count = 0;
@@ -74,7 +95,7 @@ public class GameRunnerTest {
             public GameState tick() {
                 count += 1;
                 if(count > 1000) {
-                    return EndState.closeWith(this);
+                    return end;
                 } else {
                     return this;
                 }
@@ -95,9 +116,5 @@ public class GameRunnerTest {
 
         t.run();
         t.join();
-
-        verify(is,times(1)).dispose();
-        verify(os,times(1)).dispose();
-        verify(w,times(1)).dispose();
     }
 }
