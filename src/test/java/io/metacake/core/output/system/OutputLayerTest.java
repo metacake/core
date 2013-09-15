@@ -45,6 +45,7 @@ public class OutputLayerTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void addToRenderQueuePassesProperValues(){
         RenderingInstructionBundle bundle = new RenderingInstructionBundle();
         bundle.add(n1, mock(RenderingInstruction.class));

@@ -4,7 +4,7 @@ import io.metacake.core.common.CustomizableMap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * A InspectingRenderingInstructionBundle inserts instructions into the instruction set
@@ -22,6 +22,10 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
         @Override
         public void render(Object context) {
             isDone = true;
+        }
+
+        public boolean isDone() {
+            return isDone;
         }
     }
 
@@ -53,12 +57,7 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
      * @return Have all of the RenderingInstructions in this bundle been rendered.
      */
     public boolean isDone() {
-        for (InspectableInstruction spy : spies) {
-            if(!spy.isDone) {
-                return false;
-            }
-        }
-        return inUse;
+        return spies.stream().allMatch(InspectableInstruction::isDone) && inUse;
     }
 
     /**

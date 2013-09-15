@@ -3,8 +3,6 @@ package io.metacake.core.process;
 import io.metacake.core.common.Disposable;
 import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
-import io.metacake.core.common.window.CloseObserver;
-import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.process.state.EndState;
