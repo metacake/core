@@ -75,12 +75,8 @@ public class Bootstrapper {
      */
     void bootstrapUserObjects() {
         logger.info("Bootstrapping user objects");
-        for (InputDevice i : inputs.values()) {
-            i.bind(window);
-        }
-        for (OutputDevice o : outputs.values()) {
-            o.bind(window);
-        }
+        inputs.values().forEach(i -> i.bind(window));
+        outputs.values().forEach(i -> i.bind(window));
     }
 
     /**

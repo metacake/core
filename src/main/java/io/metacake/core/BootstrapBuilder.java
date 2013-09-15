@@ -7,6 +7,7 @@ import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.process.state.GameState;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,9 +75,7 @@ public class BootstrapBuilder {
      * @return Returns this <link>BootstrapBuilder</link>
      */
     public BootstrapBuilder withInputDevices(InputDevice...devices) {
-        for(InputDevice device : devices) {
-            inputDevices.put(device.name(), device);
-        }
+        Arrays.asList(devices).forEach(d -> inputDevices.put(d.name(),d));
         return this;
     }
 
@@ -85,9 +84,7 @@ public class BootstrapBuilder {
      * @return Returns this <link>BootstrapBuilder</link>
      */
     public BootstrapBuilder withOutputDevices(OutputDevice...devices) {
-        for(OutputDevice device : devices) {
-            outputDevices.put(device.name(), device);
-        }
+        Arrays.asList(devices).forEach(d -> outputDevices.put(d.name(),d));
         return this;
     }
 

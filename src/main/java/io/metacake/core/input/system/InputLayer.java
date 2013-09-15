@@ -24,28 +24,23 @@ public class InputLayer implements InputSystem{
     }
 
     @Override
-    public void bindActionTrigger(InputDeviceName name, ActionTrigger t) {
-        devices.get(name).addTrigger(t);
+    public void bindActionTrigger(ActionTrigger t) {
+        devices.get(t.bindingDevice()).addTrigger(t);
     }
+
 
     @Override
     public void releaseActionTriggers() {
-        for(InputDevice d : devices.values()) {
-            d.releaseTriggers();
-        }
+        devices.values().forEach(InputDevice::releaseTriggers);
     }
 
     @Override
     public void startInputLoops() {
-        for(InputDevice i : devices.values()) {
-            i.startInputLoop();
-        }
+        devices.values().forEach(InputDevice::startInputLoop);
     }
 
     @Override
     public void dispose() {
-        for(InputDevice i : devices.values()) {
-            i.shutdown();
-        }
+        devices.values().forEach(InputDevice::shutdown);
     }
 }

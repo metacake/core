@@ -4,9 +4,7 @@ import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.output.Renderable;
-import io.metacake.core.output.RenderingInstruction;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,22 +22,16 @@ public class OutputLayer implements OutputSystem{
 
     @Override
     public void addToRenderQueue(Renderable r) {
-        for(Map.Entry<OutputDeviceName,List<RenderingInstruction>> e : r.renderingInstructions()) {
-            deviceContainer.get(e.getKey()).render(e.getValue());
-        }
+        r.renderingInstructions().forEach(e -> deviceContainer.get(e.getKey()).render(e.getValue()));
     }
 
     @Override
     public void startOutputLoops() {
-        for(OutputDevice o : deviceContainer.values()){
-            o.startOutputLoop();
-        }
+        deviceContainer.values().forEach(OutputDevice::startOutputLoop);
     }
 
     @Override
     public void dispose(){
-        for(OutputDevice o : deviceContainer.values()){
-            o.shutdown();
-        }
+        deviceContainer.values().forEach(OutputDevice::shutdown);
     }
 }

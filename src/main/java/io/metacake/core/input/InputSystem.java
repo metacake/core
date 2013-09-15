@@ -14,10 +14,9 @@ public interface InputSystem extends Disposable {
 
     /**
      * Bind an ActionTrigger to a Device in the InputSystem with the given name.
-     * @param name The unique name of the device.
      * @param t The ActionTrigger to be bound.
      */
-    public void bindActionTrigger(InputDeviceName name, ActionTrigger t);
+    public void bindActionTrigger(ActionTrigger t);
 
     /**
      * Throw away all the current triggers

@@ -32,12 +32,7 @@ public class GameRunner {
         this.inputSystem = inputSystem;
         this.outputSystem = outputSystem;
         this.window = window;
-        window.addCloseObserver(new CloseObserver() {
-            @Override
-            public void onClose() {
-                stop();
-            }
-        });
+        window.addCloseObserver(this::stop);
     }
 
     /**
@@ -97,9 +92,7 @@ public class GameRunner {
     private void updateTriggers(GameState s){
         if(s.shouldReplaceActionTriggers()) {
             inputSystem.releaseActionTriggers();
-            for(ActionTrigger a : s.replaceActionTriggers()) {
-                inputSystem.bindActionTrigger(a.bindingDevice(),a);
-            }
+            s.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
         }
     }
 

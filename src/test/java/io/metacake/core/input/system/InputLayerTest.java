@@ -11,6 +11,7 @@ import java.util.Map;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
@@ -41,11 +42,10 @@ public class InputLayerTest {
     @Test
     public void bindActionTriggerCallsCorrectMethod(){
         ActionTrigger a = mock(ActionTrigger.class);
+        when(a.bindingDevice()).thenReturn(n1);
 
-        system.bindActionTrigger(n1,a);
+        system.bindActionTrigger(a);
 
         verify(i1,times(1)).addTrigger(eq(a));
     }
-
-
 }
