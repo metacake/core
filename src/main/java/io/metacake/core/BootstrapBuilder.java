@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The <code>BootstrapBuilder</code> provides a mechanism for building a <link>Bootstrapper</link>.
+ * The {@code BootstrapBuilder} provides a mechanism for building a {@link Bootstrapper}.
  * <p>
- *     In order to create a <link>Bootstrapper</link> the withWindow and withInitialState methods must be called before
+ *     In order to create a {@link Bootstrapper} the withWindow and withInitialState methods must be called before
  *     a call to createBootstrap. The other methods may also be called to change some options for the game, but at a
  *     minimum withWindow and withInitialState must be called with non-null arguments.
  *
@@ -35,12 +35,12 @@ public class BootstrapBuilder {
     }
 
     /**
-     * Creates a <link>Bootstrapper</link> that is ready to run a game.
+     * Creates a {@link Bootstrapper} that is ready to run a game.
      * <p>
-     *     If the caller has not provided this builder with a <link>CakeWindow</link> and an initial <link>GameState</link>,
-     *     then a <link>RuntimeException</link> will be raised.
-     * @return Creates a <link>Bootstrapper</link> that will use the given <link>CakeWindow</link>,
-     * devices, initial <link>GameState</link>, and loop time,
+     *     If the caller has not provided this builder with a {@link CakeWindow} and an initial {@link GameState},
+     *     then a {@link RuntimeException} will be raised.
+     * @return Creates a {@link Bootstrapper} that will use the given {@link CakeWindow},
+     * devices, initial {@link GameState}, and loop time,
      */
     public Bootstrapper createBootstrap() {
         validateCreateBootstrapInputs();
@@ -62,8 +62,8 @@ public class BootstrapBuilder {
     }
 
     /**
-     * @param window The <link>CakeWindow</link> that this will use to generate a <link>Bootstrapper</link>.
-     * @return Returns this <link>BootstrapBuilder</link>
+     * @param window The {@link CakeWindow} that this will use to generate a {@link Bootstrapper}.
+     * @return Returns this {@link BootstrapBuilder}
      */
     public BootstrapBuilder withWindow(CakeWindow window) {
         this.window = window;
@@ -71,8 +71,8 @@ public class BootstrapBuilder {
     }
 
     /**
-     * @param devices The collection of <link>InputDevice</link>s that this will use to generate a <link>Bootstrapper</link>.
-     * @return Returns this <link>BootstrapBuilder</link>
+     * @param devices The collection of {@link InputDevice}s that this will use to generate a {@link Bootstrapper}.
+     * @return Returns this {@link BootstrapBuilder}
      */
     public BootstrapBuilder withInputDevices(InputDevice...devices) {
         Arrays.asList(devices).forEach(d -> inputDevices.put(d.name(),d));
@@ -80,8 +80,8 @@ public class BootstrapBuilder {
     }
 
     /**
-     * @param devices The collection of <link>OutputDevice</link>s that this will use to generate a <link>Bootstrapper</link>.
-     * @return Returns this <link>BootstrapBuilder</link>
+     * @param devices The collection of {@link OutputDevice}s that this will use to generate a {@link Bootstrapper}.
+     * @return Returns this {@link BootstrapBuilder}
      */
     public BootstrapBuilder withOutputDevices(OutputDevice...devices) {
         Arrays.asList(devices).forEach(d -> outputDevices.put(d.name(),d));
@@ -89,8 +89,8 @@ public class BootstrapBuilder {
     }
 
     /**
-     * @param initialState The <link>GameState</link>s that this will use to generate a <link>Bootstrapper</link>.
-     * @return Returns this <link>BootstrapBuilder</link>
+     * @param initialState The {@link GameState}s that this will use to generate a {@link Bootstrapper}.
+     * @return Returns this {@link BootstrapBuilder}
      */
     public BootstrapBuilder withInitialState(GameState initialState) {
         this.initialState = initialState;
@@ -98,8 +98,8 @@ public class BootstrapBuilder {
     }
 
     /**
-     * @param loopTime The loop time that this will use to generate a <link>Bootstrapper</link>.
-     * @return Returns this <link>BootstrapBuilder</link>
+     * @param loopTime The loop time that this will use to generate a {@link Bootstrapper}.
+     * @return Returns this {@link BootstrapBuilder}
      */
     public BootstrapBuilder withLoopTime(long loopTime) {
         this.loopTime = loopTime;

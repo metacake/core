@@ -20,7 +20,7 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
 
     /**
      * Change the default on missing callable
-     * @param newMissing
+     * @param newMissing The {@link Callable} that should be called when a key does not map to a value.
      */
     public void setOnMissing(Callable<V> newMissing){
         this.onMissing = newMissing;
@@ -40,8 +40,8 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
      * Get the values attached to that key
      * @param key the Key (Really wish its type was K not Object)
      * @param missing Return value from this callback if key not found
-     * @return the value, or the result of {@code missing.call()}
-     * @throws Exception If the runnable throws and exception
+     * @return the value, or the result of {@code missing.call()}.
+     * This method will throw a {@link RuntimeException} if an error occurs while calling the missing callback.
      */
     public V get(Object key, Callable<V> missing) {
         V res = theMap.get(key);

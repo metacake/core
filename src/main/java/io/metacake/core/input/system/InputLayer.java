@@ -18,6 +18,7 @@ public class InputLayer implements InputSystem{
 
     /**
      * Create the InputLayer with the given list of InputDevices.
+     * @param devices A map of the device names to the devices.
      */
     public InputLayer(Map<InputDeviceName,InputDevice> devices) {
        this.devices = new CustomizableMap<>(devices);

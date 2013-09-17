@@ -37,6 +37,7 @@ public abstract class CakeWindow<T> implements Disposable {
     /**
      * Add a CloseObserver.
      * <p>This is an internal method, and should not be called</p>
+     * @param o The {@link CloseObserver} to be usedon close.
      */
     public final void addCloseObserver(CloseObserver o){
         closer = o;
