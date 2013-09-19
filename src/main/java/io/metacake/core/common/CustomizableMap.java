@@ -41,7 +41,8 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
      * @param key the Key (Really wish its type was K not Object)
      * @param missing Return value from this callback if key not found
      * @return the value, or the result of {@code missing.call()}.
-     * This method will throw a {@link RuntimeException} if an error occurs while calling the missing callback.
+     * This method will throw a {@link RuntimeException} if an error occurs while calling the missing callback. The
+     * {@link RuntimeException} will wrap the exception thrown by the callable.
      */
     public V get(Object key, Callable<V> missing) {
         V res = theMap.get(key);
