@@ -1,7 +1,7 @@
 # Cake, the Meta game engine #
 "You can have your Cake and eat it too."
 
-**This project currently uses java 8 Build b106**
+
 
 ## Mission Statement ##
 The goal of Cake is to provide a pluggable cross platform framework for creating games and game engines.
@@ -18,9 +18,14 @@ Maybe the vanilla layers are just fine for you; you just want to make a game. Yo
 
 &#42;&#42; Really, don't eat it. Just have fun playing.
 
+## Project Dependencies ##
+Dependencies:
++ Java 8 Build b106 (Note: This is very much subject to change, as we will continue to move to more stable versions of Java 8)
++ Gradle 1.7
++ Maven 3 (Note: This is being phased out in favor of Gradle)
+
 ## Building CAKE ##
 The CAKE framework can be built with Gradle. Running the following command at the root of the project will build it:
 ```
 gradle build
 ```
-This relies on Gradle 1.7 being in your path.
