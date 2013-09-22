@@ -17,3 +17,10 @@ Maybe the vanilla layers are just fine for you; you just want to make a game. Yo
 &#42; Please don't actually try to eat it.
 
 &#42;&#42; Really, don't eat it. Just have fun playing.
+
+## Building CAKE ##
+The CAKE framework can be built with Gradle. Running the following command at the root of the project will build it:
+```
+gradle build
+```
+This relies on Gradle 1.7 being in your path.
