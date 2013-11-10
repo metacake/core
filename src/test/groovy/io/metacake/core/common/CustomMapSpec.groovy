@@ -8,7 +8,7 @@ import static spock.util.matcher.HamcrestSupport.expect
 
 class CustomMapSpec extends Specification {
 
-    CustomizableMap<String, Integer> map = new CustomizableMap([:])
+    CustomizableMap<Integer, String> map = new CustomizableMap([:])
 
     def "Optional Default returns the specified value"() {
         setup: Callable res = {'irrelevant'}

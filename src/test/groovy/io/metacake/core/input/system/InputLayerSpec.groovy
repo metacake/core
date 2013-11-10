@@ -22,5 +22,4 @@ class InputLayerSpec extends Specification {
         when: layer.bindActionTrigger(trigger)
         then: 1 * inputDevice1.addTrigger(trigger)
     }
-
 }
