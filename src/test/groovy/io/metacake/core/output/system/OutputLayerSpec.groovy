@@ -36,6 +36,7 @@ class OutputLayerSpec extends Specification {
 
         when: system.addToRenderQueue(renderable)
         then:
+        (1.._) * outputDevice1.render({ it == bundle.getInstructions().get(name1) })
         0 * outputDevice2.render([])
 
     }
