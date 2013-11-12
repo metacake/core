@@ -38,7 +38,11 @@ public class TimedLoopThread extends Thread {
         while (running) {
             timer.update();
             runnable.run();
-            timer.block();
+            try {
+                timer.block();
+            } catch (InterruptedException e) {
+                running = false; // die on interrupts
+            }
         }
     }
 

@@ -42,15 +42,10 @@ public class MilliTimer {
      * since the last call to update. If greater than {@code interval}
      * milliseconds have passed, calling this has no effect.
      */
-    public void block() {
-        try {
-            long waitFor = interval - this.poll();
-            if (waitFor > 0) {
-                Thread.sleep(waitFor);
-            }
-        } catch (InterruptedException e) {
-            logger.info("Timer block interrupted",e);
-            Thread.currentThread().interrupt();
+    public void block() throws InterruptedException{
+        long waitFor = interval - this.poll();
+        if (waitFor > 0) {
+            Thread.sleep(waitFor);
         }
     }
 

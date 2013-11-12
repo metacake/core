@@ -73,7 +73,7 @@ public class GameRunner {
                 isRunning = false;
             } else if (isStopped && !isWindowDisposed) {
                 logger.info("Disposing of window because loop had already stopped");
-                window.dispose();
+                safelyDispose(window);
                 isWindowDisposed = true;
             }
         }
