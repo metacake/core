@@ -29,4 +29,8 @@ class CustomMapSpec extends Specification {
         setup: map.put 0, 'data'
         expect: map.get(0) == 'data'
     }
+
+    def "Does it iterate over the entry set"() {
+
+    }
 }

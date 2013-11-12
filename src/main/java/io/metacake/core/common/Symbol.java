@@ -17,14 +17,25 @@ package io.metacake.core.common;
  * In addition, the example type that extends Symbol could later be extended to add other
  * types to the enumeration.
  *
+ * TODO: add real (weak referenced) string interning
+ *
  * @author florence
  * @author rpless
  */
 public class Symbol {
     static final String PREFIX = "Symbol:";
+
+    public static Symbol genSym() {
+        return Symbol.genSym("");
+    }
+
+    public static Symbol genSym(String name) {
+        return new Symbol(name);
+    }
+
     private String name;
 
-    public Symbol(){
+    public Symbol() {
         this("");
     }
 
@@ -37,12 +48,12 @@ public class Symbol {
         return this == that;
     }
     @Override
-    public final int hashCode(){
+    public final int hashCode() {
         return super.hashCode();
     }
 
     @Override
-    public final String toString(){
+    public final String toString() {
         if(name.isEmpty()) {
             return super.toString();
         } else {
