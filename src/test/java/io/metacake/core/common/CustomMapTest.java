@@ -16,38 +16,6 @@ import static org.junit.Assert.fail;
 public class CustomMapTest {
     CustomizableMap<Integer,String> map;
 
-    @Before
-    public void setup(){
-        this.map = new CustomizableMap<>(new HashMap<Integer, String>());
-    }
-
-    @Test
-    public void testGivingOptionalDefaultReturnReturns(){
-        Callable<String> res = () -> "irrelevant";
-
-        assertEquals(map.get(0,res), "irrelevant");
-
-        map.setOnMissing(res);
-        assertEquals(map.get(0), "irrelevant");
-    }
-
-    @Test
-    public void testDefaultMissingThrowsCorrectError(){
-        try {
-            map.get(0);
-            fail("map.get did not throw exception");
-        } catch (RuntimeException e){
-            assertTrue("Wrong exception thrown",
-                    e.getCause() instanceof NoSuchElementException);
-        }
-    }
-
-    @Test
-    public void canGetExistingKey(){
-        map.put(0,"data");
-        assertEquals("data",map.get(0));
-    }
-
     @Test
     public void mapIteratesOverEntrySet(){
         List<Integer> elements = new LinkedList<>();
