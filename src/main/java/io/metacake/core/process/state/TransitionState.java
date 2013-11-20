@@ -42,7 +42,7 @@ public class TransitionState implements GameState{
     }
 
     @Override
-    public GameState tick() {
+    public GameState tick(long delta) {
         return next;
     }
 

@@ -51,7 +51,8 @@ public class MilliTimer {
 
     /**
      * Calling update polls the timer and updates the time that it was last active to be now.
-     * @return polls the timer then updates the internal time
+     * Effect: Updates the the internal time that is being tracked by the timer.
+     * @return returns the time since the last update in milliseconds
      */
     public long update() {
         long ret = this.poll();

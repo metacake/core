@@ -50,8 +50,7 @@ public class GameRunner {
             while (isRunning && !state.isGameOver()) {
                 outputSystem.addToRenderQueue(state);
                 updateTriggers(state);
-                timer.update();
-                state = state.tick();
+                state = state.tick(timer.update());
                 timer.block();
             }
         } catch (Exception e) {
