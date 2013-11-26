@@ -1,7 +1,7 @@
 # Cake, the Meta game engine #
 "You can have your Cake and eat it too."
 
-
+[![Build Status](https://travis-ci.org/metacake/core.png?branch=travis-test)](https://travis-ci.org/metacake/core)
 
 ## Mission Statement ##
 The goal of Cake is to provide a pluggable cross platform framework for creating games and game engines.
