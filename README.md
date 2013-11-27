@@ -21,10 +21,10 @@ Maybe the vanilla layers are just fine for you; you just want to make a game. Yo
 ## Project Dependencies ##
 Dependencies:
 + Java 8 Build b106 (Note: This is very much subject to change, as we will continue to move to more stable versions of Java 8)
-+ Gradle 1.7 OR Maven 3 (Note: This is being phased out in favor of Gradle)
++ Maven 3 (Note: We are waiting for Groovy/Gradle to support Java 8)
 
 ## Building CAKE ##
-The CAKE framework can be built with Gradle. Running the following command at the root of the project will build it:
+The CAKE framework can be built with Maven. Running the following command at the root of the project will build it:
 ```
-gradle build
+mvn clean install
 ```
