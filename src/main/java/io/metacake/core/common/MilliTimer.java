@@ -41,6 +41,7 @@ public class MilliTimer {
      * Block the current thread in such a way that {@code interval} milliseconds has occurred
      * since the last call to update. If greater than {@code interval}
      * milliseconds have passed, calling this has no effect.
+     * @throws InterruptedException thrown if the blocking operation is interrupted
      */
     public void block() throws InterruptedException{
         long waitFor = interval - this.poll();

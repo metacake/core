@@ -36,6 +36,7 @@ public abstract class VoidState extends UserState {
     /**
      * In a {@code VoidState}, this method will be overridden instead of {@link io.metacake.core.process.state.GameState#tick(long)}
      * in order to update aspects of the state.
+     * @param delta The number of milliseconds since update was last called.
      */
     public abstract void update(long delta);
 }
