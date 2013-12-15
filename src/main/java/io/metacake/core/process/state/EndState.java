@@ -46,7 +46,7 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public GameState tick() {
+    public GameState tick(long delta) {
         return this;
     }
 

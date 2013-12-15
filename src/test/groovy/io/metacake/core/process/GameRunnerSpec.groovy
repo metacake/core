@@ -23,7 +23,7 @@ class GameRunnerSpec extends Specification {
 
     def setup() {
         mainLoopLock.acquire()
-        state.tick() >> {
+        state.tick(_) >> { time ->
             mainLoopLock.release()
             state
         }
@@ -84,7 +84,7 @@ class GameRunnerSpec extends Specification {
         GameState runningState = new UserState() {
             int count = 0
             @Override
-            GameState tick() {
+            GameState tick(long delta) {
                 count += 1
                 count > 1000 ? end : this
             }

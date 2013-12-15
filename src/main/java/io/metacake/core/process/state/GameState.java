@@ -14,9 +14,10 @@ public interface GameState extends Renderable{
 
     /**
      * Perform one cycle of the game loop
+     * @param delta The time in milliseconds since tick was last called.
      * @return Returns the next state, which could be the same state.
      */
-    public GameState tick();
+    public GameState tick(long delta);
 
     // TODO: mechanism for adding and removing individual triggers (do we want bundles?)
 

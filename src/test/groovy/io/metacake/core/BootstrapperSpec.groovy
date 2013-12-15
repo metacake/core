@@ -103,7 +103,7 @@ class BootstrapperSpec extends Specification{
 
         GameState g = new UserState() {
             int i = 0
-            GameState tick() {
+            GameState tick(long delta) {
                 i += 1
                 i > 500 ? EndState.closeWith(this) : this
             }
