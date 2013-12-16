@@ -17,8 +17,6 @@ package io.metacake.core.common;
  * In addition, the example type that extends Symbol could later be extended to add other
  * types to the enumeration.
  *
- * TODO: add real (weak referenced) string interning
- *
  * @author florence
  * @author rpless
  */
