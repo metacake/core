@@ -51,9 +51,12 @@ public class BootstrapBuilder {
      * Validates the input contract for the createBootstrap method.
      */
     private void validateCreateBootstrapInputs() {
-        // TODO: Better error reporting.
-        if (window == null || initialState == null || outputDevices.isEmpty()) {
-            throw new RuntimeException("Not enough resources to create the BootStrapper.");
+        if(window == null) {
+            throw new IllegalStateException("Cannot create bootstrapper without a window");
+        } else if (initialState == null) {
+            throw new IllegalStateException("Cannot create bootstrapper without an initial state");
+        } else if (outputDevices.isEmpty()) {
+            throw new IllegalStateException("Cannot create bootstrapper without an output device");
         }
     }
 
