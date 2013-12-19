@@ -85,7 +85,7 @@ class BootstrapperSpec extends Specification{
                 lock.acquire()
                 t = new TimedLoopThread({
                     try {
-                        Thread.sleep(10)
+                        try { Thread.sleep(10) } catch (InterruptedException e) {}
                         (0..100000).each { w.getRawWindow().toString() }
                     } catch (Exception e) {
                        testFailed.set(true)
