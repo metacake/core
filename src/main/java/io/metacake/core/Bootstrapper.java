@@ -59,7 +59,7 @@ public class Bootstrapper {
      * Create a GameRunner that is ready to go
      * @return The game runner
      */
-    GameRunner bootstrapSystem(){
+    GameRunner bootstrapSystem() {
         this.bootstrapUserObjects();
         InputSystem i = this.bootstrapInputSystem();
         OutputSystem o = this.bootstrapOutputSystem();
