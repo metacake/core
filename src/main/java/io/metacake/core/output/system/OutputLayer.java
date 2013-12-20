@@ -13,8 +13,8 @@ import java.util.Map;
  * @author florence
  * @author rpless
  */
-public class OutputLayer implements OutputSystem{
-    private CustomizableMap<OutputDeviceName,OutputDevice> deviceContainer;
+public class OutputLayer implements OutputSystem {
+    private CustomizableMap<OutputDeviceName, OutputDevice> deviceContainer;
 
     public OutputLayer(Map<OutputDeviceName, OutputDevice> deviceContainer) {
         this.deviceContainer = new CustomizableMap<>(deviceContainer);

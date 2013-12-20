@@ -4,7 +4,6 @@ import io.metacake.core.common.CustomizableMap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A InspectingRenderingInstructionBundle inserts instructions into the instruction set
@@ -65,7 +64,7 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
      */
     private void validateInUse() {
         if(inUse) {
-            throw new IllegalStateException("Bundle already in use, cannot rerender");
+            throw new IllegalStateException("This RenderingInstructionBundle is already in use and may not be rendered while in use.");
         }
     }
 }

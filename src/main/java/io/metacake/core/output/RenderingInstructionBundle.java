@@ -13,14 +13,13 @@ import java.util.*;
  * @author rpless
  */
 public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDeviceName,List<RenderingInstruction>>> {
-    protected CustomizableMap<OutputDeviceName, List<RenderingInstruction>> instructions = new CustomizableMap<>(
-            new HashMap<OutputDeviceName, List<RenderingInstruction>>());
+    protected CustomizableMap<OutputDeviceName, List<RenderingInstruction>> instructions = new CustomizableMap<>(new HashMap<>());
 
     /**
      * And immutable empty bundle. It cannot be added to.
      */
     public static final RenderingInstructionBundle EMPTY_BUNDLE = new RenderingInstructionBundle(
-            Collections.unmodifiableMap(new HashMap<OutputDeviceName, List<RenderingInstruction>>()));
+            Collections.unmodifiableMap(new HashMap<>()));
 
     /**
      * Create an empty bundle
