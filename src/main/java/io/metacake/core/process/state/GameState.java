@@ -10,7 +10,7 @@ import java.util.Collection;
  * @author florence
  * @author rpless
  */
-public interface GameState extends Renderable{
+public interface GameState extends Renderable {
 
     /**
      * Perform one cycle of the game loop

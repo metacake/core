@@ -86,7 +86,7 @@ public class GameRunner {
      * </p>
      * @param s The current state
      */
-    private void updateTriggers(GameState s){
+    private void updateTriggers(GameState s) {
         if(s.shouldReplaceActionTriggers()) {
             inputSystem.releaseActionTriggers();
             s.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
@@ -97,7 +97,7 @@ public class GameRunner {
      * Render the last state and end the game
      * @param state the last state
      */
-    private void end(GameState state){
+    private void end(GameState state) {
         logger.info("beginning system shutdown");
         safelyDispose(outputSystem);
         safelyDispose(inputSystem);
@@ -124,8 +124,6 @@ public class GameRunner {
      * @return if the window should be closed
      */
     private boolean shouldCloseWindow(GameState state) {
-        return !isRunning
-                || (state instanceof EndState && ((EndState) state).shouldCloseWindow());
+        return !isRunning || (state instanceof EndState && ((EndState) state).shouldCloseWindow());
     }
-
 }
