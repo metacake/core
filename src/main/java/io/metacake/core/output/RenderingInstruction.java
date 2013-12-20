@@ -5,7 +5,7 @@ package io.metacake.core.output;
  * @author florence
  * @author rpless
  *
- * @param <T> The Render
+ * @param <T> The context in which this object can be rendered.
  */
 public interface RenderingInstruction<T> {
 

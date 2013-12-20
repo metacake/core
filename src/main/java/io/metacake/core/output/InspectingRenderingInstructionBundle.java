@@ -35,13 +35,13 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
     @Override
     public CustomizableMap<OutputDeviceName, Collection<RenderingInstruction>> getInstructions() {
         validateInUse();
+        inUse = true;
         CustomizableMap<OutputDeviceName, Collection<RenderingInstruction>> instructionMap = super.getInstructions();
         for (Collection<RenderingInstruction> instructions : instructionMap.values()) {
             InspectableInstruction spy = new InspectableInstruction();
             spies.add(spy);
             instructions.add(spy);
         }
-        inUse = true;
         return instructionMap;
     }
 
@@ -57,7 +57,7 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
      * @return Have all of the RenderingInstructions in this bundle been rendered.
      */
     public boolean isDone() {
-        return spies.stream().allMatch(InspectableInstruction::isDone) && inUse;
+        return inUse && spies.stream().allMatch(InspectableInstruction::isDone);
     }
 
     /**

@@ -6,8 +6,8 @@ import java.util.*;
 
 /**
  * This class bundles RenderingInstructions with their devices.
- *
- * Is iterable over the map of instructions.
+ * <p>
+ * It is iterable over the map of instructions.
  *
  * @author florence
  * @author rpless
@@ -18,8 +18,7 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     /**
      * And immutable empty bundle. It cannot be added to.
      */
-    public static final RenderingInstructionBundle EMPTY_BUNDLE = new RenderingInstructionBundle(
-            Collections.unmodifiableMap(new HashMap<>()));
+    public static final RenderingInstructionBundle EMPTY_BUNDLE = new RenderingInstructionBundle(Collections.unmodifiableMap(new HashMap<>()));
 
     /**
      * Create an empty bundle
@@ -47,27 +46,27 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     }
 
     /**
-     * EFFECT: add {@code inst} to the bundle bound to {@code name}
+     * EFFECT: add {@code instructions} to the bundle bound to {@code name}
      * return this.
      * @param name Name of the output device
-     * @param inst Instruction to bind
+     * @param instruction Instruction to bind
      * @return {@code this}
      */
-    public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction inst) {
+    public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction instruction) {
         ensureMappingExists(name);
-        instructions.get(name).add(inst);
+        instructions.get(name).add(instruction);
         return this;
     }
 
     /**
      * EFFECT: Add all of the {@code insts} to the bundle and bind them to the Device Name.
      * @param name Name of the output device
-     * @param insts The instructions to bind.
+     * @param instructions The instructions to bind.
      * @return {@code this}
      */
-    public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction...insts) {
+    public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction... instructions) {
         ensureMappingExists(name);
-        instructions.get(name).addAll(Arrays.asList(insts));
+        this.instructions.get(name).addAll(Arrays.asList(instructions));
         return this;
     }
 
@@ -77,7 +76,7 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
      */
     private void ensureMappingExists(OutputDeviceName name) {
         if (!instructions.containsKey(name)) {
-            instructions.put(name, new LinkedList<>());
+            instructions.put(name, new ArrayList<>());
         }
     }
 
