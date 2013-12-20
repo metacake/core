@@ -5,10 +5,15 @@ import java.util.concurrent.Callable;
 
 /**
  * This class acts as a decorator over a Map. It allows for custom error callbacks
- * for when a key it not found on get, and for iterating over the entry set.
- * The default callback throws a {@link NoSuchElementException}
+ * for when a key it not found on get and for iterating over the entry set.
+ * <p>
+ * The default callback throws a {@link NoSuchElementException}. This class is inspired by Racket's
+ * hash, see http://docs.racket-lang.org/reference/hashtables.html?q=hash.
  * @author florence
  * @author rpless
+ *
+ * @param <K> The type of the keys maintained by this map
+ * @param <V> The type of the mapped values
  */
 public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> {
     private Map<K,V> theMap;
@@ -118,6 +123,12 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
         return theMap.entrySet();
     }
 
+    /**
+     * Equality of maps is delegated to decorated {@link java.util.Map}. As a result, a {@code CustomizableMap} can
+     * be equals to a {@link java.util.Map} from the collections library.
+     * @param o The given object to compare against.
+     * @return Returns the result of the delegated {@link java.util.Map}s equals method.
+     */
     @Override
     public boolean equals(Object o) {
         return theMap.equals(o);

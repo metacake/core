@@ -21,7 +21,7 @@ package io.metacake.core.common;
  * @author rpless
  */
 public class Symbol {
-    static final String PREFIX = "Symbol:";
+    private static final String PREFIX = "Symbol:";
 
     public static Symbol genSym() {
         return Symbol.genSym("");
@@ -41,6 +41,10 @@ public class Symbol {
         this.name = name;
     }
 
+    /**
+     * @param that The object to check equality against.
+     * @return Symbols are only equals if the refer to the same object (also known as intentional equality).
+     */
     @Override
     public final boolean equals(Object that) {
         return this == that;
@@ -52,10 +56,6 @@ public class Symbol {
 
     @Override
     public final String toString() {
-        if(name.isEmpty()) {
-            return super.toString();
-        } else {
-            return PREFIX + name;
-        }
+        return (name.isEmpty()) ? super.toString() : (PREFIX + name);
     }
 }

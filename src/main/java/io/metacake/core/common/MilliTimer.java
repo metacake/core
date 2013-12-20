@@ -1,22 +1,17 @@
 package io.metacake.core.common;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * This class acts as a Millisecond timer.
  * <p>
  * It has two functions. The first is to record the difference between two times.
  * The second is to act as a 'time mechanism', blocking a thread until a give time.
- * The accuracy of this time is approximately the accuracy of System.nanoTime()
+ * The accuracy of this time is approximately the accuracy of (@link System#nanoTime}.
  * on the give system.
  *
  * @author florence
  */
 public class MilliTimer {
     private static final long TO_MILLIS = 1_000_000;
-    private static final Logger logger = LoggerFactory.getLogger(MilliTimer.class);
 
     private long interval;
     private long lastActive;
@@ -43,7 +38,7 @@ public class MilliTimer {
      * milliseconds have passed, calling this has no effect.
      * @throws InterruptedException thrown if the blocking operation is interrupted
      */
-    public void block() throws InterruptedException{
+    public void block() throws InterruptedException {
         long waitFor = interval - this.poll();
         if (waitFor > 0) {
             Thread.sleep(waitFor);

@@ -25,7 +25,7 @@ public class TimedLoopThread extends Thread {
 
     /**
      * @param target The runnable to run each loop
-     * @param milliTimerTime The milli seconds between each loop. <p>see MilliTimer for detail</p>
+     * @param milliTimerTime The milli seconds between each loop. <p>see {@link MilliTimer} for more details.
      */
     public TimedLoopThread(Runnable target, long milliTimerTime) {
         this.runnable = target;
@@ -56,7 +56,7 @@ public class TimedLoopThread extends Thread {
         try {
             this.join();
         } catch (InterruptedException e) {
-            logger.debug("How the hell did this get interrupted?",e);
+            logger.debug("How the hell did this get interrupted?", e);
         }
     }
 }
