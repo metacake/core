@@ -4,7 +4,7 @@ import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.RenderingInstruction;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * An OutputDevice is an interface into any kind of device that produces output. These devices receive renderables and
@@ -26,7 +26,7 @@ public interface OutputDevice {
      * </p>
      * @param r the list of instructions to render.
      */
-    public void render(List<RenderingInstruction> r);
+    public void render(Collection<RenderingInstruction> r);
 
     /**
      * when this method returns any loops needed for this device to run should be launched.

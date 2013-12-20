@@ -78,7 +78,7 @@ class BootstrapperSpec extends Specification{
             CakeWindow w
             TimedLoopThread t
 
-            void render(List<RenderingInstruction> r) {}
+            void render(Collection<RenderingInstruction> r) {}
             OutputDeviceName name() {null}
 
             void startOutputLoop() {

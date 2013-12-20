@@ -12,8 +12,8 @@ import java.util.*;
  * @author florence
  * @author rpless
  */
-public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDeviceName,List<RenderingInstruction>>> {
-    protected CustomizableMap<OutputDeviceName, List<RenderingInstruction>> instructions = new CustomizableMap<>(new HashMap<>());
+public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDeviceName, Collection<RenderingInstruction>>> {
+    protected CustomizableMap<OutputDeviceName, Collection<RenderingInstruction>> instructions = new CustomizableMap<>(new HashMap<>());
 
     /**
      * And immutable empty bundle. It cannot be added to.
@@ -26,14 +26,14 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
      */
     public RenderingInstructionBundle() {}
 
-    private RenderingInstructionBundle(Map<OutputDeviceName, List<RenderingInstruction>> m) {
+    private RenderingInstructionBundle(Map<OutputDeviceName, Collection<RenderingInstruction>> m) {
         instructions = new CustomizableMap<>(m);
     }
 
     /**
      * Create an empty bundle
      */
-    private RenderingInstructionBundle(CustomizableMap<OutputDeviceName,List<RenderingInstruction>> m) {
+    private RenderingInstructionBundle(CustomizableMap<OutputDeviceName, Collection<RenderingInstruction>> m) {
         instructions = m;
     }
 
@@ -42,7 +42,7 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
      * Its signature is subject to change.
      * @return the instructions this bundle has collected
      */
-    public CustomizableMap<OutputDeviceName, List<RenderingInstruction>> getInstructions() {
+    public CustomizableMap<OutputDeviceName, Collection<RenderingInstruction>> getInstructions() {
         return instructions;
     }
 
@@ -82,7 +82,7 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     }
 
     @Override
-    public Iterator<Map.Entry<OutputDeviceName, List<RenderingInstruction>>> iterator() {
+    public Iterator<Map.Entry<OutputDeviceName, Collection<RenderingInstruction>>> iterator() {
         return this.getInstructions().iterator();
     }
 }
