@@ -3,8 +3,8 @@ package io.metacake.core.process.state;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.RenderingInstructionBundle;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * This state will end the game
@@ -19,8 +19,8 @@ public final class EndState implements GameState {
      * @param s the state to render
      * @return the end state
      */
-    public static GameState endWith(GameState s){
-        return new EndState(s,false);
+    public static GameState endWith(GameState s) {
+        return new EndState(s, false);
     }
 
     /**
@@ -28,8 +28,8 @@ public final class EndState implements GameState {
      * @param s the state to render
      * @return the end state
      */
-    public static GameState closeWith(GameState s){
-        return new EndState(s,true);
+    public static GameState closeWith(GameState s) {
+        return new EndState(s, true);
     }
 
     private EndState(GameState with, boolean closeWindow) {
@@ -41,7 +41,7 @@ public final class EndState implements GameState {
      * Internal method. Do not use.
      * @return Should the window close?
      */
-    public final boolean shouldCloseWindow(){
+    public final boolean shouldCloseWindow() {
         return this.closeWindow;
     }
 
@@ -56,7 +56,7 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public List<ActionTrigger> replaceActionTriggers() {
+    public Collection<ActionTrigger> replaceActionTriggers() {
         return Collections.emptyList();
     }
 

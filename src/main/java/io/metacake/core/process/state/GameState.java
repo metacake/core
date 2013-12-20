@@ -3,7 +3,7 @@ package io.metacake.core.process.state;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.Renderable;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A GameState represents a state that a game can be in.
@@ -30,7 +30,7 @@ public interface GameState extends Renderable{
      * Precondition: this#shouldReplaceActionTriggers == true
      * @return Returns the ActionTriggers that will replace the old ones.
      */
-    public List<ActionTrigger> replaceActionTriggers();
+    public Collection<ActionTrigger> replaceActionTriggers();
 
     /**
      * @return true if the game is over

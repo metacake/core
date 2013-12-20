@@ -2,15 +2,15 @@ package io.metacake.core.process.state;
 
 import io.metacake.core.input.ActionTrigger;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * This class is a state that is intended to be extended by users.
  * @author florence
  * @author rpless
  */
-public abstract class UserState implements GameState{
+public abstract class UserState implements GameState {
 
     @Override
     public final boolean shouldReplaceActionTriggers() {
@@ -18,12 +18,12 @@ public abstract class UserState implements GameState{
     }
 
     @Override
-    public final List<ActionTrigger> replaceActionTriggers() {
+    public final Collection<ActionTrigger> replaceActionTriggers() {
         return Collections.emptyList();
     }
 
     @Override
-    public final boolean isGameOver(){
+    public final boolean isGameOver() {
         return false;
     }
 }
