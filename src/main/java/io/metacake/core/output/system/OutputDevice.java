@@ -7,7 +7,7 @@ import io.metacake.core.output.RenderingInstruction;
 import java.util.Collection;
 
 /**
- * An OutputDevice is an interface into any kind of device that produces output. These devices receive {@link Renderable}s and
+ * An OutputDevice is an interface into any kind of device that produces output. These devices receive {@link io.metacake.core.output.Renderable}s and
  * render these as output.
  * @author florence
  * @author rpless
