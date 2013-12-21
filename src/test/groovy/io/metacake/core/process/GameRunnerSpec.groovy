@@ -1,5 +1,6 @@
 package io.metacake.core.process
 
+import io.metacake.core.common.CustomizableMap
 import io.metacake.core.common.window.CakeWindow
 import io.metacake.core.input.InputSystem
 import io.metacake.core.output.OutputSystem
@@ -23,7 +24,7 @@ class GameRunnerSpec extends Specification {
 
     def setup() {
         mainLoopLock.acquire()
-        state.tick(_) >> { time ->
+        state.tick(_, _) >> { time ->
             mainLoopLock.release()
             state
         }
@@ -84,7 +85,7 @@ class GameRunnerSpec extends Specification {
         GameState runningState = new UserState() {
             int count = 0
             @Override
-            GameState tick(long delta) {
+            GameState tick(long delta, CustomizableMap map) {
                 count += 1
                 count > 1000 ? end : this
             }

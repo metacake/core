@@ -1,5 +1,6 @@
 package io.metacake.core
 
+import io.metacake.core.common.CustomizableMap
 import io.metacake.core.common.TimedLoopThread
 import io.metacake.core.common.window.CakeWindow
 import io.metacake.core.input.InputDeviceName
@@ -103,7 +104,7 @@ class BootstrapperSpec extends Specification{
 
         GameState g = new UserState() {
             int i = 0
-            GameState tick(long delta) {
+            GameState tick(long delta, CustomizableMap map) {
                 i += 1
                 i > 500 ? EndState.closeWith(this) : this
             }
