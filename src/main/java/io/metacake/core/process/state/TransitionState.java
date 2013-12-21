@@ -25,6 +25,7 @@ public class TransitionState implements GameState {
      * Create a transition state that replaces all triggers with the given ones
      * @param g the next state
      * @param l the triggers to replace
+     * @param r the {@link io.metacake.core.process.ActionRecognizer}s to replace
      * @return the transition state
      */
     public static TransitionState transitionWithTriggers(GameState g, Collection<ActionTrigger> l, Collection<ActionRecognizer> r) {

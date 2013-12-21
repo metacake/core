@@ -32,7 +32,8 @@ public abstract class VoidState extends UserState {
      *     method. This method only sets what the state will be on the next tick cycle. It does not immediately
      *     transition the state.
      * @param gameState The state to transition to
-     * @param triggers The triggers to add on transition
+     * @param triggers The {@link io.metacake.core.input.ActionTrigger}s to use on transition
+     * @param recognizers The {@link io.metacake.core.process.ActionRecognizer}s to be use on a transition
      */
     public void setTransition(GameState gameState, Collection<ActionTrigger> triggers, Collection<ActionRecognizer> recognizers) {
         currentState = TransitionState.transitionWithTriggers(gameState, triggers, recognizers);
@@ -42,6 +43,7 @@ public abstract class VoidState extends UserState {
      * In a {@code VoidState}, this method will be overridden instead of {@link io.metacake.core.process.state.GameState#tick(long, io.metacake.core.common.CustomizableMap)}
      * in order to update aspects of the state.
      * @param delta The number of milliseconds since update was last called.
+     * @param recognizers The bundle of {@link io.metacake.core.process.ActionRecognizer}s 
      */
     public abstract void update(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers);
 }

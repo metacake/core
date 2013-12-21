@@ -19,6 +19,7 @@ public interface GameState extends Renderable {
     /**
      * Perform one cycle of the game loop
      * @param delta The time in milliseconds since tick was last called.
+     * @param recognizers The bundle of {@link io.metacake.core.process.ActionRecognizer}s that are in use for this state.
      * @return Returns the next state, which could be the same state.
      */
     public GameState tick(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers);
