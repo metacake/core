@@ -9,6 +9,11 @@ package io.metacake.core.process;
 public interface ActionRecognizer {
 
     /**
+     * @return Return the symbol associated with this {@code ActionRecognizer}.
+     */
+    public ActionRecognizerName getName();
+
+    /**
      * @return Did this recognize a sequence of actions?
      */
     public boolean wasTriggered();

@@ -32,6 +32,12 @@ public interface GameState extends Renderable {
     public Optional<Collection<ActionTrigger>> replaceActionTriggers();
 
     /**
+     * @return Returns an {@code Optional} that may contain a new collection of
+     * {@link io.metacake.core.input.ActionTrigger}s that are now in use.
+     */
+    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers();
+
+    /**
      * @return true if the game is over
      */
     public boolean isGameOver();

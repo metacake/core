@@ -58,6 +58,7 @@ public class GameRunner {
             while (isRunning && !state.isGameOver()) {
                 outputSystem.addToRenderQueue(state);
                 updateTriggers(state);
+                updateRecognizers(state);
                 state = state.tick(timer.update(), recognizers);
                 timer.block();
             }
@@ -87,7 +88,7 @@ public class GameRunner {
     }
 
     /**
-     * Update any ActionTriggers that need to be updated.
+     * Update any {@link io.metacake.core.input.ActionTrigger} that need to be updated.
      * <p>
      * The GameState will request that the GameRunner replace its ActionTriggers by returning true for
      * shouldReplaceActionTriggers().
@@ -95,10 +96,22 @@ public class GameRunner {
      * @param state The current state
      */
     private void updateTriggers(GameState state) {
-        Optional<Collection<ActionTrigger>> recognizers = state.replaceActionTriggers();
-        if(recognizers.isPresent()) {
+        Optional<Collection<ActionTrigger>> triggers = state.replaceActionTriggers();
+        if(triggers.isPresent()) {
             inputSystem.releaseActionTriggers();
-            recognizers.get().forEach(inputSystem::bindActionTrigger);
+            triggers.get().forEach(inputSystem::bindActionTrigger);
+        }
+    }
+
+    /**
+     * Update any {@link io.metacake.core.process.ActionRecognizer}s that need to be updated.
+     * @param state The current state
+     */
+    private void updateRecognizers(GameState state) {
+        Optional<Collection<ActionRecognizer>> replaceRecognizers = state.replaceActionRecognizers();
+        if(replaceRecognizers.isPresent()) {
+            recognizers.clear();
+            replaceRecognizers.get().forEach(recognizer -> recognizers.put(recognizer.getName(), recognizer));
         }
     }
 

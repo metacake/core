@@ -60,6 +60,11 @@ public final class EndState implements GameState {
     }
 
     @Override
+    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers() {
+        return Optional.empty();
+    }
+
+    @Override
     public boolean isGameOver() {
         return true;
     }

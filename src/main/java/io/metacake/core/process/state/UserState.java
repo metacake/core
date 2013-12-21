@@ -20,6 +20,11 @@ public abstract class UserState implements GameState {
     }
 
     @Override
+    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers() {
+        return Optional.empty();
+    }
+
+    @Override
     public final boolean isGameOver() {
         return false;
     }

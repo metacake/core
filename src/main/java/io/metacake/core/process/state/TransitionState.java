@@ -48,6 +48,11 @@ public class TransitionState implements GameState {
     }
 
     @Override
+    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers() {
+        return Optional.of(recognizers);
+    }
+
+    @Override
     public RenderingInstructionBundle renderingInstructions() {
         return RenderingInstructionBundle.EMPTY_BUNDLE;
     }
