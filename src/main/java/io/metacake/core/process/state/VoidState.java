@@ -36,7 +36,7 @@ public abstract class VoidState extends UserState {
      * @param recognizers The {@link io.metacake.core.process.ActionRecognizer}s to be use on a transition
      */
     public void setTransition(GameState gameState, Collection<ActionTrigger> triggers, Collection<ActionRecognizer> recognizers) {
-        currentState = TransitionState.transitionWithTriggers(gameState, triggers, recognizers);
+        currentState = TransitionState.transition(gameState, triggers, recognizers);
     }
 
     /**

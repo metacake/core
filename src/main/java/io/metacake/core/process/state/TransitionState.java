@@ -17,9 +17,6 @@ import java.util.Optional;
  * @author rpless
  */
 public class TransitionState implements GameState {
-    private GameState next;
-    private Collection<ActionTrigger> triggers;
-    private Collection<ActionRecognizer> recognizers;
 
     /**
      * Create a transition state that replaces all triggers with the given ones
@@ -28,9 +25,13 @@ public class TransitionState implements GameState {
      * @param r the {@link io.metacake.core.process.ActionRecognizer}s to replace
      * @return the transition state
      */
-    public static TransitionState transitionWithTriggers(GameState g, Collection<ActionTrigger> l, Collection<ActionRecognizer> r) {
+    public static TransitionState transition(GameState g, Collection<ActionTrigger> l, Collection<ActionRecognizer> r) {
         return new TransitionState(g, l, r);
     }
+
+    private GameState next;
+    private Collection<ActionTrigger> triggers;
+    private Collection<ActionRecognizer> recognizers;
 
     private TransitionState(GameState next, Collection<ActionTrigger> triggers, Collection<ActionRecognizer> recognizers) {
         this.next = next;
