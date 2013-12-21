@@ -1,5 +1,6 @@
 package io.metacake.core.process;
 
+import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.common.Disposable;
 import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
@@ -9,6 +10,8 @@ import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
 
 /**
  * This class run is the main execution loop of the game
@@ -25,6 +28,8 @@ public class GameRunner {
     private boolean isStopped = false;
     private boolean isWindowDisposed = false;
     private CakeWindow window;
+
+    private CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers = new CustomizableMap<>(new HashMap<>());
 
     public GameRunner(InputSystem inputSystem, OutputSystem outputSystem, CakeWindow window) {
         this.inputSystem = inputSystem;
@@ -50,7 +55,7 @@ public class GameRunner {
             while (isRunning && !state.isGameOver()) {
                 outputSystem.addToRenderQueue(state);
                 updateTriggers(state);
-                state = state.tick(timer.update());
+                state = state.tick(timer.update(), recognizers);
                 timer.block();
             }
         } catch (Exception e) {

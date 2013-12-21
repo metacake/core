@@ -1,7 +1,10 @@
 package io.metacake.core.process.state;
 
+import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.RenderingInstructionBundle;
+import io.metacake.core.process.ActionRecognizer;
+import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -42,7 +45,7 @@ public class TransitionState implements GameState {
     }
 
     @Override
-    public GameState tick(long delta) {
+    public GameState tick(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers) {
         return next;
     }
 

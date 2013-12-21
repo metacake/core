@@ -1,6 +1,9 @@
 package io.metacake.core.process.state;
 
+import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.input.ActionTrigger;
+import io.metacake.core.process.ActionRecognizer;
+import io.metacake.core.process.ActionRecognizerName;
 
 /**
  * A VoidState is a {@link UserState} that allows for an imperative style
@@ -15,8 +18,8 @@ public abstract class VoidState extends UserState {
     private GameState currentState = this;
 
     @Override
-    public final GameState tick(long delta) {
-        update(delta);
+    public final GameState tick(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers) {
+        update(delta, recognizers);
         return currentState;
     }
 
@@ -38,5 +41,5 @@ public abstract class VoidState extends UserState {
      * in order to update aspects of the state.
      * @param delta The number of milliseconds since update was last called.
      */
-    public abstract void update(long delta);
+    public abstract void update(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers);
 }
