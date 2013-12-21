@@ -7,6 +7,7 @@ import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * A GameState represents a state that a game can be in.
@@ -25,15 +26,10 @@ public interface GameState extends Renderable {
     // TODO: mechanism for adding and removing individual triggers (do we want bundles?)
 
     /**
-     * @return Does this state want all action triggers to be replaced for the next cycle?
+     * @return Returns an {@code Optional} that may contain a new collection of
+     * {@link io.metacake.core.input.ActionTrigger}s that are now in use.
      */
-    public boolean shouldReplaceActionTriggers();
-
-    /**
-     * Precondition: this#shouldReplaceActionTriggers == true
-     * @return Returns the ActionTriggers that will replace the old ones.
-     */
-    public Collection<ActionTrigger> replaceActionTriggers();
+    public Optional<Collection<ActionTrigger>> replaceActionTriggers();
 
     /**
      * @return true if the game is over

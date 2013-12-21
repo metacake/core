@@ -4,6 +4,7 @@ import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.common.Disposable;
 import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
+import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.process.state.EndState;
@@ -11,7 +12,9 @@ import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Optional;
 
 /**
  * This class run is the main execution loop of the game
@@ -89,12 +92,13 @@ public class GameRunner {
      * The GameState will request that the GameRunner replace its ActionTriggers by returning true for
      * shouldReplaceActionTriggers().
      * </p>
-     * @param s The current state
+     * @param state The current state
      */
-    private void updateTriggers(GameState s) {
-        if(s.shouldReplaceActionTriggers()) {
+    private void updateTriggers(GameState state) {
+        Optional<Collection<ActionTrigger>> recognizers = state.replaceActionTriggers();
+        if(recognizers.isPresent()) {
             inputSystem.releaseActionTriggers();
-            s.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
+            recognizers.get().forEach(inputSystem::bindActionTrigger);
         }
     }
 

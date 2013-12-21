@@ -8,6 +8,7 @@ import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 /**
  * This state will end the game
@@ -54,13 +55,8 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public boolean shouldReplaceActionTriggers() {
-        return false;
-    }
-
-    @Override
-    public Collection<ActionTrigger> replaceActionTriggers() {
-        return Collections.emptyList();
+    public Optional<Collection<ActionTrigger>> replaceActionTriggers() {
+        return Optional.empty();
     }
 
     @Override

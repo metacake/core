@@ -8,6 +8,7 @@ import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * This class is meant to handle state transitions that require special instructions
@@ -18,6 +19,7 @@ import java.util.Collection;
 public class TransitionState implements GameState {
     private GameState next;
     private Collection<ActionTrigger> triggers;
+    private Collection<ActionRecognizer> recognizers;
 
     /**
      * Create a transition state that replaces all triggers with the given ones
@@ -25,23 +27,14 @@ public class TransitionState implements GameState {
      * @param l the triggers to replace
      * @return the transition state
      */
-    public static TransitionState transitionWithTriggers(GameState g, Collection<ActionTrigger> l) {
-        return new TransitionState(g, l);
+    public static TransitionState transitionWithTriggers(GameState g, Collection<ActionTrigger> l, Collection<ActionRecognizer> r) {
+        return new TransitionState(g, l, r);
     }
 
-    /**
-     * Create a transition state that replaces all triggers with the given ones
-     * @param g the next state
-     * @param l the triggers to replace
-     * @return the transition state
-     */
-    public static TransitionState transitionWithTriggers(GameState g, ActionTrigger... l) {
-        return transitionWithTriggers(g, Arrays.asList(l));
-    }
-
-    private TransitionState(GameState next, Collection<ActionTrigger> triggers) {
+    private TransitionState(GameState next, Collection<ActionTrigger> triggers, Collection<ActionRecognizer> recognizers) {
         this.next = next;
         this.triggers = triggers;
+        this.recognizers = recognizers;
     }
 
     @Override
@@ -50,13 +43,8 @@ public class TransitionState implements GameState {
     }
 
     @Override
-    public boolean shouldReplaceActionTriggers() {
-        return true;
-    }
-
-    @Override
-    public Collection<ActionTrigger> replaceActionTriggers() {
-        return triggers;
+    public Optional<Collection<ActionTrigger>> replaceActionTriggers() {
+        return Optional.of(triggers);
     }
 
     @Override
