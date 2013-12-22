@@ -1,7 +1,5 @@
 package io.metacake.core.input;
 
-import java.util.List;
-
 /**
  * An ActionTrigger encapsulates the creation of Actions from events.
  *

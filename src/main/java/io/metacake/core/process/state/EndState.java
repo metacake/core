@@ -7,7 +7,6 @@ import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 
 /**

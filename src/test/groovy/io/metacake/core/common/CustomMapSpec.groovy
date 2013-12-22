@@ -1,12 +1,10 @@
 package io.metacake.core.common
+
 import spock.lang.Specification
 
 import java.util.concurrent.Callable
 
 import static org.hamcrest.CoreMatchers.equalTo
-import static org.hamcrest.CoreMatchers.notNullValue
-import static org.spockframework.util.Assert.notNull
-import static org.spockframework.util.Matchers.not
 import static spock.util.matcher.HamcrestSupport.expect
 
 class CustomMapSpec extends Specification {
