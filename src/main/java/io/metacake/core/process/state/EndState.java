@@ -10,13 +10,14 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * This state will end the game
+ * An {@code EndState} will force the game to end.
  * @author florence
  * @author rpless
  */
 public final class EndState implements GameState {
     private GameState with;
     private boolean closeWindow;
+
     /**
      * End the game, using the given state to render. Do not close the window.
      * @param s the state to render
@@ -27,7 +28,7 @@ public final class EndState implements GameState {
     }
 
     /**
-     * End the game, using the given state to render. Close the window as well.
+     * End the game, using the given state to render and close the window.
      * @param s the state to render
      * @return the end state
      */

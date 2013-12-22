@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 /**
- * This class run is the main execution loop of the game
+ * The {@code GameRunner} handles the main execution of the game loop.
  *
  * @author florence
  * @author rpless
@@ -42,11 +42,11 @@ public class GameRunner {
     }
 
     /**
-     * Execute the main game loop in the current thread. This method returns after #stop() has been called.
+     * Execute the main game loop in the current thread. This method returns after {@link GameRunner#stop()} has been called.
      * <p>
      * The game loop will attempt to put {@code interval} milliseconds between the start of each game loop.
-     * This will fail if the GameState#tick takes more than {@code interval} milliseconds to run
-     * When #stop is called the function will terminate after the current state finishes its tick cycle
+     * This will fail if the {@link GameState#tick} takes more than {@code interval} milliseconds to run
+     * When {@link GameRunner#stop()} is called the function will terminate after the current state finishes its tick cycle.
      * @param state the initial state of the game
      * @param interval the number of milliseconds requested to be between the start of each loop.
      */
@@ -72,8 +72,8 @@ public class GameRunner {
     /**
      * Tell the main game loop to stop.
      * The main event loop will try to close the window if this method is called.
-     *
-     * If the main game loop is not running, this will shut down the window.
+     * <p>
+     *      If the main game loop is not running, this will shut down the window.
      */
     public void stop() {
         synchronized (this) {
@@ -89,10 +89,6 @@ public class GameRunner {
 
     /**
      * Update any {@link io.metacake.core.input.ActionTrigger} that need to be updated.
-     * <p>
-     * The GameState will request that the GameRunner replace its ActionTriggers by returning true for
-     * shouldReplaceActionTriggers().
-     * </p>
      * @param state The current state
      */
     private void updateTriggers(GameState state) {
@@ -143,7 +139,7 @@ public class GameRunner {
     /**
      * Should the window be closed on shutdown?
      * @param state the last state
-     * @return if the window should be closed
+     * @return returns true if the window should close
      */
     private boolean shouldCloseWindow(GameState state) {
         return !isRunning || (state instanceof EndState && ((EndState) state).shouldCloseWindow());

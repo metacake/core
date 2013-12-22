@@ -8,7 +8,7 @@ import io.metacake.core.process.ActionRecognizerName;
 import java.util.Collection;
 
 /**
- * A VoidState is a {@link UserState} that allows for an imperative style
+ * A {@code VoidState} is a {@link UserState} that allows for an imperative style
  * of programming in {@link GameState}s.
  * <p>
  *      Instead of overriding the {@link io.metacake.core.process.state.GameState#tick(long, io.metacake.core.common.CustomizableMap)} method
@@ -31,7 +31,7 @@ public abstract class VoidState extends UserState {
      *     This method should only be called from within the an overridden {@link io.metacake.core.process.state.VoidState#update(long, io.metacake.core.common.CustomizableMap)}
      *     method. This method only sets what the state will be on the next tick cycle. It does not immediately
      *     transition the state.
-     * @param gameState The state to transition to
+     * @param gameState The {@link io.metacake.core.process.state.GameState} to transition to
      * @param triggers The {@link io.metacake.core.input.ActionTrigger}s to use on transition
      * @param recognizers The {@link io.metacake.core.process.ActionRecognizer}s to be use on a transition
      */

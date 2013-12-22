@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * This class is a state that is intended to be extended by users.
+ * This class is a {@link io.metacake.core.process.state.GameState} that is intended to be extended by users.
  * @author florence
  * @author rpless
  */

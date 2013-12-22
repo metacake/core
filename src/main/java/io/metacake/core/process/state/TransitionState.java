@@ -11,7 +11,7 @@ import java.util.Optional;
 
 /**
  * This class is meant to handle state transitions that require special instructions
- * to be passed to the engine
+ * to be passed to the Input Layer.
  * @author florence
  * @author rpless
  */
@@ -20,7 +20,7 @@ public class TransitionState implements GameState {
     /**
      * Create a transition state that replaces all triggers with the given ones
      * @param g the next state
-     * @param l the triggers to replace
+     * @param l the {@link io.metacake.core.input.ActionTrigger}s to replace
      * @param r the {@link io.metacake.core.process.ActionRecognizer}s to replace
      * @return the transition state
      */
