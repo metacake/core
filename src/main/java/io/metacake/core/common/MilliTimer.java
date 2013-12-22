@@ -1,7 +1,7 @@
 package io.metacake.core.common;
 
 /**
- * This class acts as a Millisecond timer.
+ * The {@code MilliTimer} facilitates various timing operations.
  * <p>
  * It has two functions. The first is to record the difference between two times.
  * The second is to act as a 'time mechanism', blocking a thread until a give time.
@@ -9,6 +9,7 @@ package io.metacake.core.common;
  * on the give system.
  *
  * @author florence
+ * @author rpless
  */
 public class MilliTimer {
     private static final long TO_MILLIS = 1_000_000;

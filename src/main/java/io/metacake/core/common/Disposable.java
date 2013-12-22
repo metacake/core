@@ -1,8 +1,9 @@
 package io.metacake.core.common;
 
 /**
+ * The {@code Disposable} interface represents objects that can be disposed of.
  * @author florence
- * for things that are disposable. duh.
+ * @author rpless
  */
 public interface Disposable {
     /**

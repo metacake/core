@@ -6,17 +6,19 @@ import java.util.concurrent.Callable;
 /**
  * This class acts as a decorator over a Map. It allows for custom error callbacks
  * for when a key it not found on get and for iterating over the entry set.
+ *
+ * @param <K> The type of the keys maintained by this map
+ * @param <V> The type of the mapped values
+ *
  * <p>
  * The default callback throws a {@link NoSuchElementException}. This class is inspired by Racket's
  * hash, see http://docs.racket-lang.org/reference/hashtables.html?q=hash.
  * @author florence
  * @author rpless
  *
- * @param <K> The type of the keys maintained by this map
- * @param <V> The type of the mapped values
  */
-public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> {
-    private Map<K,V> theMap;
+public class CustomizableMap<K, V> implements Map<K, V>, Iterable<Map.Entry<K, V>> {
+    private Map<K, V> theMap;
     private Callable<V> onMissing = () -> { throw new NoSuchElementException(); };
 
     public CustomizableMap(Map<K, V> theMap) {
@@ -24,7 +26,7 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
     }
 
     /**
-     * Change the default on missing callable
+     * Change the default on missing {@link Callable}
      * @param newMissing The {@link Callable} that should be called when a key does not map to a value.
      */
     public void setOnMissing(Callable<V> newMissing){
@@ -33,10 +35,10 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
 
     // updates methods
 
-    @Override
     /**
      * Like the other get, but uses the default callback
      */
+    @Override
     public V get(Object key) {
        return this.get(key,onMissing);
     }
@@ -119,12 +121,12 @@ public class CustomizableMap<K,V> implements Map<K,V>, Iterable<Map.Entry<K,V>> 
     }
 
     @Override
-    public Set<Entry<K,V>> entrySet() {
+    public Set<Entry<K, V>> entrySet() {
         return theMap.entrySet();
     }
 
     /**
-     * Equality of maps is delegated to decorated {@link java.util.Map}. As a result, a {@code CustomizableMap} can
+     * Equality of maps is delegated to the decorated {@link java.util.Map}. As a result, a {@code CustomizableMap} can
      * be equals to a {@link java.util.Map} from the collections library.
      * @param o The given object to compare against.
      * @return Returns the result of the delegated {@link java.util.Map}s equals method.
