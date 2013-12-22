@@ -5,10 +5,10 @@ import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputDeviceName;
 
 /**
- * The InputDevice acts as the Interface into any input device.
+ * The {@code InputDevice} acts as the Interface into any input device.
  * <p>
- * In principle, the InputDevice acts as a means of interfacing with some kind of system level input, such as a
- * Keyboard.
+ * In principle, the {@code InputDevice} acts as a means of interfacing with some kind of system level input, such as a
+ * keyboard or mouse.
  *
  * @author florence
  * @author rpless
@@ -22,7 +22,7 @@ public interface InputDevice {
 
     /**
      * Shutdown all loops and free resources. This should leave the device in a state such that
-     * it can be restarted
+     * it can be restarted.
      */
     public void shutdown();
 

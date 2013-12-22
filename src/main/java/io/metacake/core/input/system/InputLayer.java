@@ -8,19 +8,19 @@ import io.metacake.core.input.InputSystem;
 import java.util.Map;
 
 /**
- * The InputLayer is the core implementation of the input system. It takes events from devices and translates them
+ * The {@code InputLayer} is the core implementation of the input system. It takes events from devices and translates them
  * into actions, which can be passed to the Processing Layer.
  * @author florence
  * @author rpless
  */
-public class InputLayer implements InputSystem{
-    private CustomizableMap<InputDeviceName,InputDevice> devices;
+public class InputLayer implements InputSystem {
+    private CustomizableMap<InputDeviceName, InputDevice> devices;
 
     /**
      * Create the InputLayer with the given list of InputDevices.
      * @param devices A map of the device names to the devices.
      */
-    public InputLayer(Map<InputDeviceName,InputDevice> devices) {
+    public InputLayer(Map<InputDeviceName, InputDevice> devices) {
        this.devices = new CustomizableMap<>(devices);
     }
 

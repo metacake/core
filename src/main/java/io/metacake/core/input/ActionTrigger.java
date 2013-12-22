@@ -18,7 +18,7 @@ public interface ActionTrigger<K> {
     public boolean isTriggeredBy(K event);
 
     /**
-     * @return Get the name of the InputDevice that this ActionTrigger is bound to.
+     * @return Get the name of the {@link io.metacake.core.input.system.InputDevice} that this {@code ActionTrigger} is bound to.
      */
     public InputDeviceName bindingDevice();
 }

@@ -13,13 +13,13 @@ import io.metacake.core.common.Disposable;
 public interface InputSystem extends Disposable {
 
     /**
-     * Bind an ActionTrigger to a Device in the InputSystem with the given name.
-     * @param t The ActionTrigger to be bound.
+     * Bind an {@link io.metacake.core.input.ActionTrigger} to a Device in the {@code InputSystem} with the given name.
+     * @param t The {@link io.metacake.core.input.ActionTrigger} to be bound.
      */
     public void bindActionTrigger(ActionTrigger t);
 
     /**
-     * Throw away all the current triggers
+     * Throw away all the current {@link io.metacake.core.input.ActionTrigger}s.
      */
     public void releaseActionTriggers();
 
