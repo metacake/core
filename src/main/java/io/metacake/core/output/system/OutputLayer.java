@@ -8,12 +8,13 @@ import io.metacake.core.output.Renderable;
 import java.util.Map;
 
 /**
- * The OutputLayer is the core implementation of the input system. It takes Renderables from the Process Layer and
- * translates them into so kind of output for the user.
+ * The {@code OutputLayer} is the core implementation of the input system. It takes {@link io.metacake.core.output.Renderable}
+ * from the Process Layer and translates them into so kind of output for the user.
  * @author florence
  * @author rpless
  */
 public class OutputLayer implements OutputSystem {
+
     private CustomizableMap<OutputDeviceName, OutputDevice> deviceContainer;
 
     public OutputLayer(Map<OutputDeviceName, OutputDevice> deviceContainer) {

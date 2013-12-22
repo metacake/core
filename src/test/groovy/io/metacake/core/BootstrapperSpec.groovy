@@ -79,7 +79,7 @@ class BootstrapperSpec extends Specification{
             CakeWindow w
             TimedLoopThread t
 
-            void render(Collection<RenderingInstruction> r) {}
+            void render(Collection<RenderingInstruction> instructions) {}
             OutputDeviceName name() {null}
 
             void startOutputLoop() {
@@ -99,7 +99,7 @@ class BootstrapperSpec extends Specification{
             void shutdown() {
                 t.requestStop()
             }
-            void bind(CakeWindow w) { this.w = w }
+            void bind(CakeWindow cakeWindow) { this.w = cakeWindow }
         }
 
         GameState g = new UserState() {

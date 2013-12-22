@@ -3,14 +3,14 @@ package io.metacake.core.output;
 import io.metacake.core.common.Disposable;
 
 /**
- * The interface into the output system as far as the processing system is concerned
+ * The Process Layer's Interface into the Output System.
  * @author florence
  * @author rpless
  */
 public interface OutputSystem extends Disposable {
     /**
-     * Add this renderable t the queue of things to render. It will be immediately translated to something immutable via
-     * Renderable#renderingInstructions
+     * Add this {@link io.metacake.core.output.Renderable} t the queue of things to render. It will be immediately
+     * translated to something immutable via {@link io.metacake.core.output.Renderable#renderingInstructions}.
      * @param r the current renderable
      */
     public void addToRenderQueue(Renderable r);

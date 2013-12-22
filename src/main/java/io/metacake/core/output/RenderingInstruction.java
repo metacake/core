@@ -2,6 +2,7 @@ package io.metacake.core.output;
 
 /**
  * Represents an action to be rendered by some Rendering Context.
+ *
  * @author florence
  * @author rpless
  *

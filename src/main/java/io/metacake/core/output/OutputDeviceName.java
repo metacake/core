@@ -3,7 +3,7 @@ package io.metacake.core.output;
 import io.metacake.core.common.Symbol;
 
 /**
- * This class provides an extensible enumeration for naming OutputDevices.
+ * This class provides an extensible enumeration for naming {@link io.metacake.core.output.system.OutputDevice}s.
  * @author florence
  * @author rpless
  */

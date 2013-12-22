@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A InspectingRenderingInstructionBundle inserts instructions into the instruction set
+ * A {@code InspectingRenderingInstructionBundle} inserts instructions into the instruction set
  * in order to determine when all instructions have been rendered.
  *
  * @author rpless
@@ -24,6 +24,9 @@ public class InspectingRenderingInstructionBundle extends RenderingInstructionBu
             isDone = true;
         }
 
+        /**
+         * @return returns true if the instruction has been rendered.
+         */
         public boolean isDone() {
             return isDone;
         }

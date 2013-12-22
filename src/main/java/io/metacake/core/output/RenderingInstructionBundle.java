@@ -5,7 +5,7 @@ import io.metacake.core.common.CustomizableMap;
 import java.util.*;
 
 /**
- * This class bundles RenderingInstructions with their devices.
+ * This class bundles {@link io.metacake.core.output.RenderingInstruction}s with their devices.
  * <p>
  * It is iterable over the map of instructions.
  *
@@ -48,8 +48,8 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     /**
      * EFFECT: add {@code instructions} to the bundle bound to {@code name}
      * return this.
-     * @param name Name of the output device
-     * @param instruction Instruction to bind
+     * @param name Name of the {@link io.metacake.core.output.system.OutputDevice}
+     * @param instruction {@link io.metacake.core.output.RenderingInstruction} to bind
      * @return {@code this}
      */
     public RenderingInstructionBundle add(OutputDeviceName name, RenderingInstruction instruction) {
@@ -59,7 +59,7 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     }
 
     /**
-     * EFFECT: Add all of the {@code insts} to the bundle and bind them to the Device Name.
+     * EFFECT: Add all of the {@code instructions} to the bundle and bind them to the {@link io.metacake.core.output.OutputDeviceName}.
      * @param name Name of the output device
      * @param instructions The instructions to bind.
      * @return {@code this}
@@ -71,8 +71,8 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     }
 
     /**
-     * EFFECT: ensure that there is a mapping between the given device name and at least an empty LinkedList.
-     * @param name The {@code OutputDeviceName} to check
+     * EFFECT: ensure that there is a mapping between the given device name and at least an empty list.
+     * @param name The {@link io.metacake.core.output.OutputDeviceName} to check
      */
     private void ensureMappingExists(OutputDeviceName name) {
         if (!instructions.containsKey(name)) {
