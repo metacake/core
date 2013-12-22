@@ -12,7 +12,7 @@ import io.metacake.core.common.Disposable;
  */
 public abstract class CakeWindow<T> implements Disposable {
 
-    CloseObserver closer;
+    private CloseObserver closer;
 
     /**
      * @return Get the x coordinate on the screen of the upper left corner of this window
@@ -25,30 +25,30 @@ public abstract class CakeWindow<T> implements Disposable {
     public abstract int getY();
 
     /**
-     *
      * @return Get width of this window in pixels
      */
     public abstract int getWidth();
 
     /**
-     * @return Get width of this window in pixels
+     * @return Get height of this window in pixels
      */
     public abstract int getHeight();
 
     /**
-     * Add a CloseObserver.
-     * <p>This is an internal method, and should not be called</p>
-     * @param o The {@link CloseObserver} to be usedon close.
+     * Add a {@link CloseObserver}.
+     * <p>
+     *     This is an internal method and should not be called.
+     * @param o The {@link CloseObserver} to be used on close.
      */
     public final void addCloseObserver(CloseObserver o) {
         closer = o;
     }
 
     /**
-     * Call this to begin shutting down the engine
+     * Initiates closing the window and in principle should start the shutdown for the entire engine.
      */
     public final void close() {
-        if(closer!=null) {
+        if(closer != null) {
             closer.onClose();
         }
     }
