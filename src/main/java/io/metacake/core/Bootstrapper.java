@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * This class handles bootstrapping and launching the game.
  * <p>
- * The Bootstrapper sets up all of the necessary pieces of the game and does any binding that is necessary.
+ * The {@code Bootstrapper} sets up all of the necessary pieces of the game and does any binding that is necessary.
  *
  * @author florence
  * @author rpless
@@ -27,18 +27,19 @@ import java.util.Map;
 public class Bootstrapper {
     public static final long DEFAULT_LOOP_MILLIS = 50;
     private static final Logger logger = LoggerFactory.getLogger(Bootstrapper.class);
+
     private CakeWindow window;
     private Map<InputDeviceName,InputDevice> inputs;
     private Map<OutputDeviceName, OutputDevice> outputs;
     private GameState initialState;
     private long loopTime;
 
-    Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
+    Bootstrapper(CakeWindow window, Map<InputDeviceName, InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
                         GameState g) {
         this(window, inputs, outputs, g, DEFAULT_LOOP_MILLIS);
     }
 
-    Bootstrapper(CakeWindow window, Map<InputDeviceName,InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
+    Bootstrapper(CakeWindow window, Map<InputDeviceName, InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
                         GameState g, long loopTime) {
         this.window = window;
         this.inputs = inputs;
@@ -56,7 +57,7 @@ public class Bootstrapper {
     }
 
     /**
-     * Create a GameRunner that is ready to go
+     * Create a {@link io.metacake.core.process.GameRunner} that is ready to go
      * @return The game runner
      */
     GameRunner bootstrapSystem() {
@@ -71,7 +72,8 @@ public class Bootstrapper {
     }
 
     /**
-     * Invokes binding operations for all InputDevices and InputDevices
+     * Invokes binding operations for all {@link io.metacake.core.input.system.InputDevice}s and
+     * {@link io.metacake.core.output.system.OutputDevice}s.
      */
     void bootstrapUserObjects() {
         logger.info("Bootstrapping user objects");
@@ -80,7 +82,7 @@ public class Bootstrapper {
     }
 
     /**
-     * @return Returns an InputSystem that has been set up and bound.
+     * @return Returns an {@link io.metacake.core.input.InputSystem} that has been set up and bound.
      */
     InputSystem bootstrapInputSystem() {
         logger.info("Bootstrapping input system from user objects");
@@ -88,7 +90,7 @@ public class Bootstrapper {
     }
 
     /**
-     * @return Returns an OutputSystem that has been set up and bound.
+     * @return Returns an {@link io.metacake.core.output.OutputSystem} that has been set up and bound.
      */
     OutputSystem bootstrapOutputSystem() {
         logger.info("Bootstrapping output system from user objects");
@@ -96,8 +98,8 @@ public class Bootstrapper {
     }
 
     /**
-     * @param i the InputSystem for the game
-     * @param o the OutputSystem for the game
+     * @param i the {@link io.metacake.core.input.InputSystem} for the game
+     * @param o the {@link io.metacake.core.output.OutputSystem} for the game
      * @return a GameRunner that has been bound to the Input and Output Systems and is ready to be launched
      */
      GameRunner bootstrapProcessLayer(InputSystem i, OutputSystem o) {

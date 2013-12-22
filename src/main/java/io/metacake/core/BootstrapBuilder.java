@@ -14,9 +14,10 @@ import java.util.Map;
 /**
  * The {@code BootstrapBuilder} provides a mechanism for building a {@link Bootstrapper}.
  * <p>
- *     In order to create a {@link Bootstrapper} the withWindow and withInitialState methods must be called before
- *     a call to createBootstrap. The other methods may also be called to change some options for the game, but at a
- *     minimum withWindow and withInitialState must be called with non-null arguments.
+ *     In order to create a {@link Bootstrapper} the {@link io.metacake.core.BootstrapBuilder#withWindow}
+ *     and {@link BootstrapBuilder#createBootstrap}. The other methods may also be called to change some options for the game, but at a
+ *     minimum {@link io.metacake.core.BootstrapBuilder#withWindow} and {@link BootstrapBuilder#createBootstrap}
+ *     must be called with non-null arguments.
  *
  * @author florence
  * @author rpless
