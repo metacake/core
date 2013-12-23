@@ -4,7 +4,6 @@ import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.process.ActionRecognizer;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * This class is a {@link io.metacake.core.process.state.GameState} that is intended to be extended by users.
@@ -14,13 +13,18 @@ import java.util.Optional;
 public abstract class UserState implements GameState {
 
     @Override
-    public Optional<Collection<ActionTrigger>> replaceActionTriggers() {
-        return Optional.empty();
+    public boolean replaceInputs() {
+        return false;
     }
 
     @Override
-    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers() {
-        return Optional.empty();
+    public Collection<ActionTrigger> replaceActionTriggers() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Collection<ActionRecognizer> replaceActionRecognizers() {
+        throw new UnsupportedOperationException();
     }
 
     @Override

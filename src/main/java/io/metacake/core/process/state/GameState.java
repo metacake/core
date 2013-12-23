@@ -7,7 +7,6 @@ import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * A GameState represents a state that a game can be in.
@@ -27,16 +26,21 @@ public interface GameState extends Renderable {
     // TODO: mechanism for adding and removing individual triggers (do we want bundles?)
 
     /**
-     * @return Returns an {@code Optional} that may contain a new collection of
-     * {@link io.metacake.core.input.ActionTrigger}s that are now in use.
+     * @return true if {@link GameState#replaceActionRecognizers()} and {@link GameState#replaceActionTriggers()} should be used
      */
-    public Optional<Collection<ActionTrigger>> replaceActionTriggers();
+    public boolean replaceInputs();
 
     /**
-     * @return Returns an {@code Optional} that may contain a new collection of
-     * {@link io.metacake.core.input.ActionTrigger}s that are now in use.
+     * will only be called if {@link io.metacake.core.process.state.GameState#replaceActionRecognizers()} is true
+     * @return a new collection of {@link io.metacake.core.input.ActionTrigger}s that are now in use.
      */
-    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers();
+    public Collection<ActionTrigger> replaceActionTriggers();
+
+    /**
+     * will only be called if {@link io.metacake.core.process.state.GameState#replaceActionRecognizers()} is true
+     * @return a new collection of {@link io.metacake.core.input.ActionTrigger}s that are now in use.
+     */
+    public Collection<ActionRecognizer> replaceActionRecognizers();
 
     /**
      * @return true if the game is over

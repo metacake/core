@@ -7,7 +7,6 @@ import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * An {@code EndState} will force the game to end.
@@ -55,13 +54,18 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public Optional<Collection<ActionTrigger>> replaceActionTriggers() {
-        return Optional.empty();
+    public boolean replaceInputs() {
+        return false;
     }
 
     @Override
-    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers() {
-        return Optional.empty();
+    public Collection<ActionTrigger> replaceActionTriggers() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Collection<ActionRecognizer> replaceActionRecognizers() {
+        throw new UnsupportedOperationException();
     }
 
     @Override

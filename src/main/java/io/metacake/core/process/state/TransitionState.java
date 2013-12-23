@@ -7,7 +7,6 @@ import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * This class is meant to handle state transitions that require special instructions
@@ -44,13 +43,18 @@ public class TransitionState implements GameState {
     }
 
     @Override
-    public Optional<Collection<ActionTrigger>> replaceActionTriggers() {
-        return Optional.of(triggers);
+    public boolean replaceInputs() {
+        return true;
     }
 
     @Override
-    public Optional<Collection<ActionRecognizer>> replaceActionRecognizers() {
-        return Optional.of(recognizers);
+    public Collection<ActionTrigger> replaceActionTriggers() {
+        return triggers;
+    }
+
+    @Override
+    public Collection<ActionRecognizer> replaceActionRecognizers() {
+        return recognizers;
     }
 
     @Override

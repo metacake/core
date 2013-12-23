@@ -4,7 +4,6 @@ import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.common.Disposable;
 import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
-import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.process.state.EndState;
@@ -12,9 +11,7 @@ import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Optional;
 
 /**
  * The {@code GameRunner} handles the main execution of the game loop.
@@ -58,7 +55,6 @@ public class GameRunner {
             while (isRunning && !state.isGameOver()) {
                 outputSystem.addToRenderQueue(state);
                 updateTriggers(state);
-                updateRecognizers(state);
                 state = state.tick(timer.update(), recognizers);
                 timer.block();
             }
@@ -88,26 +84,16 @@ public class GameRunner {
     }
 
     /**
-     * Update any {@link io.metacake.core.input.ActionTrigger} that need to be updated.
+     * Replace {@link io.metacake.core.input.ActionTrigger}s and {@link io.metacake.core.process.ActionRecognizer}s
+     * if need be
      * @param state The current state
      */
     private void updateTriggers(GameState state) {
-        Optional<Collection<ActionTrigger>> triggers = state.replaceActionTriggers();
-        if(triggers.isPresent()) {
+        if(state.replaceInputs()) {
             inputSystem.releaseActionTriggers();
-            triggers.get().forEach(inputSystem::bindActionTrigger);
-        }
-    }
-
-    /**
-     * Update any {@link io.metacake.core.process.ActionRecognizer}s that need to be updated.
-     * @param state The current state
-     */
-    private void updateRecognizers(GameState state) {
-        Optional<Collection<ActionRecognizer>> replaceRecognizers = state.replaceActionRecognizers();
-        if(replaceRecognizers.isPresent()) {
-            recognizers.clear();
-            replaceRecognizers.get().forEach(recognizer -> recognizers.put(recognizer.getName(), recognizer));
+            recognizers = new CustomizableMap<>(new HashMap<>());
+            state.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
+            state.replaceActionRecognizers().forEach(recognizer -> recognizers.put(recognizer.getName(), recognizer));
         }
     }
 
