@@ -6,6 +6,11 @@ import org.slf4j.LoggerFactory;
 /**
  * The TimedLoopThread is a thread meant to execute Runnable code on a set time step.
  *
+ * TimedLoopThread also provides a mechanism for stopping the thread without relying on the deprecated {@link Thread#stop()}.
+ * To do this TimedLoopThread sets itself to not repeat the loop, interrupts the running thread, and then blocks until
+ * the thread completes. Long running thread loops should periodically check to see if the thread had been interrupted to allow the
+ * thread to complete in a timely fashion.
+ *
  * @author florence
  * @author rpless
  */
