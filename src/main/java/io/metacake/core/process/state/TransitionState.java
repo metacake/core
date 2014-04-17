@@ -91,10 +91,10 @@ public class TransitionState implements GameState {
 
     public static class TransitionStateBuilder {
         private GameState state;
-        private ArrayList<ActionTrigger> triggers = new ArrayList<>();
-        private ArrayList<ActionRecognizer> recognizers = new ArrayList<>();
+        private Collection<ActionTrigger> triggers = new ArrayList<>();
+        private Collection<ActionRecognizer> recognizers = new ArrayList<>();
 
-        private TransitionStateBuilder(){}
+        private TransitionStateBuilder() {}
 
         public TransitionStateBuilder withState(GameState s) {
             state = s;
@@ -121,9 +121,9 @@ public class TransitionState implements GameState {
 
         public TransitionState transition() {
             if(state == null) {
-                throw new IllegalStateException("cannot transition without a state");
+                throw new IllegalStateException("Cannot transition without a state.");
             }
-            return TransitionState.transition(state,triggers,recognizers);
+            return TransitionState.transition(state, triggers, recognizers);
         }
     }
 }
