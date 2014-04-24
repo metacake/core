@@ -16,7 +16,7 @@ class OutputLayerSpec extends Specification {
     OutputLayer system
 
     def setup() {
-        Map devices = [(name1):outputDevice1, (name2):outputDevice2]
+        Map devices = [(name1): outputDevice1, (name2): outputDevice2]
         system = new OutputLayer(devices)
     }
 

@@ -15,7 +15,7 @@ class InputLayerSpec extends Specification {
         setup:
         InputDevice inputDevice1 = Mock InputDevice
         InputDevice inputDevice2 = Mock InputDevice
-        layer = [(name1) : inputDevice1, (name2) : inputDevice2]
+        layer = [(name1): inputDevice1, (name2): inputDevice2]
         ActionTrigger trigger = Mock ActionTrigger
         trigger.bindingDevice() >> name1
 

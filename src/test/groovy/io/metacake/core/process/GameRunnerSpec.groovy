@@ -73,7 +73,7 @@ class GameRunnerSpec extends Specification {
 
     @Timeout(10)
     def "Interrupts end game"() {
-        Thread t = new Thread({runner.mainLoop(state,5)})
+        Thread t = new Thread({runner.mainLoop(state, 5)})
         t.run()
         mainLoopLock.acquire()
         t.interrupt()
@@ -85,7 +85,7 @@ class GameRunnerSpec extends Specification {
         GameState runningState = new UserState() {
             int count = 0
             @Override
-            GameState tick(long delta, CustomizableMap map) {
+            GameState tick(long delta, ActionRecognizerPipe pip) {
                 count += 1
                 count > 1000 ? end : this
             }

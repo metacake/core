@@ -11,6 +11,7 @@ import io.metacake.core.output.OutputSystem
 import io.metacake.core.output.RenderingInstruction
 import io.metacake.core.output.RenderingInstructionBundle
 import io.metacake.core.output.system.OutputDevice
+import io.metacake.core.process.ActionRecognizerPipe
 import io.metacake.core.process.GameRunner
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
@@ -36,11 +37,11 @@ class BootstrapperSpec extends Specification{
         InputDevice input = Mock(InputDevice)
         OutputDevice output = Mock(OutputDevice)
 
-        Map<InputDeviceName,InputDevice> inputDevices = [(inputName):input]
-        Map<OutputDeviceName,OutputDevice> outputDevices = [(outputName):output]
+        Map<InputDeviceName,InputDevice> inputDevices = [(inputName): input]
+        Map<OutputDeviceName,OutputDevice> outputDevices = [(outputName): output]
 
         GameState state = Mock(GameState)
-        Bootstrapper bootstrapper = Spy(Bootstrapper,constructorArgs:[window,inputDevices,outputDevices,state])
+        Bootstrapper bootstrapper = Spy(Bootstrapper, constructorArgs:[window, inputDevices, outputDevices,state])
 
         InputSystem inputSystem = Mock(InputSystem)
         OutputSystem outputSystem = Mock(OutputSystem)
@@ -54,14 +55,14 @@ class BootstrapperSpec extends Specification{
         then: output.bind(window)
         then: bootstrapper.bootstrapInputSystem()
         then: bootstrapper.bootstrapOutputSystem()
-        then: bootstrapper.bootstrapProcessLayer(inputSystem,outputSystem)
+        then: bootstrapper.bootstrapProcessLayer(inputSystem, outputSystem)
         then:
         inputSystem.startInputLoops()
         outputSystem.startOutputLoops()
     }
 
     @Timeout(10)
-    def "did the shutdown occur sequentially and syncronously"() {
+    def "did the shutdown occur sequentially and synchronously"() {
         setup:
         Semaphore lock = new Semaphore(1)
         Object rawWindow = new Object()
@@ -79,9 +80,6 @@ class BootstrapperSpec extends Specification{
             CakeWindow w
             TimedLoopThread t
 
-            void render(Collection<RenderingInstruction> instructions) {}
-            OutputDeviceName name() {null}
-
             void startOutputLoop() {
                 lock.acquire()
                 t = new TimedLoopThread({
@@ -95,31 +93,30 @@ class BootstrapperSpec extends Specification{
                 })
                 t.start()
             }
-
-            void shutdown() {
-                t.requestStop()
-            }
+            OutputDeviceName name() {null}
+            void render(Collection<RenderingInstruction> instructions) {}
+            void shutdown() { t.requestStop() }
             void bind(CakeWindow cakeWindow) { this.w = cakeWindow }
         }
 
         GameState g = new UserState() {
             int i = 0
-            GameState tick(long delta, CustomizableMap map) {
+            GameState tick(long delta, ActionRecognizerPipe pipe) {
                 i += 1
                 i > 500 ? EndState.closeWith(this) : this
             }
             RenderingInstructionBundle renderingInstructions() { RenderingInstructionBundle.EMPTY_BUNDLE }
         }
 
-        def inputDevices = [(inputName):inputDevice]
-        def outputDevices = [(outputName):outputDevice]
-        Bootstrapper b = new Bootstrapper(window,inputDevices,outputDevices,g,1)
+        def inputDevices = [(inputName): inputDevice]
+        def outputDevices = [(outputName): outputDevice]
+        Bootstrapper b = new Bootstrapper(window, inputDevices, outputDevices, g, 1)
 
         when:
         b.setupAndLaunchGame()
         lock.acquire()
         then:
         expect window.getRawWindow(), nullValue()
-        expect testFailed.get(),is(false)//"Exception thrown from within render thread"
+        expect testFailed.get(), is(false)//"Exception thrown from within render thread"
     }
 }

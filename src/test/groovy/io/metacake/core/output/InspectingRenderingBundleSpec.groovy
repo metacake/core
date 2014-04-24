@@ -44,9 +44,7 @@ class InspectingRenderingBundleSpec extends Specification {
 
     def runBundleOnNull(RenderingInstructionBundle bundle) {
         bundle.iterator().toList().each { entry ->
-            entry.getValue().each {
-                it.render null
-            }
+            entry.getValue().each { it.render null }
         }
     }
 }
