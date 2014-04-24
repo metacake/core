@@ -29,7 +29,7 @@ public class GameRunner {
     private boolean isWindowDisposed = false;
     private CakeWindow window;
 
-    private CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers = new CustomizableMap<>(new HashMap<>());
+    private ActionRecognizerPipe inputPipe = new ActionRecognizerPipe();
 
     public GameRunner(InputSystem inputSystem, OutputSystem outputSystem, CakeWindow window) {
         this.inputSystem = inputSystem;
@@ -55,7 +55,7 @@ public class GameRunner {
             while (isRunning && !state.isGameOver()) {
                 outputSystem.addToRenderQueue(state);
                 updateTriggers(state);
-                state = state.tick(timer.update(), recognizers);
+                state = state.tick(timer.update(), inputPipe);
                 timer.block();
             }
         } catch (Exception e) {
@@ -91,9 +91,9 @@ public class GameRunner {
     private void updateTriggers(GameState state) {
         if(state.replaceInputs()) {
             inputSystem.releaseActionTriggers();
-            recognizers = new CustomizableMap<>(new HashMap<>());
+            inputPipe = new ActionRecognizerPipe();
             state.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
-            state.replaceActionRecognizers().forEach(recognizer -> recognizers.put(recognizer.getName(), recognizer));
+            state.replaceActionRecognizers().forEach(bucket -> inputPipe.register(bucket));
         }
     }
 

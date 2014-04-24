@@ -5,10 +5,10 @@ import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
+import io.metacake.core.process.ActionRecognizerPipe;
+import io.metacake.core.process.RecognizerBucketName;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * This class is meant to handle state transitions that require special instructions
@@ -25,7 +25,7 @@ public class TransitionState implements GameState {
      * @param r the {@link io.metacake.core.process.ActionRecognizer}s to replace
      * @return the transition state
      */
-    public static TransitionState transition(GameState g, Collection<ActionTrigger> l, Collection<ActionRecognizer> r) {
+    public static TransitionState transition(GameState g, Collection<ActionTrigger> l, Collection<RecognizerBucketName> r) {
         return new TransitionState(g, l, r);
     }
 
@@ -41,26 +41,26 @@ public class TransitionState implements GameState {
         return new TransitionStateBuilder().withTriggers(triggers);
     }
 
-    public static TransitionStateBuilder withRecognizers(ActionRecognizer... recognizers) {
-        return TransitionState.withRecognizers(Arrays.asList(recognizers));
+    public static <T extends ActionRecognizer> TransitionStateBuilder withBucket(RecognizerBucketName<T> bucket, T ... recognizers) {
+        return TransitionState.withBucket(bucket, Arrays.<T>asList(recognizers));
     }
 
-    public static TransitionStateBuilder withRecognizers(Collection<ActionRecognizer> recognizers) {
-        return new TransitionStateBuilder().withRecognizers(recognizers);
+    public static <T extends ActionRecognizer> TransitionStateBuilder withBucket(RecognizerBucketName<T> bucket, Collection<T> recognizers) {
+        return new TransitionStateBuilder().withBucket(bucket, recognizers);
     }
 
     private GameState next;
     private Collection<ActionTrigger> triggers;
-    private Collection<ActionRecognizer> recognizers;
+    private Collection<RecognizerBucketName> recognizers;
 
-    private TransitionState(GameState next, Collection<ActionTrigger> triggers, Collection<ActionRecognizer> recognizers) {
+    private TransitionState(GameState next, Collection<ActionTrigger> triggers, Collection<RecognizerBucketName> recognizers) {
         this.next = next;
         this.triggers = triggers;
         this.recognizers = recognizers;
     }
 
     @Override
-    public GameState tick(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers) {
+    public GameState tick(long delta, ActionRecognizerPipe pipe) {
         return next;
     }
 
@@ -75,7 +75,7 @@ public class TransitionState implements GameState {
     }
 
     @Override
-    public Collection<ActionRecognizer> replaceActionRecognizers() {
+    public Collection<RecognizerBucketName> replaceActionRecognizers() {
         return recognizers;
     }
 
@@ -92,7 +92,7 @@ public class TransitionState implements GameState {
     public static class TransitionStateBuilder {
         private GameState state;
         private Collection<ActionTrigger> triggers = new ArrayList<>();
-        private Collection<ActionRecognizer> recognizers = new ArrayList<>();
+        private Collection<RecognizerBucketName> recognizers = new HashSet<>();
 
         private TransitionStateBuilder() {}
 
@@ -101,12 +101,13 @@ public class TransitionState implements GameState {
             return this;
         }
 
-        public TransitionStateBuilder withRecognizers(ActionRecognizer... rs) {
-            return this.withRecognizers(Arrays.asList(rs));
+        public <T extends ActionRecognizer> TransitionStateBuilder withBucket(RecognizerBucketName<T> bucket,T ... rs) {
+            return this.withBucket(bucket, Arrays.<T>asList(rs));
         }
 
-        public TransitionStateBuilder withRecognizers(Collection<ActionRecognizer> rs) {
-            recognizers.addAll(rs);
+        public <T extends ActionRecognizer> TransitionStateBuilder withBucket(RecognizerBucketName<T> bucket, Collection<T> rs) {
+            rs.forEach(bucket::register);
+            recognizers.add(bucket);
             return this;
         }
 

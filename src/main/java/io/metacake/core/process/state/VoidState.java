@@ -4,6 +4,8 @@ import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
+import io.metacake.core.process.ActionRecognizerPipe;
+import io.metacake.core.process.RecognizerBucketName;
 
 import java.util.Collection;
 
@@ -20,7 +22,7 @@ public abstract class VoidState extends UserState {
     private GameState currentState = this;
 
     @Override
-    public final GameState tick(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers) {
+    public final GameState tick(long delta, ActionRecognizerPipe recognizers) {
         update(delta, recognizers);
         return currentState;
     }
@@ -35,7 +37,7 @@ public abstract class VoidState extends UserState {
      * @param triggers The {@link io.metacake.core.input.ActionTrigger}s to use on transition
      * @param recognizers The {@link io.metacake.core.process.ActionRecognizer}s to be use on a transition
      */
-    public void setTransition(GameState gameState, Collection<ActionTrigger> triggers, Collection<ActionRecognizer> recognizers) {
+    public void setTransition(GameState gameState, Collection<ActionTrigger> triggers, Collection<RecognizerBucketName> recognizers) {
         currentState = TransitionState.transition(gameState, triggers, recognizers);
     }
 
@@ -45,5 +47,5 @@ public abstract class VoidState extends UserState {
      * @param delta The number of milliseconds since update was last called.
      * @param recognizers The bundle of {@link io.metacake.core.process.ActionRecognizer}s 
      */
-    public abstract void update(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers);
+    public abstract void update(long delta, ActionRecognizerPipe recognizers);
 }

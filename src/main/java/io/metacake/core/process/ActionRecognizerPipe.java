@@ -1,6 +1,4 @@
-package io.metacake.core.input.channel;
-
-import io.metacake.core.process.ActionRecognizer;
+package io.metacake.core.process;
 
 import java.util.Collection;
 
@@ -15,6 +13,15 @@ public class ActionRecognizerPipe {
      * @return the recognizers emptied from the bucket
      */
     public <T extends ActionRecognizer> Collection<T> emptyBucket(RecognizerBucketName<T> n) {
-       return n.empty();
+       return n.get();
+    }
+
+    /**
+     * register the recognizer bucket
+     * @param bucketName the bucket
+     * @param <T> the type of the recognizer
+     */
+    protected <T extends ActionRecognizer> void register(RecognizerBucketName<T> bucketName) {
+        //TODO
     }
 }

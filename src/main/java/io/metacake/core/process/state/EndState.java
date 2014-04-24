@@ -5,6 +5,8 @@ import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerName;
+import io.metacake.core.process.ActionRecognizerPipe;
+import io.metacake.core.process.RecognizerBucketName;
 
 import java.util.Collection;
 
@@ -49,7 +51,7 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public GameState tick(long delta, CustomizableMap<ActionRecognizerName, ActionRecognizer> recognizers) {
+    public GameState tick(long delta, ActionRecognizerPipe recognizers) {
         return this;
     }
 
@@ -64,7 +66,7 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public Collection<ActionRecognizer> replaceActionRecognizers() {
+    public Collection<RecognizerBucketName> replaceActionRecognizers() {
         throw new UnsupportedOperationException();
     }
 
