@@ -1,11 +1,14 @@
 package io.metacake.core.process;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * This class provides access to the current set of active recognizers.
  */
 public class ActionRecognizerPipe {
+    private Collection<RecognizerBucketName> registry = new HashSet<>();
     /**
      * get the bucket with the given name, and empty it
      * @param n the name of the bucket
@@ -22,6 +25,10 @@ public class ActionRecognizerPipe {
      * @param <T> the type of the recognizer
      */
     protected <T extends ActionRecognizer> void register(RecognizerBucketName<T> bucketName) {
-        //TODO
+        registry.add(bucketName);
+    }
+
+    protected void clear() {
+        registry.forEach(RecognizerBucketName::clear);
     }
 }

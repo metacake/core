@@ -91,6 +91,7 @@ public class GameRunner {
     private void updateTriggers(GameState state) {
         if(state.replaceInputs()) {
             inputSystem.releaseActionTriggers();
+            inputPipe.clear();
             inputPipe = new ActionRecognizerPipe();
             state.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
             state.replaceActionRecognizers().forEach(bucket -> inputPipe.register(bucket));

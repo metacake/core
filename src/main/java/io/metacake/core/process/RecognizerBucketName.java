@@ -32,4 +32,12 @@ public final class RecognizerBucketName<T extends ActionRecognizer> extends Symb
     public void register(T e) {
         bucket.add(e);
     }
+
+    /**
+     * SYSTEM CALL ONLY
+     * empty the bucket completely (deregister)
+     */
+    public void clear() {
+       bucket = new LinkedList<>();
+    }
 }
