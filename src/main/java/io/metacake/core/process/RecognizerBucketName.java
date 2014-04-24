@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 /**
- * Name for Buckets, used to reference them via the {@link RecognizerBucketName}
+ * Name for Buckets, used to reference them via the {@link RecognizerBucketName}.
  */
 public final class RecognizerBucketName<T extends ActionRecognizer> extends Symbol {
     private Collection<T> bucket = new LinkedList<>();

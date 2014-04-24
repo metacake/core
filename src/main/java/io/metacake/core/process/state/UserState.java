@@ -1,7 +1,6 @@
 package io.metacake.core.process.state;
 
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.RecognizerBucketName;
 
 import java.util.Collection;

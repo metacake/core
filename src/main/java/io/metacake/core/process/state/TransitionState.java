@@ -1,14 +1,15 @@
 package io.metacake.core.process.state;
 
-import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.ActionRecognizer;
-import io.metacake.core.process.ActionRecognizerName;
 import io.metacake.core.process.ActionRecognizerPipe;
 import io.metacake.core.process.RecognizerBucketName;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * This class is meant to handle state transitions that require special instructions

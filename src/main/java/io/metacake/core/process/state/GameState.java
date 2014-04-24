@@ -37,7 +37,7 @@ public interface GameState extends Renderable {
 
     /**
      * will only be called if {@link GameState#replaceInputs()} is true
-     * @return a new collection of {@link io.metacake.core.process.ActionRecognizer}s that are now in use.
+     * @return a new collection of {@link io.metacake.core.process.RecognizerBucketName}s that are now in use.
      */
     public Collection<RecognizerBucketName> replaceActionRecognizers();
 

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
- * This class provides access to the current set of active recognizers.
+ * This class provides access to the current set of {@link io.metacake.core.process.ActionRecognizer}s.
  */
 public class ActionRecognizerPipe {
     private Collection<RecognizerBucketName> registry = new HashSet<>();
