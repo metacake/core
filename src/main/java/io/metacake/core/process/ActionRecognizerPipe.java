@@ -1,5 +1,7 @@
 package io.metacake.core.process;
 
+import io.metacake.core.common.CustomizableMap;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -15,7 +17,7 @@ public class ActionRecognizerPipe {
      * @param <T> the type of the recognizers to be returned
      * @return the recognizers emptied from the bucket
      */
-    public <T extends ActionRecognizer> Collection<T> emptyBucket(RecognizerBucketName<T> n) {
+    public <T extends ActionRecognizer> CustomizableMap<ActionRecognizerName,T> emptyBucket(RecognizerBucketName<T> n) {
        return n.get();
     }
 
