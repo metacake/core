@@ -3,16 +3,16 @@ package io.metacake.core.process;
 import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.common.Symbol;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 
 /**
  * Name for Buckets, used to reference them via the {@link RecognizerBucketName}.
+ *
+ * @author florence
+ * @author rpless
  */
 public final class RecognizerBucketName<T extends ActionRecognizer> extends Symbol {
-    private CustomizableMap<ActionRecognizerName,T> bucket = new CustomizableMap<>(new HashMap<>());
+    private CustomizableMap<ActionRecognizerName, T> bucket = new CustomizableMap<>(new HashMap<>());
 
     public RecognizerBucketName() {}
 
@@ -23,12 +23,12 @@ public final class RecognizerBucketName<T extends ActionRecognizer> extends Symb
     /**
      * @return the contents of the bucket this references
      */
-    protected CustomizableMap<ActionRecognizerName,T> get() {
+    protected CustomizableMap<ActionRecognizerName, T> get() {
         return bucket;
     }
 
     /**
-     * SYSTEM CALL ONLY
+     * This is an internal library method. Do not use it.
      * add the recognizer to this bucket
      * @param e the recognizer
      */
@@ -37,7 +37,7 @@ public final class RecognizerBucketName<T extends ActionRecognizer> extends Symb
     }
 
     /**
-     * SYSTEM CALL ONLY
+     * This is an internal library method. Do not use it.
      * empty the bucket completely (deregister)
      */
     public void clear() {

@@ -1,6 +1,5 @@
 package io.metacake.core.process;
 
-import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.common.Disposable;
 import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
@@ -10,8 +9,6 @@ import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
 
 /**
  * The {@code GameRunner} handles the main execution of the game loop.
@@ -94,7 +91,7 @@ public class GameRunner {
             inputPipe.clear();
             inputPipe = new ActionRecognizerPipe();
             state.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
-            state.replaceActionRecognizers().forEach(bucket -> inputPipe.register(bucket));
+            state.replaceActionRecognizers().forEach(inputPipe::register);
         }
     }
 
