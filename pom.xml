@@ -7,7 +7,7 @@
     <!-- The Basics -->
     <groupId>metacake</groupId>
     <artifactId>metacake</artifactId>
-    <version>b1.0.0</version>
+    <version>b1.1.0</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
