@@ -20,7 +20,7 @@ Maybe the vanilla layers are just fine for you; you just want to make a game. Yo
 
 ## Project Dependencies ##
 Dependencies:
-+ Java 8 Build b106 (Note: This is very much subject to change, as we will continue to move to more stable versions of Java 8)
++ Java 8 update 5  (Note: This is very much subject to change, as we will continue to move to more stable versions of Java 8)
 + Maven 3 (Note: We are waiting for Groovy/Gradle to support Java 8)
 
 ## Building CAKE ##
