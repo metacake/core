@@ -1,10 +1,6 @@
 package io.metacake.core.process.state;
 
-import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.process.ActionRecognizerPipe;
-import io.metacake.core.process.RecognizerBucketName;
-
-import java.util.Collection;
 
 /**
  * A {@code VoidState} is a {@link UserState} that allows for an imperative style
@@ -31,11 +27,9 @@ public abstract class VoidState extends UserState {
      *     method. This method only sets what the state will be on the next tick cycle. It does not immediately
      *     transition the state.
      * @param gameState The {@link io.metacake.core.process.state.GameState} to transition to
-     * @param triggers The {@link io.metacake.core.input.ActionTrigger}s to use on transition
-     * @param recognizers The {@link io.metacake.core.process.ActionRecognizer}s to be use on a transition
      */
-    public void setTransition(GameState gameState, Collection<ActionTrigger> triggers, Collection<RecognizerBucketName> recognizers) {
-        currentState = TransitionState.transition(gameState, triggers, recognizers);
+    public void setTransition(GameState gameState) {
+        currentState = gameState;
     }
 
     /**
