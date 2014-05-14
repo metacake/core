@@ -28,7 +28,7 @@ class RenderingInstructionBundleSpec extends Specification {
 
     def "Can add multiple Instructions"() {
         setup:
-        bundle.add testOutputDeviceName, one, two, three
+        bundle.add(testOutputDeviceName, one).add(testOutputDeviceName, two, three)
 
         expect:
         bundle.getInstructions().size() == 1
