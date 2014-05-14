@@ -6,8 +6,8 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 class InputLayerSpec extends Specification {
-    @Shared InputDeviceName name1 = new InputDeviceName('n1')
-    @Shared InputDeviceName name2 = new InputDeviceName('n2')
+    @Shared InputDeviceName name1 = new InputDeviceName()
+    @Shared InputDeviceName name2 = new InputDeviceName('n1')
 
     InputLayer layer
 
