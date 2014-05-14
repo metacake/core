@@ -2,6 +2,7 @@
 "You can have your Cake and eat it too."
 
 [![Build Status](https://travis-ci.org/metacake/core.png?branch=dev)](https://travis-ci.org/metacake/core)
+[![Coverage Status](https://coveralls.io/repos/metacake/core/badge.png?branch=dev)](https://coveralls.io/r/metacake/core?branch=dev)
 
 ## Mission Statement ##
 The goal of Cake is to provide a pluggable cross platform framework for creating games and game engines.
