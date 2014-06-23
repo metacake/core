@@ -1,9 +1,9 @@
 package io.metacake.core.process.state;
 
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.ActionRecognizer;
 import io.metacake.core.process.ActionRecognizerPipe;
+import io.metacake.core.process.Bundle;
 import io.metacake.core.process.RecognizerBucketName;
 
 import java.util.ArrayList;
@@ -61,8 +61,8 @@ public class TransitionState implements GameState {
     }
 
     @Override
-    public GameState tick(long delta, ActionRecognizerPipe pipe) {
-        return next;
+    public Bundle tick(long delta, ActionRecognizerPipe pipe) {
+        return Bundle.getBundle().withState(next);
     }
 
     @Override
@@ -78,11 +78,6 @@ public class TransitionState implements GameState {
     @Override
     public Collection<RecognizerBucketName> replaceActionRecognizers() {
         return recognizers;
-    }
-
-    @Override
-    public RenderingInstructionBundle renderingInstructions() {
-        return RenderingInstructionBundle.EMPTY_BUNDLE;
     }
 
     @Override

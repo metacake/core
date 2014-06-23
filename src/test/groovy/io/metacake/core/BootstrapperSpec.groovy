@@ -1,6 +1,5 @@
 package io.metacake.core
 
-import io.metacake.core.common.CustomizableMap
 import io.metacake.core.common.TimedLoopThread
 import io.metacake.core.common.window.CakeWindow
 import io.metacake.core.input.InputDeviceName
@@ -12,6 +11,7 @@ import io.metacake.core.output.RenderingInstruction
 import io.metacake.core.output.RenderingInstructionBundle
 import io.metacake.core.output.system.OutputDevice
 import io.metacake.core.process.ActionRecognizerPipe
+import io.metacake.core.process.Bundle
 import io.metacake.core.process.GameRunner
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
@@ -101,11 +101,10 @@ class BootstrapperSpec extends Specification{
 
         GameState g = new UserState() {
             int i = 0
-            GameState tick(long delta, ActionRecognizerPipe pipe) {
+            Bundle tick(long delta, ActionRecognizerPipe pipe) {
                 i += 1
-                i > 500 ? EndState.closeWith(this) : this
+                Bundle.getBundle().withState(i > 500 ? EndState.close() : this)
             }
-            RenderingInstructionBundle renderingInstructions() { RenderingInstructionBundle.EMPTY_BUNDLE }
         }
 
         def inputDevices = [(inputName): inputDevice]

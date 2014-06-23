@@ -12,7 +12,7 @@ import java.util.*;
  * @author florence
  * @author rpless
  */
-public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDeviceName, Collection<RenderingInstruction>>> {
+public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDeviceName, Collection<RenderingInstruction>>>, Renderable {
     protected CustomizableMap<OutputDeviceName, Collection<RenderingInstruction>> instructions;
 
     /**
@@ -85,5 +85,10 @@ public class RenderingInstructionBundle implements Iterable<Map.Entry<OutputDevi
     @Override
     public Iterator<Map.Entry<OutputDeviceName, Collection<RenderingInstruction>>> iterator() {
         return this.getInstructions().iterator();
+    }
+
+    @Override
+    public RenderingInstructionBundle renderingInstructions() {
+        return this;
     }
 }

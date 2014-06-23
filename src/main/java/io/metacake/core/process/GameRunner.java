@@ -5,6 +5,7 @@ import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
+import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
@@ -45,14 +46,18 @@ public class GameRunner {
      * @param interval the number of milliseconds requested to be between the start of each loop.
      */
     public void mainLoop(GameState state, long interval) {
+        RenderingInstructionBundle inst = RenderingInstructionBundle.EMPTY_BUNDLE;
         logger.info("starting main loop");
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
         try {
             while (isRunning && !state.isGameOver()) {
-                outputSystem.addToRenderQueue(state);
+                outputSystem.addToRenderQueue(inst);
                 updateTriggers(state);
-                state = state.tick(timer.update(), inputPipe);
+                Bundle bundle = state.tick(timer.update(), inputPipe);
+                state = bundle.state();
+                inst = bundle.renderingInstructions();
+                Bundle.reset();
                 timer.block();
             }
         } catch (Exception e) {

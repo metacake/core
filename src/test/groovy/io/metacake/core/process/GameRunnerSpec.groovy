@@ -1,6 +1,5 @@
 package io.metacake.core.process
 
-import io.metacake.core.common.CustomizableMap
 import io.metacake.core.common.window.CakeWindow
 import io.metacake.core.input.InputSystem
 import io.metacake.core.output.OutputSystem
@@ -26,7 +25,7 @@ class GameRunnerSpec extends Specification {
         mainLoopLock.acquire()
         state.tick(_, _) >> { time ->
             mainLoopLock.release()
-            state
+            Bundle.getBundle().withState(state)
         }
         state.renderingInstructions() >> RenderingInstructionBundle.EMPTY_BUNDLE
     }
@@ -49,8 +48,8 @@ class GameRunnerSpec extends Specification {
     }
 
     @Timeout(10)
-    def "EndState.closeWith disposes systems and window"() {
-        when: runGameWithEndState(EndState.closeWith(state))
+    def "EndState.close disposes systems and window"() {
+        when: runGameWithEndState(EndState.close())
         then:
         1*is.dispose()
         1*os.dispose()
@@ -59,7 +58,7 @@ class GameRunnerSpec extends Specification {
 
     @Timeout(10)
     def "EngState.endWith disposes ONLY systems, and stop disposes only window"() {
-        when: runGameWithEndState(EndState.endWith(state))
+        when: runGameWithEndState(EndState.end())
         then:
         1*is.dispose()
         1*os.dispose()
@@ -85,13 +84,9 @@ class GameRunnerSpec extends Specification {
         GameState runningState = new UserState() {
             int count = 0
             @Override
-            GameState tick(long delta, ActionRecognizerPipe pip) {
+            Bundle tick(long delta, ActionRecognizerPipe pip) {
                 count += 1
-                count > 1000 ? end : this
-            }
-            @Override
-            RenderingInstructionBundle renderingInstructions() {
-                RenderingInstructionBundle.EMPTY_BUNDLE
+                Bundle.getBundle().withState(count > 1000 ? end : this)
             }
         }
         Thread t = new Thread({ runner.mainLoop(runningState,loopTime) })

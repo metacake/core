@@ -1,13 +1,12 @@
 package io.metacake.core.process.state
 
-import io.metacake.core.output.RenderingInstructionBundle
 import io.metacake.core.process.ActionRecognizerPipe
 import spock.lang.Specification
 
 class EndStateSpec extends Specification {
 
-    EndState closedEndState = ((EndState) EndState.closeWith(Mock(GameState)))
-    EndState endedEndState = ((EndState) EndState.endWith(Mock(GameState)))
+    EndState closedEndState = ((EndState) EndState.close())
+    EndState endedEndState = ((EndState) EndState.end())
 
     def "endWith does not close the window"() {
         expect: !endedEndState.shouldCloseWindow()
@@ -19,14 +18,14 @@ class EndStateSpec extends Specification {
 
     def "If tick is somehow called it will always return itself"() {
         expect:
-        closedEndState.tick(50, new ActionRecognizerPipe()) == closedEndState
-        endedEndState.tick(50, new ActionRecognizerPipe()) == endedEndState
+        closedEndState.tick(50, new ActionRecognizerPipe()).state() == closedEndState
+        endedEndState.tick(50, new ActionRecognizerPipe()).state() == endedEndState
     }
 
     def "If replaceInputs is somehow called it always returns false"() {
         expect:
-        !closedEndState.tick(50, new ActionRecognizerPipe()).replaceInputs()
-        !endedEndState.tick(50, new ActionRecognizerPipe()).replaceInputs()
+        !closedEndState.tick(50, new ActionRecognizerPipe()).state().replaceInputs()
+        !endedEndState.tick(50, new ActionRecognizerPipe()).state().replaceInputs()
     }
 
     def "Replacing Action triggers is unsupported"() {
@@ -37,14 +36,5 @@ class EndStateSpec extends Specification {
     def "Replacing Action recognizers is unsupported"() {
         when: closedEndState.replaceActionRecognizers()
         then: thrown UnsupportedOperationException
-    }
-
-    def "Calling for a RenderInstructionBundle delegates to the given GameState"() {
-        setup:
-        GameState state = Mock GameState
-        RenderingInstructionBundle bundle = new RenderingInstructionBundle()
-        state.renderingInstructions() >> bundle
-
-        expect: EndState.endWith(state).renderingInstructions() == bundle
     }
 }

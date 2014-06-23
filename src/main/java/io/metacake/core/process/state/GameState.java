@@ -3,6 +3,7 @@ package io.metacake.core.process.state;
 import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.output.Renderable;
 import io.metacake.core.process.ActionRecognizerPipe;
+import io.metacake.core.process.Bundle;
 import io.metacake.core.process.RecognizerBucketName;
 
 import java.util.Collection;
@@ -12,7 +13,7 @@ import java.util.Collection;
  * @author florence
  * @author rpless
  */
-public interface GameState extends Renderable {
+public interface GameState {
 
     /**
      * Perform one cycle of the game loop.
@@ -20,7 +21,7 @@ public interface GameState extends Renderable {
      * @param pipe The pipe with all the buckets of ActionRecognizers
      * @return Returns the next state, which could be the same state.
      */
-    public GameState tick(long delta, ActionRecognizerPipe pipe);
+    public Bundle tick(long delta, ActionRecognizerPipe pipe);
 
     // TODO: mechanism for adding and removing individual triggers (do we want bundles?)
 
