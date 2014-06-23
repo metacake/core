@@ -5,14 +5,14 @@ import io.metacake.core.process.ActionRecognizerPipe;
 import io.metacake.core.process.Transition;
 
 /**
- * A {@code VoidState} is a {@link UserState} that allows for an imperative style
+ * A {@code VoidState} is a {@link GameState} that allows for an imperative style
  * of programming in {@link GameState}s.
  * <p>
  *      Instead of overriding the {@link io.metacake.core.process.state.GameState#tick(long, io.metacake.core.process.ActionRecognizerPipe)} method
  *      a user overrides the {@link io.metacake.core.process.state.VoidState#update(long, io.metacake.core.process.ActionRecognizerPipe)} method.
  *      To transition to another state,
  */
-public abstract class VoidState extends UserState {
+public abstract class VoidState implements GameState{
 
     private GameState currentState = this;
     private RenderingInstructionBundle currentInstructions = RenderingInstructionBundle.EMPTY_BUNDLE;

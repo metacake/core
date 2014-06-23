@@ -1,9 +1,6 @@
 package io.metacake.core.process.state;
 
-import io.metacake.core.input.ActionTrigger;
 import io.metacake.core.process.*;
-
-import java.util.Collection;
 
 /**
  * An {@code EndState} will force the game to end.
@@ -11,14 +8,14 @@ import java.util.Collection;
  * @author rpless
  */
 public final class EndState implements GameState {
-    private boolean closeWindow;
+    private Type type;
 
     /**
      * End the game, using the given state to render. Do not close the window.
      * @return the end state
      */
     public static GameState end() {
-        return new EndState(false);
+        return new EndState(Type.END);
     }
 
     /**
@@ -26,19 +23,11 @@ public final class EndState implements GameState {
      * @return the end state
      */
     public static GameState close() {
-        return new EndState(true);
+        return new EndState(Type.CLOSE);
     }
 
-    private EndState(boolean closeWindow) {
-        this.closeWindow = closeWindow;
-    }
-
-    /**
-     * Internal method. Do not use.
-     * @return Should the window close?
-     */
-    public final boolean shouldCloseWindow() {
-        return this.closeWindow;
+    private EndState(Type type) {
+        this.type = type;
     }
 
     @Override
@@ -47,7 +36,7 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public boolean isGameOver() {
-        return true;
+    public Type type() {
+        return type;
     }
 }

@@ -19,7 +19,21 @@ public interface GameState {
     public Transition tick(long delta, ActionRecognizerPipe pipe);
 
     /**
-     * @return true if the game is over
+     * @return the type of state.
      */
-    public boolean isGameOver();
+    default Type type() {
+        return Type.NORMAL;
+    };
+
+    /**
+     * Describes the kinds of states.
+     * {@link io.metacake.core.process.state.GameState.Type#NORMAL} is for runtime states
+     * {@link io.metacake.core.process.state.GameState.Type#END} is for end states
+     * {@link io.metacake.core.process.state.GameState.Type#CLOSE} is for states that close the window
+     */
+    public enum Type {
+        NORMAL,
+        END,
+        CLOSE
+    };
 }

@@ -8,12 +8,12 @@ class EndStateSpec extends Specification {
     EndState closedEndState = ((EndState) EndState.close())
     EndState endedEndState = ((EndState) EndState.end())
 
-    def "endWith does not close the window"() {
-        expect: !endedEndState.shouldCloseWindow()
+    def "end does not close the window"() {
+        expect: endedEndState.type() == GameState.Type.END
     }
 
     def "closeWith should close the window"() {
-        expect: closedEndState.shouldCloseWindow()
+        expect: closedEndState.type() == GameState.Type.CLOSE
     }
 
     def "If tick is somehow called it will always return itself"() {

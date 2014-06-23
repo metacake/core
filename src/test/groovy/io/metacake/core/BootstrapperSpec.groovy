@@ -14,7 +14,7 @@ import io.metacake.core.process.GameRunner
 import io.metacake.core.process.Transition
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
-import io.metacake.core.process.state.UserState
+
 import spock.lang.Specification
 import spock.lang.Timeout
 
@@ -99,7 +99,7 @@ class BootstrapperSpec extends Specification{
             void bind(CakeWindow cakeWindow) { this.w = cakeWindow }
         }
 
-        GameState g = new UserState() {
+        GameState g = new GameState() {
             int i = 0
             Transition tick(long delta, ActionRecognizerPipe pipe) {
                 i += 1

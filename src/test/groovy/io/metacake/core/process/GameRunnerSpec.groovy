@@ -5,7 +5,7 @@ import io.metacake.core.input.InputSystem
 import io.metacake.core.output.OutputSystem
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
-import io.metacake.core.process.state.UserState
+
 import spock.lang.Specification
 import spock.lang.Timeout
 
@@ -16,7 +16,7 @@ class GameRunnerSpec extends Specification {
     OutputSystem os = Mock(OutputSystem)
     CakeWindow window = Mock(CakeWindow)
     GameRunner runner = new GameRunner(is, os, window)
-    GameState state = Spy(UserState)
+    GameState state = Spy(GameState)
     Semaphore mainLoopLock = new Semaphore(1)
 
 
@@ -26,6 +26,7 @@ class GameRunnerSpec extends Specification {
             mainLoopLock.release()
             Transition.to(state)
         }
+        state.type() >> { GameState.Type.NORMAL }
     }
 
     @Timeout(10)
@@ -51,7 +52,7 @@ class GameRunnerSpec extends Specification {
         then:
         1*is.dispose()
         1*os.dispose()
-        1* window.dispose()
+        1*window.dispose()
     }
 
     @Timeout(10)
@@ -60,12 +61,12 @@ class GameRunnerSpec extends Specification {
         then:
         1*is.dispose()
         1*os.dispose()
-        0* window.dispose()
+        0*window.dispose()
         when: runner.stop()
         then:
         0*is.dispose()
         0*os.dispose()
-        1* window.dispose()
+        1*window.dispose()
     }
 
     @Timeout(10)
@@ -79,7 +80,7 @@ class GameRunnerSpec extends Specification {
 
     def runGameWithEndState(GameState end) {
         int loopTime = 5 //milliseconds
-        GameState runningState = new UserState() {
+        GameState runningState = new GameState() {
             int count = 0
             @Override
             Transition tick(long delta, ActionRecognizerPipe pip) {

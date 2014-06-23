@@ -5,7 +5,6 @@ import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
-import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +48,7 @@ public class GameRunner {
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
         try {
-            while (isRunning && !transition.state().isGameOver()) {
+            while (isRunning && transition.state().type() == GameState.Type.NORMAL) {
                 outputSystem.addToRenderQueue(transition.renderingInstructions());
                 updateTriggers(transition);
                 transition = transition.state().tick(timer.update(), inputPipe);
@@ -127,6 +126,6 @@ public class GameRunner {
      * @return returns true if the window should close
      */
     private boolean shouldCloseWindow(GameState state) {
-        return !isRunning || (state instanceof EndState && ((EndState) state).shouldCloseWindow());
+        return !isRunning || state.type() == GameState.Type.CLOSE;
     }
 }
