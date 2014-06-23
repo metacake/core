@@ -8,11 +8,10 @@ import io.metacake.core.input.system.InputDevice
 import io.metacake.core.output.OutputDeviceName
 import io.metacake.core.output.OutputSystem
 import io.metacake.core.output.RenderingInstruction
-import io.metacake.core.output.RenderingInstructionBundle
 import io.metacake.core.output.system.OutputDevice
 import io.metacake.core.process.ActionRecognizerPipe
-import io.metacake.core.process.Bundle
 import io.metacake.core.process.GameRunner
+import io.metacake.core.process.Transition
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
 import io.metacake.core.process.state.UserState
@@ -41,7 +40,8 @@ class BootstrapperSpec extends Specification{
         Map<OutputDeviceName,OutputDevice> outputDevices = [(outputName): output]
 
         GameState state = Mock(GameState)
-        Bootstrapper bootstrapper = Spy(Bootstrapper, constructorArgs:[window, inputDevices, outputDevices,state])
+        Transition initialTransition = Transition.to(state)
+        Bootstrapper bootstrapper = Spy(Bootstrapper, constructorArgs:[window, inputDevices, outputDevices,initialTransition])
 
         InputSystem inputSystem = Mock(InputSystem)
         OutputSystem outputSystem = Mock(OutputSystem)
@@ -101,15 +101,16 @@ class BootstrapperSpec extends Specification{
 
         GameState g = new UserState() {
             int i = 0
-            Bundle tick(long delta, ActionRecognizerPipe pipe) {
+            Transition tick(long delta, ActionRecognizerPipe pipe) {
                 i += 1
-                Bundle.getBundle().withState(i > 500 ? EndState.close() : this)
+                Transition.to(i > 500 ? EndState.close() : this)
             }
         }
 
         def inputDevices = [(inputName): inputDevice]
         def outputDevices = [(outputName): outputDevice]
-        Bootstrapper b = new Bootstrapper(window, inputDevices, outputDevices, g, 1)
+        Transition t = Transition.to(g)
+        Bootstrapper b = new Bootstrapper(window, inputDevices, outputDevices, t, 1)
 
         when:
         b.setupAndLaunchGame()

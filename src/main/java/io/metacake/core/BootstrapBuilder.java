@@ -5,6 +5,7 @@ import io.metacake.core.input.InputDeviceName;
 import io.metacake.core.input.system.InputDevice;
 import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.system.OutputDevice;
+import io.metacake.core.process.Transition;
 import io.metacake.core.process.state.GameState;
 
 import java.util.Arrays;
@@ -26,8 +27,8 @@ public class BootstrapBuilder {
     private CakeWindow window;
     private Map<InputDeviceName, InputDevice> inputDevices;
     private Map<OutputDeviceName, OutputDevice> outputDevices;
-    private GameState initialState;
     private long loopTime;
+    private Transition transition;
 
     public BootstrapBuilder() {
         inputDevices = new HashMap<>();
@@ -45,7 +46,7 @@ public class BootstrapBuilder {
      */
     public Bootstrapper createBootstrap() {
         validateCreateBootstrapInputs();
-        return new Bootstrapper(window, inputDevices, outputDevices, initialState, loopTime);
+        return new Bootstrapper(window, inputDevices, outputDevices, transition, loopTime);
     }
 
     /**
@@ -54,7 +55,7 @@ public class BootstrapBuilder {
     private void validateCreateBootstrapInputs() {
         if(window == null) {
             throw new IllegalStateException("Cannot create bootstrapper without a window");
-        } else if (initialState == null) {
+        } else if (transition == null) {
             throw new IllegalStateException("Cannot create bootstrapper without an initial state");
         } else if (outputDevices.isEmpty()) {
             throw new IllegalStateException("Cannot create bootstrapper without an output device");
@@ -93,11 +94,11 @@ public class BootstrapBuilder {
     }
 
     /**
-     * @param initialState The {@link GameState}s that this will use to generate a {@link Bootstrapper}.
+     * @param transition instructs the boostrapper how to transition to the initial state
      * @return Returns this {@link BootstrapBuilder}
      */
-    public BootstrapBuilder withInitialState(GameState initialState) {
-        this.initialState = initialState;
+    public BootstrapBuilder withInitialTransition(Transition transition) {
+        this.transition = transition;
         return this;
     }
 

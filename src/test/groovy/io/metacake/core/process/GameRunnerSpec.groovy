@@ -3,7 +3,6 @@ package io.metacake.core.process
 import io.metacake.core.common.window.CakeWindow
 import io.metacake.core.input.InputSystem
 import io.metacake.core.output.OutputSystem
-import io.metacake.core.output.RenderingInstructionBundle
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
 import io.metacake.core.process.state.UserState
@@ -25,7 +24,7 @@ class GameRunnerSpec extends Specification {
         mainLoopLock.acquire()
         state.tick(_, _) >> { time ->
             mainLoopLock.release()
-            Bundle.getBundle().withState(state)
+            Transition.to(state)
         }
     }
 
@@ -33,7 +32,7 @@ class GameRunnerSpec extends Specification {
     def "runner.stop actually stops the game and disposes systems+window"() {
         when:
         int loopTime = 5
-        Thread t = new Thread({ runner.mainLoop(state,loopTime) })
+        Thread t = new Thread({ runner.mainLoop(Transition.to(state),loopTime) })
 
         t.start()
         mainLoopLock.acquire()
@@ -56,7 +55,7 @@ class GameRunnerSpec extends Specification {
     }
 
     @Timeout(10)
-    def "EngState.endWith disposes ONLY systems, and stop disposes only window"() {
+    def "EndState.end disposes ONLY systems, and stop disposes only window"() {
         when: runGameWithEndState(EndState.end())
         then:
         1*is.dispose()
@@ -83,12 +82,12 @@ class GameRunnerSpec extends Specification {
         GameState runningState = new UserState() {
             int count = 0
             @Override
-            Bundle tick(long delta, ActionRecognizerPipe pip) {
+            Transition tick(long delta, ActionRecognizerPipe pip) {
                 count += 1
-                Bundle.getBundle().withState(count > 1000 ? end : this)
+                Transition.to(count > 1000 ? end : this)
             }
         }
-        Thread t = new Thread({ runner.mainLoop(runningState,loopTime) })
+        Thread t = new Thread({ runner.mainLoop(Transition.to(runningState),loopTime) })
 
         t.run()
         t.join()

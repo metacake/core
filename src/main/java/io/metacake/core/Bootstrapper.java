@@ -9,8 +9,8 @@ import io.metacake.core.output.OutputDeviceName;
 import io.metacake.core.output.OutputSystem;
 import io.metacake.core.output.system.OutputDevice;
 import io.metacake.core.output.system.OutputLayer;
-import io.metacake.core.process.Bundle;
 import io.metacake.core.process.GameRunner;
+import io.metacake.core.process.Transition;
 import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,20 +32,20 @@ public class Bootstrapper {
     private CakeWindow window;
     private Map<InputDeviceName,InputDevice> inputs;
     private Map<OutputDeviceName, OutputDevice> outputs;
-    private GameState initialState;
+    private Transition transition;
     private long loopTime;
 
     Bootstrapper(CakeWindow window, Map<InputDeviceName, InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
-                        GameState g) {
-        this(window, inputs, outputs, g, DEFAULT_LOOP_MILLIS);
+                        Transition t){
+        this(window, inputs, outputs, t, DEFAULT_LOOP_MILLIS);
     }
 
     Bootstrapper(CakeWindow window, Map<InputDeviceName, InputDevice> inputs, Map<OutputDeviceName, OutputDevice> outputs,
-                        GameState g, long loopTime) {
+                        Transition t, long loopTime) {
         this.window = window;
         this.inputs = inputs;
         this.outputs = outputs;
-        this.initialState = g;
+        this.transition = t;
         this.loopTime = loopTime;
     }
 
@@ -54,7 +54,7 @@ public class Bootstrapper {
      */
     public void setupAndLaunchGame() {
         GameRunner r = this.bootstrapSystem();
-        r.mainLoop(initialState, loopTime);
+        r.mainLoop(transition, loopTime);
     }
 
     /**

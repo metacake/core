@@ -5,7 +5,6 @@ import io.metacake.core.common.MilliTimer;
 import io.metacake.core.common.window.CakeWindow;
 import io.metacake.core.input.InputSystem;
 import io.metacake.core.output.OutputSystem;
-import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.state.EndState;
 import io.metacake.core.process.state.GameState;
 import org.slf4j.Logger;
@@ -42,28 +41,25 @@ public class GameRunner {
      * The game loop will attempt to put {@code interval} milliseconds between the start of each game loop.
      * This will fail if the {@link GameState#tick} takes more than {@code interval} milliseconds to run
      * When {@link GameRunner#stop()} is called the function will terminate after the current state finishes its tick cycle.
-     * @param state the initial state of the game
+     * @param transition the transition to the first state
      * @param interval the number of milliseconds requested to be between the start of each loop.
      */
-    public void mainLoop(GameState state, long interval) {
-        RenderingInstructionBundle inst = RenderingInstructionBundle.EMPTY_BUNDLE;
+    public void mainLoop(Transition transition, long interval) {
         logger.info("starting main loop");
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
         try {
-            while (isRunning && !state.isGameOver()) {
-                outputSystem.addToRenderQueue(inst);
-                updateTriggers(state);
-                Bundle bundle = state.tick(timer.update(), inputPipe);
-                state = bundle.state();
-                inst = bundle.renderingInstructions();
-                Bundle.reset();
+            while (isRunning && !transition.state().isGameOver()) {
+                outputSystem.addToRenderQueue(transition.renderingInstructions());
+                updateTriggers(transition);
+                transition = transition.state().tick(timer.update(), inputPipe);
+                Transition.swapAndReset();
                 timer.block();
             }
         } catch (Exception e) {
             logger.error("Error in main loop, terminating execution",e);
         } finally {
-            end(state);
+            end(transition.state());
         }
     }
 
@@ -88,15 +84,15 @@ public class GameRunner {
     /**
      * Replace {@link io.metacake.core.input.ActionTrigger}s and {@link io.metacake.core.process.ActionRecognizer}s
      * if need be
-     * @param state The current state
+     * @param transition the current transition
      */
-    private void updateTriggers(GameState state) {
-        if(state.replaceInputs()) {
+    private void updateTriggers(Transition transition) {
+        if(transition.replaceInputs()) {
             inputSystem.releaseActionTriggers();
             inputPipe.clear();
             inputPipe = new ActionRecognizerPipe();
-            state.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
-            state.replaceActionRecognizers().forEach(inputPipe::register);
+            transition.replaceActionTriggers().forEach(inputSystem::bindActionTrigger);
+            transition.replaceActionRecognizers().forEach(inputPipe::register);
         }
     }
 

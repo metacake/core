@@ -3,6 +3,7 @@ package io.metacake.core
 import io.metacake.core.common.window.CakeWindow
 import io.metacake.core.input.system.InputDevice
 import io.metacake.core.output.system.OutputDevice
+import io.metacake.core.process.Transition
 import io.metacake.core.process.state.EndState
 import io.metacake.core.process.state.GameState
 import spock.lang.Specification
@@ -19,8 +20,9 @@ class BootstrapBuilderSpec extends Specification {
     def "BootstrapBuilder errors when it is not given a window"() {
         setup:
         GameState state = Mock GameState
+        Transition t = Transition.to(state)
 
-        when: builder.withInitialState(state).createBootstrap()
+        when: builder.withInitialTransition(t).createBootstrap()
         then: thrown RuntimeException
     }
 
@@ -36,8 +38,9 @@ class BootstrapBuilderSpec extends Specification {
         setup:
         CakeWindow window = Mock CakeWindow
         GameState state = Mock GameState
+        Transition t = Transition.to(state)
 
-        when: builder.withWindow(window).withInitialState(state).createBootstrap()
+        when: builder.withWindow(window).withInitialTransition(t).createBootstrap()
         then: thrown RuntimeException
     }
 
@@ -45,14 +48,15 @@ class BootstrapBuilderSpec extends Specification {
         setup:
         CakeWindow window = Mock CakeWindow
         GameState state = Mock GameState
+        Transition t = Transition.to(state)
 
-        when: builder.withWindow(window).withInitialState(state).withOutputDevices().createBootstrap()
+        when: builder.withWindow(window).withInitialTransition(t).withOutputDevices().createBootstrap()
         then: thrown RuntimeException
     }
 
     def "A BootstrapBuilder with only the required configuration does not error"() {
         when: builder.withWindow(Mock(CakeWindow))
-                .withInitialState(Mock(GameState))
+                .withInitialTransition(Transition.to(Mock(GameState)))
                 .withOutputDevices(Mock(OutputDevice))
                 .createBootstrap()
         then: notThrown RuntimeException
@@ -60,7 +64,7 @@ class BootstrapBuilderSpec extends Specification {
 
     def "A Bootstrapper with all configuration does not throw an error"() {
         when: builder.withWindow(Mock(CakeWindow))
-                .withInitialState(Mock(GameState))
+                .withInitialTransition(Transition.to(Mock(GameState)))
                 .withInputDevices(Mock(InputDevice))
                 .withOutputDevices(Mock(OutputDevice))
                 .withLoopTime(40)

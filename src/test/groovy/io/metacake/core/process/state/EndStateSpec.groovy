@@ -21,20 +21,4 @@ class EndStateSpec extends Specification {
         closedEndState.tick(50, new ActionRecognizerPipe()).state() == closedEndState
         endedEndState.tick(50, new ActionRecognizerPipe()).state() == endedEndState
     }
-
-    def "If replaceInputs is somehow called it always returns false"() {
-        expect:
-        !closedEndState.tick(50, new ActionRecognizerPipe()).state().replaceInputs()
-        !endedEndState.tick(50, new ActionRecognizerPipe()).state().replaceInputs()
-    }
-
-    def "Replacing Action triggers is unsupported"() {
-        when: closedEndState.replaceActionTriggers()
-        then: thrown UnsupportedOperationException
-    }
-
-    def "Replacing Action recognizers is unsupported"() {
-        when: closedEndState.replaceActionRecognizers()
-        then: thrown UnsupportedOperationException
-    }
 }

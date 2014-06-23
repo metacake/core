@@ -1,8 +1,6 @@
 package io.metacake.core.process.state;
 
-import io.metacake.core.common.CustomizableMap;
 import io.metacake.core.input.ActionTrigger;
-import io.metacake.core.output.RenderingInstructionBundle;
 import io.metacake.core.process.*;
 
 import java.util.Collection;
@@ -44,23 +42,8 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public Bundle tick(long delta, ActionRecognizerPipe recognizers) {
-        return Bundle.getBundle().withState(this);
-    }
-
-    @Override
-    public boolean replaceInputs() {
-        return false;
-    }
-
-    @Override
-    public Collection<ActionTrigger> replaceActionTriggers() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Collection<RecognizerBucketName> replaceActionRecognizers() {
-        throw new UnsupportedOperationException();
+    public Transition tick(long delta, ActionRecognizerPipe recognizers) {
+        return Transition.to(this);
     }
 
     @Override

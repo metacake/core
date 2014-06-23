@@ -11,22 +11,6 @@ import java.util.Collection;
  * @author rpless
  */
 public abstract class UserState implements GameState {
-
-    @Override
-    public boolean replaceInputs() {
-        return false;
-    }
-
-    @Override
-    public Collection<ActionTrigger> replaceActionTriggers() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Collection<RecognizerBucketName> replaceActionRecognizers() {
-        throw new UnsupportedOperationException();
-    }
-
     @Override
     public final boolean isGameOver() {
         return false;
