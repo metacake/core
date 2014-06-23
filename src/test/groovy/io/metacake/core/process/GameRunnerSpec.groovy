@@ -27,7 +27,6 @@ class GameRunnerSpec extends Specification {
             mainLoopLock.release()
             Bundle.getBundle().withState(state)
         }
-        state.renderingInstructions() >> RenderingInstructionBundle.EMPTY_BUNDLE
     }
 
     @Timeout(10)
