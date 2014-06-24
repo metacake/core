@@ -18,8 +18,7 @@ import java.util.HashSet;
  * more than one Transition.
  */
 public class Transition implements Renderable {
-    private static Transition active = new Transition();
-    private static Transition inactive = new Transition();
+    private static Transition singleton = new Transition();
 
     /**
      * Create a transitions to a state
@@ -27,19 +26,16 @@ public class Transition implements Renderable {
      * @return the Transition
      */
     public static Transition to(GameState state) {
-        active.nextState = state;
-        return active;
+        singleton.nextState = state;
+        return singleton;
     }
 
-    static void swapAndReset() {
-        Transition tmp = active;
-        active = inactive;
-        inactive = tmp;
-        active.to(null);
-        active.withInstructions(RenderingInstructionBundle.EMPTY_BUNDLE);
-        active.triggers = new ArrayList<>();
-        active.recognizers = new HashSet<>();
-        active.newInputs = false;
+    static void reset() {
+        singleton.to(null);
+        singleton.withInstructions(RenderingInstructionBundle.EMPTY_BUNDLE);
+        singleton.triggers = new ArrayList<>();
+        singleton.recognizers = new HashSet<>();
+        singleton.newInputs = false;
     }
 
     private GameState nextState;

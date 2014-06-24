@@ -51,8 +51,9 @@ public class GameRunner {
             while (isRunning && transition.state().type() == GameState.Type.NORMAL) {
                 outputSystem.addToRenderQueue(transition.renderingInstructions());
                 updateTriggers(transition);
-                transition = transition.state().tick(timer.update(), inputPipe);
-                Transition.swapAndReset();
+                GameState s = transition.state();
+                Transition.reset();
+                transition = s.tick(timer.update(), inputPipe);
                 timer.block();
             }
         } catch (Exception e) {
