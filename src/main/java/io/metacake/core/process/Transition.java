@@ -11,12 +11,22 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
+ * This is a transition from one state to another (possibly the same state). It comes with instructions
+ * for the input and output layers on how to handle the transition.
+ *
+ * No Transition should be stored by a state between ticks. No tick cycle should attempt to create
+ * more than one Transition.
  */
 public class Transition implements Renderable {
     private static Transition active = new Transition();
     private static Transition inactive = new Transition();
 
-   public static Transition to(GameState state) {
+    /**
+     * Create a transitions to a state
+     * @param state the state to transition to
+     * @return the Transition
+     */
+    public static Transition to(GameState state) {
         active.nextState = state;
         return active;
     }
@@ -38,16 +48,34 @@ public class Transition implements Renderable {
     private Collection<ActionTrigger> triggers = new ArrayList<>();
     private Collection<RecognizerBucketName> recognizers = new HashSet<>();
 
+    /**
+     * Transition sending these rendering instructions to the output system
+     * @param inst the instructions
+     * @return the same Transition
+     */
     public Transition withInstructions(RenderingInstructionBundle inst) {
         newInputs = true;
         instructions = inst;
         return this;
     }
 
+    /**
+     * Transition sending this bucket and its contents to the input system
+     * @param bucket the bucket
+     * @param rs the recognizers
+     * @return the same Transition
+     */
     public <T extends ActionRecognizer> Transition withBucket(RecognizerBucketName<T> bucket,T ... rs) {
         return this.withBucket(bucket, Arrays.<T>asList(rs));
     }
 
+
+    /**
+     * Transition sending this bucket and its contents to the input system
+     * @param bucket the bucket
+     * @param rs the recognizers
+     * @return the same Transition
+     */
     public <T extends ActionRecognizer> Transition withBucket(RecognizerBucketName<T> bucket, Collection<T> rs) {
         newInputs = true;
         rs.forEach(bucket::register);
@@ -55,10 +83,21 @@ public class Transition implements Renderable {
         return this;
     }
 
+    /**
+     * Transition sending these ActionTriggers to the input system
+     * @param ts the triggers
+     * @return the same Transition
+     */
     public Transition withTriggers(ActionTrigger... ts) {
         return this.withTriggers(Arrays.asList(ts));
     }
 
+
+    /**
+     * Transition sending these ActionTriggers to the input system
+     * @param ts the triggers
+     * @return the same Transition
+     */
     public Transition withTriggers(Collection<ActionTrigger> ts) {
         newInputs = true;
         triggers.addAll(ts);
