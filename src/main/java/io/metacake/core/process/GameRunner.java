@@ -48,7 +48,7 @@ public class GameRunner {
         isRunning = true;
         MilliTimer timer = new MilliTimer(interval);
         try {
-            while (isRunning && transition.state().type() == GameState.Type.NORMAL) {
+            while (isRunning && transition.state().kind() == GameState.Kind.NORMAL) {
                 outputSystem.addToRenderQueue(transition.renderingInstructions());
                 updateTriggers(transition);
                 GameState s = transition.state();
@@ -127,6 +127,6 @@ public class GameRunner {
      * @return returns true if the window should close
      */
     private boolean shouldCloseWindow(GameState state) {
-        return !isRunning || state.type() == GameState.Type.CLOSE;
+        return !isRunning || state.kind() == GameState.Kind.CLOSE;
     }
 }

@@ -8,14 +8,14 @@ import io.metacake.core.process.*;
  * @author rpless
  */
 public final class EndState implements GameState {
-    private Type type;
+    private Kind kind;
 
     /**
      * End the game, using the given state to render. Do not close the window.
      * @return the end state
      */
     public static GameState end() {
-        return new EndState(Type.END);
+        return new EndState(Kind.END);
     }
 
     /**
@@ -23,11 +23,11 @@ public final class EndState implements GameState {
      * @return the end state
      */
     public static GameState close() {
-        return new EndState(Type.CLOSE);
+        return new EndState(Kind.CLOSE);
     }
 
-    private EndState(Type type) {
-        this.type = type;
+    private EndState(Kind kind) {
+        this.kind = kind;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class EndState implements GameState {
     }
 
     @Override
-    public Type type() {
-        return type;
+    public Kind kind() {
+        return kind;
     }
 }

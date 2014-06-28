@@ -9,11 +9,11 @@ class EndStateSpec extends Specification {
     EndState endedEndState = ((EndState) EndState.end())
 
     def "end does not close the window"() {
-        expect: endedEndState.type() == GameState.Type.END
+        expect: endedEndState.kind() == GameState.Kind.END
     }
 
     def "closeWith should close the window"() {
-        expect: closedEndState.type() == GameState.Type.CLOSE
+        expect: closedEndState.kind() == GameState.Kind.CLOSE
     }
 
     def "If tick is somehow called it will always return itself"() {

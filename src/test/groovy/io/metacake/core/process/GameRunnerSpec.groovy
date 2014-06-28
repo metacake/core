@@ -26,7 +26,7 @@ class GameRunnerSpec extends Specification {
             mainLoopLock.release()
             Transition.to(state)
         }
-        state.type() >> { GameState.Type.NORMAL }
+        state.kind() >> { GameState.Kind.NORMAL }
     }
 
     @Timeout(10)

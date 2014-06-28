@@ -19,19 +19,19 @@ public interface GameState {
     public Transition tick(long delta, ActionRecognizerPipe pipe);
 
     /**
-     * @return the type of state.
+     * @return the kind of state.
      */
-    default Type type() {
-        return Type.NORMAL;
+    default Kind kind() {
+        return Kind.NORMAL;
     };
 
     /**
      * Describes the kinds of states.
-     * {@link io.metacake.core.process.state.GameState.Type#NORMAL} is for runtime states
-     * {@link io.metacake.core.process.state.GameState.Type#END} is for end states
-     * {@link io.metacake.core.process.state.GameState.Type#CLOSE} is for states that close the window
+     * {@link io.metacake.core.process.state.GameState.Kind#NORMAL} is for runtime states
+     * {@link io.metacake.core.process.state.GameState.Kind#END} is for end states
+     * {@link io.metacake.core.process.state.GameState.Kind#CLOSE} is for states that close the window
      */
-    public enum Type {
+    public enum Kind {
         NORMAL,
         END,
         CLOSE
