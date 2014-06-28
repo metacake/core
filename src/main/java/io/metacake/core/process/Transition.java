@@ -50,7 +50,6 @@ public class Transition implements Renderable {
      * @return the same Transition
      */
     public Transition withInstructions(RenderingInstructionBundle inst) {
-        newInputs = true;
         instructions = inst;
         return this;
     }
