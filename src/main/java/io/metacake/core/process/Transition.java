@@ -30,6 +30,14 @@ public class Transition implements Renderable {
         return singleton;
     }
 
+    /**
+     * Get the current transition
+     * @return the current transition
+     */
+    public static Transition get() {
+        return singleton;
+    }
+
     static void reset() {
         singleton.to(null);
         singleton.withInstructions(RenderingInstructionBundle.EMPTY_BUNDLE);
