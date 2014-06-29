@@ -52,7 +52,7 @@ public class GameRunner {
                 outputSystem.addToRenderQueue(transition.renderingInstructions());
                 updateTriggers(transition);
                 GameState s = transition.state();
-                Transition.reset();
+                Transition.reset(s);
                 transition = s.tick(timer.update(), inputPipe);
                 timer.block();
             }

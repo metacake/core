@@ -38,8 +38,8 @@ public class Transition implements Renderable {
         return singleton;
     }
 
-    static void reset() {
-        singleton.to(null);
+    static void reset(GameState state) {
+        singleton.to(state);
         singleton.withInstructions(RenderingInstructionBundle.EMPTY_BUNDLE);
         singleton.triggers = new ArrayList<>();
         singleton.recognizers = new HashSet<>();
