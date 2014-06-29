@@ -18,13 +18,6 @@ public class MilliTimer {
     private long lastActive;
 
     /**
-     * Constructs a timer with a 0 interval.
-     */
-    public MilliTimer() {
-        this(0);
-    }
-
-    /**
      * Constructs a timer with the given interval
      * @param interval The interval for this timer
      */
