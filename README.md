@@ -25,7 +25,9 @@ Dependencies:
 + Maven 3 (Note: We are waiting for Groovy/Gradle to support Java 8)
 
 ## Building CAKE ##
-The CAKE framework can be built with Maven. Running the following command at the root of the project will build it:
+The CAKE framework can be built with Gradle 1.12 and greater. The project is built by running the following command:
 ```
-mvn clean install
+gradle clean test jacocoTestReport
 ```
+This generates two sets of reports in the projects reports directory.
+One shows the results of running the test suite and the other shows the test coverage report.

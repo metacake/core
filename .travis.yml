@@ -7,7 +7,6 @@ branches:
   only:
     - dev
     - master
-    - gradle
 
 script:
   - gradle clean test
