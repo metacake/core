@@ -1,9 +1,16 @@
 language: java
+
 jdk:
   - oraclejdk8
+
 branches:
   only:
     - dev
     - master
+    - gradle
+
+script:
+  - gradle clean test
+
 after_success:
-  - mvn jacoco:report coveralls:jacoco
+  - gradle jacocoTestReport coveralls
