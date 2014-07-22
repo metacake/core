@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/metacake/core.png?label=ready&title=Ready)](https://waffle.io/metacake/core)
 # Cake, the Meta game engine #
 "You can have your Cake and eat it too."
 
