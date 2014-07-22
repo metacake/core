@@ -3,6 +3,7 @@
 
 [![Build Status](https://travis-ci.org/metacake/core.png?branch=dev)](https://travis-ci.org/metacake/core)
 [![Coverage Status](https://coveralls.io/repos/metacake/core/badge.png?branch=dev)](https://coveralls.io/r/metacake/core?branch=dev)
+[![Stories in Ready](https://badge.waffle.io/metacake/core.png?label=ready&title=Ready)](https://waffle.io/metacake/core)
 
 ## Mission Statement ##
 The goal of Cake is to provide a pluggable cross platform framework for creating games and game engines.
